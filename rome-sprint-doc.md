@@ -2,6 +2,8 @@
 
 ## Queries
 
+This query list all the predicates in the GSIM graph :
+
 ```sparql
 select * FROM <http://stamina-project.org/graphs/gsim>
 where {?s ?p ?o}
