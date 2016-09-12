@@ -36,6 +36,6 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    filename: './js/starter-kit.js'
+    filename: './js/model-explorer.js'
   }
 }
