@@ -6,7 +6,7 @@ const {
 
 export default {
   GSBPMDescription: {
-    descr: 'Retrieve a globale description of the GSBPM',
+    descr: 'Retrieve a global description of the GSBPM',
     whatWeGet: 'phases',
     results: {
       phase: 'phase (uri)',
