@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { sparqlConnect } from '../sparql/configure-sparql'
 
 //FIXME temporary data structure use for mocking
 const _phases = {
@@ -31,4 +32,6 @@ function GSBPMExplorer({ loaded, phases }) {
   );
 }
 
-export default GSBPMExplorer;
+
+
+export default sparqlConnect.GSBPMDescription(GSBPMExplorer);
