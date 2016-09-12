@@ -1,7 +1,7 @@
 import React from 'react'
 import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADING, LOADED, FAILED } from 'sparql-connect'
-import { groupBy } from '../utils/group-by'
+import { groupByWithOrder } from '../utils/group-by'
 import GSBPMSubprocess from './gsbpm-subprocess'
 
 //FIXME temporary data structure use for mocking
@@ -29,20 +29,24 @@ function GSBPMExplorer({ loaded, phases }) {
   if(loaded !== LOADED) {
     return <p>LOADING...</p>
   }
-  const refinedPhases = groupBy(phases, 'phase', 'phaseLabel')
+  const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   console.dir(refinedPhases)
   return (
     <ul>
-      { Object.keys(refinedPhases).map((i) =>
-        <li key={i}>
-          {i} - {refinedPhases[i].props.phaseLabel}
+      { refinedPhases.map(({ id, props, entries }) =>
+        <li key={id}>
+          {id} - {props.phaseLabel}
           <ul>
-          { refinedPhases[i].entries.map((sp) =>
-            <li key={sp.subprocess}>
-              <GSBPMSubprocess
-                id={sp.subprocess}
-                label={sp.subprocessLabel} />
-            </li>
+          { entries
+              .sort((a, b) => {
+                return a.subprocessCode > b.subprocessCode
+              })
+              .map(({ subprocess, subprocessLabel}) =>
+                <li key={subprocess}>
+                  <GSBPMSubprocess
+                    id={subprocess}
+                    label={subprocessLabel} />
+                </li>
           )}
           </ul>
         </li>
