@@ -8,7 +8,7 @@ const GSBPMDescription = () => `
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   select ?phase ?phaseLabel ?subprocess ?subprocessLabel where {
    ?phase a gsbpm:Phase ;
-          skos:narrower ?subProcess ;
+          skos:narrower ?subprocess ;
    OPTIONAL {
      ?phase skos:prefLabel ?phaseLabel
    }
