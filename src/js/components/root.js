@@ -10,8 +10,8 @@ import mainReducer from '../reducers/index'
 //`App` is our main component. It can contain for instance an application bar.
 //It will embed all the other components, thanks to `react-router` mechanism.
 import App from './app'
-import Classifications from './classifications'
-import ClassificationDetails from './classification-details'
+import GSBPMExplorer from './GSBPMExplorer'
+
 //We need to create a store. `configureStore` add a little extra config to 
 //allow to work with asyncrhonous actions and to use the redux dev tools.
 const store = configureStore(mainReducer)
@@ -24,10 +24,7 @@ export default class Root extends Component {
           <Route path="/" component={App}>
             {/* default component if the route does not match any over
                 route */}
-            <IndexRoute component={Classifications} />
-            
-            <Route path={path.classificationDetails}
-                   component={ClassificationDetails} />
+            <IndexRoute component={GSBPMExplorer} />
           </Route>
         </Router>
       </Provider>
