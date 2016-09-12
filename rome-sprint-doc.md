@@ -9,6 +9,13 @@ select * FROM <http://stamina-project.org/graphs/gsim>
 where {?s ?p ?o}
 ```
 
+```sparql
+prefix gsbpm: <http://rdf.unece.org/models/gsbpm#>
+select * where {
+ ?s  a gsbpm:Phase
+}
+```
+
 ## Namespaces
 
 GSBPM
@@ -16,3 +23,4 @@ GSBPM
 ```
 @prefix gsbpm: <http://rdf.unece.org/models/gsbpm#> .
 ```
+
