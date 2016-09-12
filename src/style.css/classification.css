@@ -1,5 +1,7 @@
-.note {
-  margin: 10px;
-  padding: 15px;
-  border: solid #ccc 1px;
+.phases {
+  background-color: blue;
+}
+
+.subprocess {
+  background-color: red;
 }

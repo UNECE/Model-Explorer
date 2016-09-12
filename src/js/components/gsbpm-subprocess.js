@@ -2,7 +2,7 @@ import React from 'react'
 
 function GSBPMSubprocess(props) {
   return(
-    <p>{props.id} - {props.label}</p>
+    <p>{props.label}</p>
   )
 }
 

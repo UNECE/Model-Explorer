@@ -11,26 +11,26 @@ function GSBPMExplorer({ loaded, phases }) {
   const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   console.dir(refinedPhases)
   return (
-    <ul>
+    <div className="row">
+
       { refinedPhases.map(({ id, props, entries }) =>
-        <li key={id}>
-          {id} - {props.phaseLabel}
-          <ul>
+        <div className="col-md-1" key={id}>
+          <div className="phases">{props.phaseLabel}</div>
           { entries
               .sort((a, b) => {
                 return a.subprocessCode > b.subprocessCode
               })
               .map(({ subprocess, subprocessLabel}) =>
-                <li key={subprocess}>
+                <div className="subprocess" key={subprocess}>
                   <GSBPMSubprocess
                     id={subprocess}
                     label={subprocessLabel} />
-                </li>
+                </div>
           )}
-          </ul>
-        </li>
+        </div>
       )}
-    </ul>
+
+  </div>
   );
 }
 

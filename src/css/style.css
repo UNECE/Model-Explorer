@@ -6,3 +6,11 @@ html, body {
 #base {
   padding: 20px;
 }
+
+.phases {
+  border: 2px solid blue;
+}
+
+.subprocess {
+  border: 2px solid red;
+}
