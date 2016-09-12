@@ -6,7 +6,7 @@
 const GSBPMDescription = () => `
   PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  select ?phase ?phaseLabel ?subprocess ?subprocessLabel where {
+  select ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode ?subprocessCode where {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
    OPTIONAL {
@@ -15,9 +15,15 @@ const GSBPMDescription = () => `
    OPTIONAL {
      ?subprocess skos:prefLabel ?subprocessLabel
    }
+   OPTIONAL {
+     ?phase skos:notation ?phaseCode
+   }
+   OPTIONAL {
+     ?subprocess skos:notation ?subprocessCode
+   }
   }
  `
- 
+
 export default {
   GSBPMDescription
 }
