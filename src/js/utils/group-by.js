@@ -27,3 +27,25 @@ export function groupBy(results, key, ...props) {
     return groups
   }, {})
 }
+
+//It does not value the ordering of the initial results (as a consequence of an
+//ORDER BY statement in the sparql query): sorting is fast on the client, we
+//can lose the order with `groupBy` and create then again with this function.
+export function groupByWithOrder(results, key, sortingKey, ...props) {
+  // no order for now
+  const gByRslts = groupBy(results, key, ...props)
+  const gByRsltsArr = Object.keys(gByRslts).reduce((arr, rsltKey) => {
+    const { props, entries } = gByRslts[rsltKey]
+    const refinedResult = {
+      id: rsltKey,
+      props,
+      entries
+    }
+    arr.push(refinedResult)
+    return arr
+  }, [])
+  return gByRsltsArr.sort((a, b) => {
+    return a.props[sortingKey] > b.props[sortingKey]
+  })
+  
+}
