@@ -12,7 +12,7 @@ function GSBPMExplorer({ loaded, phases }) {
   console.dir(refinedPhases)
   return (
     <div className="row">
-
+      <h2>GSBPM Explorer</h2>
       { refinedPhases.map(({ id, props, entries }) =>
         <div className="col-md-1" key={id}>
           <div className="phases">{props.phaseLabel}</div>
