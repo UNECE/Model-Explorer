@@ -11,8 +11,8 @@ export default {
     results: {
       phase: 'phase (uri)',
       phaseLabel: 'phase label',
-      subProcess: 'subProcess (uri)',
-      subProcessLabel: 'subProcess label'
+      subprocess: 'subprocess (uri)',
+      subprocessLabel: 'subprocess label'
     },
     params: [],
     queryBuilder: GSBPMDescription
