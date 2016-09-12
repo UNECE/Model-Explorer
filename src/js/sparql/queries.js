@@ -1,26 +1,23 @@
+//TODO we might need to filter on the language, but for now english seems to be
+//the only language available
 /**
- * Builds the query that retrieve the list of all classifications.
+ * Builds the query that retrieve the GSBPM overlook
  */
-const classifications = () => `
-  PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-  PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
-  SELECT ?classification ?label WHERE {
-    ?classification rdf:type skos:ConceptScheme ; 
-                    skos:prefLabel ?label .
-  } 
- `
-
-/**
- * Builds the query that gets the details about a classification.
- */
-const classificationDetails = uri => `
-  PREFIX dcterms: <http://purl.org/dc/terms/>
+const GSBPMDescription = () => `
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  SELECT ?label WHERE {
-    <${uri}> skos:prefLabel ?label
+  select ?phase ?phaseLabel ?subProcess ?subProcessLabel where {
+   ?phase a gsbpm:Phase ;
+          skos:narrower ?subProcess ;
+   OPTIONAL {
+     ?phase skos:prefLabel ?phaseLabel
+   }
+   OPTIONAL {
+     ?subProcess skos:prefLabel ?subProcessLabel
+   }
   }
-`
+ `
+ 
 export default {
-  classifications,
-  classificationDetails
+  GSBPMDescription
 }
