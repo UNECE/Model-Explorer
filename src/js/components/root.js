@@ -27,16 +27,20 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          <Route path="/" component={App}>
+          <Route path="/"
+                 component={App}>
             {/* default component if the route does not match any over
                 route */}
             <IndexRoute component={Services} />
             <Route path={path.serviceDetails}
                    component={ServiceDetails} />
-            <Route path="/gsbpm" component={GSBPMExplorer} />
-            <Route path="/gsim" component={GSIMExplorer}>
+            <Route path="/gsbpm"
+                   component={GSBPMExplorer} />
+            <Route path="/gsim"
+                   component={GSIMExplorer}>
                 <IndexRoute component={GSIMGroupSelector} />
-                <Route path=":group" component={GSIMClassSelector}/>
+                <Route path=":group"
+                       component={GSIMClassSelector}/>
             </Route>
           </Route>
         </Router>
