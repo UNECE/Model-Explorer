@@ -6,16 +6,20 @@ export default function App({ children }) {
   return (
     <div className="container-fluid">
       <header>
-        Explore with:
-        <ul>
-          <li>
-            <Link to="/gsbpm">GSBPM</Link>
-          </li>
-          <li>
-            <Link to="/gsim">GSIM</Link>
-          </li>
-        </ul>
-
+        <div>
+          <Link to="/">Home</Link>
+        </div>
+        <div>
+          Explore with:
+          <ul>
+            <li>
+              <Link to="/gsbpm">GSBPM</Link>
+            </li>
+            <li>
+              <Link to="/gsim">GSIM</Link>
+            </li>
+          </ul>
+        </div>
       </header>
       <h1>Model Explorer</h1>
       {/* Children is a special prop name with react. Here, it allows
