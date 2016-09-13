@@ -55,12 +55,31 @@ const serviceSubprocesses = service => `
   SELECT DISTINCT ?sub ?label
   WHERE {
       <${service}>  cspa:hasPackageDefinition ?definition .
-      ?defnition cspa:aimsAt ?function .
+      ?definition cspa:aimsAt ?function .
       ?function  cspa:gsbpmSubProcess ?sub .
       ?sub       skos:prefLabel ?label
   }
 `
 
+const serviceInputs = service => `
+  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#> 
+  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+  SELECT DISTINCT ?gsimClass ?label ?definition
+  WHERE {
+      <${service}> a cspa:package ;
+          cspa:label ?servicelabel ;
+          cspa:hasPackageDefinition ?pckgDefinition .
+
+      ?pckgDefinition   
+          cspa:definitionHasInput ?input .
+      ?input cspa:gsimInput ?gsimClass .
+      ?gsimClass rdfs:label ?label .
+      ?gsimClass gsim:classDefinition ?definition
+  }
+`
 const GSIMgroups = () => `
   PREFIX gsim:<http://rdf.unece.org/models/gsim#>
 
@@ -73,5 +92,6 @@ export default {
   GSBPMDescription,
   services,
   serviceDetails,
-  serviceSubprocesses
+  serviceSubprocesses,
+  serviceInputs
 }
