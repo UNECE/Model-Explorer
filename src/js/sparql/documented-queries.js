@@ -5,7 +5,8 @@ const {
   subprocessServices,
   services,
   serviceDetails,
-  serviceSubprocesses
+  serviceSubprocesses,
+  serviceInputs
 } = queries
 
 export default {
@@ -66,5 +67,17 @@ export default {
       label: 'subproces label'
     },
     queryBuilder: serviceSubprocesses
+  },
+  serviceInputs: {
+    descr: 'Retrieve gsim inputs for a service',
+    whatWeGet: 'inputs',
+    params: [{
+      name: 'service'
+    }],
+    results: {
+      gsimClass: 'gsimClass',
+      label: 'label of the gsim class'
+    },
+    queryBuilder: serviceInputs
   }
 }
