@@ -13,6 +13,8 @@ import App from './app'
 import GSBPMExplorer from './gsbpm-explorer'
 import GSIMExplorer from './gsim-explorer'
 import ExplorerChoice from './explorer-choice'
+import GSIMGroupSelector from './gsim-group-selector'
+import GSIMClassSelector from './gsim-class-selector'
 
 //We need to create a store. `configureStore` add a little extra config to
 //allow to work with asyncrhonous actions and to use the redux dev tools.
@@ -28,7 +30,10 @@ export default class Root extends Component {
                 route */}
             <IndexRoute component={ExplorerChoice} />
             <Route path="/gsbpm" component={GSBPMExplorer} />
-            <Route path="/gsim" component={GSIMExplorer} />
+            <Route path="/gsim" component={GSIMExplorer}>
+                <IndexRoute component={GSIMGroupSelector} />
+                <Route path=":group" component={GSIMClassSelector}/>
+            </Route>
           </Route>
         </Router>
       </Provider>
