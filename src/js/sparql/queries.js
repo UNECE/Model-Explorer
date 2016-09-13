@@ -24,6 +24,37 @@ const GSBPMDescription = () => `
   }
  `
 
+
+const services = () => `
+  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+  SELECT distinct ?service ?label
+  WHERE { 
+    ?service a cspa:package .
+    ?service cspa:label ?label 
+  }
+`
+
+const serviceDetails = service => `
+  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  
+  SELECT ?sub ?label
+  WHERE { 
+      <${service}>  cspa:hasPackageDefinition ?definition .
+      ?defnition cspa:aimsAt ?function .
+      ?function  cspa:gsbpmSubProcess ?sub ;
+                skos:prefLabel ?label
+  }
+`
+
+
+
 export default {
-  GSBPMDescription
+  GSBPMDescription,
+  services,
+  serviceDetails
 }

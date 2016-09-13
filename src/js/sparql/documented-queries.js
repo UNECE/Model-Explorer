@@ -1,7 +1,10 @@
 import queries from './queries'
 
 const {
-  GSBPMDescription
+  GSBPMDescription,
+  subprocessServices,
+  services,
+  serviceDetails
 } = queries
 
 export default {
@@ -18,5 +21,37 @@ export default {
     },
     params: [],
     queryBuilder: GSBPMDescription
+  },
+  // subprocessServices: {
+  //   descr: 'Retrieve all the services related to a subprocess',
+  //   whatWeGet: 'services',
+  //   results: {
+  //     service: 'service (uri)',
+  //     label: 'service label'
+  //   },
+  //   queryBuilder: subprocessServices
+  // },
+  services: {
+    descr: 'Retrieve a list of services',
+    whatWeGet: 'services',
+    params: [],
+    results: {
+      service: 'service (uri)',
+      label: 'label of the service'
+    },
+    queryBuilder: services
+  },
+  serviceDetails: {
+    descr: 'Retrieve details for a service',
+    singleResult: true,
+    params: [{
+      name: 'service',
+      descr: 'service (uri)'
+    }],
+    results: {
+      sub: 'subprocess (uri)',
+      label: 'subproces label'
+    },
+    queryBuilder: serviceDetails
   }
 }

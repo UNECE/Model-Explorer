@@ -20,6 +20,16 @@ const routes = {
   //     return `/classification/${classifcationId}/details/${conceptSchemeId}`
   //   }
   // }
+  serviceDetails: {
+    pattern: '/service/:serviceId',
+    paramsToProps: (state, { serviceId }) => ({
+      service: serviceId
+    }),
+    uriToLink: uri => {
+      const serviceId = encodeURIComponent(uri)
+      return `/service/${serviceId}`
+    }
+  }
 }
 
 export const {
