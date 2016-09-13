@@ -31,6 +31,8 @@ export default class Root extends Component {
             {/* default component if the route does not match any over
                 route */}
             <IndexRoute component={Services} />
+            <Route path={path.serviceDetails}
+                   comopnent={ServiceDetails} />
             <Route path="/gsbpm" component={GSBPMExplorer} />
             <Route path="/gsim" component={GSIMExplorer}>
                 <IndexRoute component={GSIMGroupSelector} />
