@@ -31,9 +31,9 @@ const services = () => `
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
   SELECT distinct ?service ?label
-  WHERE { 
+  WHERE {
     ?service a cspa:package .
-    ?service cspa:label ?label 
+    ?service cspa:label ?label
   }
 `
 
@@ -42,7 +42,7 @@ const serviceDetails = service => `
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
   SELECT ?label
-  WHERE { 
+  WHERE {
       <${service}> cspa:label ?label
   }
 `
@@ -51,9 +51,9 @@ const serviceDetails = service => `
 const serviceSubprocesses = service => `
   PREFIX cspa:<http://rdf.unece.org/models/cspa#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  
+
   SELECT DISTINCT ?sub ?label
-  WHERE { 
+  WHERE {
       <${service}>  cspa:hasPackageDefinition ?definition .
       ?defnition cspa:aimsAt ?function .
       ?function  cspa:gsbpmSubProcess ?sub .
@@ -61,7 +61,13 @@ const serviceSubprocesses = service => `
   }
 `
 
+const GSIMgroups = () => `
+  PREFIX gsim:<http://rdf.unece.org/models/gsim#>
 
+  SELECT ?pack WHERE {
+  	?pack rdfs:subClassOf gsim:GSIMObject
+  }
+`
 
 export default {
   GSBPMDescription,
