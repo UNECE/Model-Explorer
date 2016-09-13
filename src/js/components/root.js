@@ -32,7 +32,7 @@ export default class Root extends Component {
                 route */}
             <IndexRoute component={Services} />
             <Route path={path.serviceDetails}
-                   comopnent={ServiceDetails} />
+                   component={ServiceDetails} />
             <Route path="/gsbpm" component={GSBPMExplorer} />
             <Route path="/gsim" component={GSIMExplorer}>
                 <IndexRoute component={GSIMGroupSelector} />

@@ -21,13 +21,13 @@ const routes = {
   //   }
   // }
   serviceDetails: {
-    pattern: '/service/:serviceId',
+    pattern: 'service/:serviceId',
     paramsToProps: (state, { serviceId }) => ({
       service: serviceId
     }),
     uriToLink: uri => {
       const serviceId = encodeURIComponent(uri)
-      return `/service/${serviceId}`
+      return `service/${serviceId}`
     }
   }
 }
