@@ -6,11 +6,11 @@ In order to show nice URLs, we can define some mappgins between route paremeters
 and unique identifiers (most of the time URI).
 */
 
-const prefix = 'http://unece.org/services#'
-const rPrefix = new RegExp(prefix + '(.*)')
+const servicePrefix = 'http://unece.org/services#'
+const GSIMPrefix = 'http://rdf.unece.org/models/gsim#'
+const GSBPMPrefix = 'http://id.unece.org/models/gsbpm/'
 
-const prefixGsim = 'http://rdf.unece.org/models/gsim#'
-const rPrefixGsim = new RegExp(prefixGsim + '(.*)')
+const regedPrefix = (prefix) => new RegExp(prefix + '(.*)')
 
 const routes = {
   // create: {
@@ -20,10 +20,10 @@ const routes = {
   serviceDetails: {
     pattern: 'service/:serviceId',
     paramsToProps: (state, { serviceId }) => ({
-      service: `${prefix}${serviceId}`
+      service: `${servicePrefix}${serviceId}`
     }),
     uriToLink: uri => {
-      const serviceId = uri.match(rPrefix)[1]
+      const serviceId = uri.match(regedPrefix(servicePrefix))[1]
       return `service/${serviceId}`
     }
   },
@@ -33,8 +33,18 @@ const routes = {
       gsimClass: gsimClassId
     }),
     uriToLink: uri => {
-      const gsimClassId = uri.match(rPrefixGsim)[1]
+      const gsimClassId = uri.match(regedPrefix(GSIMPrefix))[1]
       return `servicesByGsimInput/${gsimClassId}`
+    }
+  },
+  serviceBySubProcess: {
+    pattern: 'servicebysubprocess/:subprocess',
+    paramsToProps: (state, { subprocess }) => ({
+
+    }),
+    uriToLink: uri => {
+      const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
+      return `servicebysubprocess/${subprocessId}`
     }
   }
 } 
