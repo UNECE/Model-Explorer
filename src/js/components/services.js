@@ -11,3 +11,4 @@ function Services({ loaded, services }) {
 }
 
 export default sparqlConnect.services(Services)
+export const DumbServices = Services

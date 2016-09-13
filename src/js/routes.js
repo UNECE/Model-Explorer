@@ -30,11 +30,11 @@ const routes = {
   servicesByGsimInput: {
     pattern: 'servicesByGsimInput/:gsimClassId',
     paramsToProps: (state, { gsimClassId }) => ({
-      gsimClass: gsimClassId
+      gsimClass: `${GSIMPrefix}${gsimClassId}`
     }),
     uriToLink: uri => {
       const gsimClassId = uri.match(regedPrefix(GSIMPrefix))[1]
-      return `servicesByGsimInput/${gsimClassId}`
+      return `/servicesByGsimInput/${gsimClassId}`
     }
   },
   serviceBySubProcess: {
