@@ -87,11 +87,29 @@ const GSIMgroups = () => `
   	?pack rdfs:subClassOf gsim:GSIMObject
   }
 `
+const gsimInputServices = gsimClass => `
+  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#> 
+  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+  SELECT DISTINCT ?service ?label
+  WHERE {
+    ?service a cspa:package ;
+             cspa:label ?label ;
+             cspa:hasPackageDefinition ?pckgDefinition .
+
+    ?pckgDefinition cspa:definitionHasInput ?input .
+    ?input cspa:gsimInput <${gsimClass}>
+  }
+`
+
 
 export default {
   GSBPMDescription,
   services,
   serviceDetails,
   serviceSubprocesses,
-  serviceInputs
+  serviceInputs,
+  gsimInputServices
 }

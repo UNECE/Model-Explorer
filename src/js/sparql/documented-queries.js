@@ -6,7 +6,8 @@ const {
   services,
   serviceDetails,
   serviceSubprocesses,
-  serviceInputs
+  serviceInputs,
+  gsimInputServices
 } = queries
 
 export default {
@@ -80,5 +81,17 @@ export default {
       definition: 'definition of the gsim class'
     },
     queryBuilder: serviceInputs
+  },
+  gsimInputServices: {
+    descr: 'Retrieve all services with the given gsim class as input',
+    whatWeGet: 'services',
+    params: [{
+      name: 'gsimClass'
+    }],
+    results: {
+      service: 'service (uri)',
+      label: 'service label'
+    },
+    queryBuilder: gsimInputServices
   }
 }
