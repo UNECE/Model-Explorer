@@ -9,7 +9,6 @@ function GSBPMExplorer({ loaded, phases }) {
     return <p>LOADING...</p>
   }
   const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
-  console.dir(refinedPhases)
   return (
     <div className="row">
       <h3>GSBPM Explorer</h3>
