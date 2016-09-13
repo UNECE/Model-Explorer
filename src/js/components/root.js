@@ -11,6 +11,8 @@ import mainReducer from '../reducers/index'
 //It will embed all the other components, thanks to `react-router` mechanism.
 import App from './app'
 import GSBPMExplorer from './gsbpm-explorer'
+import GSIMExplorer from './gsim-explorer'
+import ExplorerChoice from './explorer-choice'
 
 //We need to create a store. `configureStore` add a little extra config to
 //allow to work with asyncrhonous actions and to use the redux dev tools.
@@ -24,7 +26,9 @@ export default class Root extends Component {
           <Route path="/" component={App}>
             {/* default component if the route does not match any over
                 route */}
-            <IndexRoute component={GSBPMExplorer} />
+            <IndexRoute component={ExplorerChoice} />
+            <Route path="/gsbpm" component={GSBPMExplorer} />
+            <Route path="/gsim" component={GSIMExplorer} />
           </Route>
         </Router>
       </Provider>
