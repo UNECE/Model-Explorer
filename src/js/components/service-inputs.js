@@ -9,7 +9,7 @@ function ServiceInputs({ loaded, inputs, label }) {
         Inputs:
         <ul>
         { inputs.map(({ gsimClass, label }) => 
-        <li key={gsimClass}>{gsimClass}</li> )}
+        <li key={gsimClass}>{label || gsimClass}</li> )}
         </ul>
       </div>
     )

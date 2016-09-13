@@ -76,7 +76,8 @@ export default {
     }],
     results: {
       gsimClass: 'gsimClass',
-      label: 'label of the gsim class'
+      label: 'label of the gsim class',
+      definition: 'definition of the gsim class'
     },
     queryBuilder: serviceInputs
   }

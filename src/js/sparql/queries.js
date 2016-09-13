@@ -65,17 +65,19 @@ const serviceInputs = service => `
   PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
   PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
   PREFIX gsim:  <http://rdf.unece.org/models/gsim#> 
+  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 
-  SELECT DISTINCT ?gsimClass ?label
+  SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
       <${service}> a cspa:package ;
           cspa:label ?servicelabel ;
-          cspa:hasPackageDefinition ?definition .
+          cspa:hasPackageDefinition ?pckgDefinition .
 
-      ?definition   
+      ?pckgDefinition   
           cspa:definitionHasInput ?input .
       ?input cspa:gsimInput ?gsimClass .
-   
+      ?gsimClass rdfs:label ?label .
+      ?gsimClass gsim:classDefinition ?definition
   }
 `
 const GSIMgroups = () => `
