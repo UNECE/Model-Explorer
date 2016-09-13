@@ -39,15 +39,25 @@ const services = () => `
 
 const serviceDetails = service => `
   PREFIX cspa:<http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+  SELECT ?label
+  WHERE { 
+      <${service}> cspa:label ?label
+  }
+`
+
+//TODO investigate, we shouldn't need DISTINCT, should we ?
+const serviceSubprocesses = service => `
+  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   
-  SELECT ?sub ?label
+  SELECT DISTINCT ?sub ?label
   WHERE { 
       <${service}>  cspa:hasPackageDefinition ?definition .
       ?defnition cspa:aimsAt ?function .
-      ?function  cspa:gsbpmSubProcess ?sub ;
-                skos:prefLabel ?label
+      ?function  cspa:gsbpmSubProcess ?sub .
+      ?sub       skos:prefLabel ?label
   }
 `
 
@@ -56,5 +66,6 @@ const serviceDetails = service => `
 export default {
   GSBPMDescription,
   services,
-  serviceDetails
+  serviceDetails,
+  serviceSubprocesses
 }

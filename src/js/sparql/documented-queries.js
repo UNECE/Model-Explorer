@@ -4,7 +4,8 @@ const {
   GSBPMDescription,
   subprocessServices,
   services,
-  serviceDetails
+  serviceDetails,
+  serviceSubprocesses
 } = queries
 
 export default {
@@ -40,7 +41,7 @@ export default {
       label: 'label of the service'
     },
     queryBuilder: services
-  },
+  }, 
   serviceDetails: {
     descr: 'Retrieve details for a service',
     singleResult: true,
@@ -49,9 +50,21 @@ export default {
       descr: 'service (uri)'
     }],
     results: {
+      label: 'service label'
+    },
+    queryBuilder: serviceDetails
+  },
+  serviceSubprocesses: {
+    descr: 'Retrieve details for a service',
+    params: [{
+      name: 'service',
+      descr: 'service (uri)'
+    }],
+    whatWeGet: 'subs',
+    results: {
       sub: 'subprocess (uri)',
       label: 'subproces label'
     },
-    queryBuilder: serviceDetails
+    queryBuilder: serviceSubprocesses
   }
 }
