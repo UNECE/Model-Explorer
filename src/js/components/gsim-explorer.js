@@ -1,8 +1,12 @@
 import React from 'react'
+import GSIMGroupSelector from './gsim-group-selector'
 
-function GSIMExplorer(props) {
+function GSIMExplorer({ children }) {
   return(
-    <div>This is the GSIM Explorer</div>
+    <div>
+      <h2>This is the GSIM Explorer</h2>
+      { children }
+    </div>
   )
 }
 
