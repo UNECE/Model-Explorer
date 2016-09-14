@@ -4,7 +4,7 @@ import GSIMGroupSelector from './gsim-group-selector'
 function GSIMExplorer({ children }) {
   return(
     <div>
-      <h2>This is the GSIM Explorer</h2>
+      <h1>This is the GSIM Explorer</h1>
       { children }
     </div>
   )

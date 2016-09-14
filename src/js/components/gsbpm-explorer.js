@@ -11,7 +11,7 @@ function GSBPMExplorer({ loaded, phases }) {
   const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return (
     <div className="row">
-      <h3>GSBPM Explorer</h3>
+      <h1>GSBPM Explorer</h1>
       { refinedPhases.map(({ id, props, entries }) =>
         <div className="col-md-1" key={id}>
           <div className="phases">{props.phaseLabel}</div>

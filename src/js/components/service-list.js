@@ -4,14 +4,17 @@ import { uriToLink } from '../routes'
 
 export default function ServiceList({ services }) {
   return(
-    <ul>
-      { services.map(({ service, label }) =>
-        <li key={service}>
-          <Link to={uriToLink.serviceDetails(service)}>
-            { label }
-          </Link>
-        </li>)}
-    </ul>
+    <div>
+      <h1>Service list</h1>
+      <ul>
+        { services.map(({ service, label }) =>
+          <li key={service}>
+            <Link to={uriToLink.serviceDetails(service)}>
+              { label }
+            </Link>
+          </li>)}
+      </ul>
+    </div>
   )
 }
 
