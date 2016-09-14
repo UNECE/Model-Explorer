@@ -5,13 +5,24 @@ import { LOADED } from 'sparql-connect'
 
 function ServiceBySubProcess({ loaded, services }) {
   if(loaded !== LOADED) {
-    return(<p>LOADING...</p>)
+    return(<div>LOADING...</div>)
+  }
+  if(services.length === 0) {
+    return(<div>
+      There is no service implementing this subprocess.
+    </div>)
   }
   return(
     <div>
+      <ul>
       {
-        services.map((service) => <p key={service.name}>{service.label}</p>)
+        services
+          .map((service) =>
+            <li key={service.serviceId}>
+              {service.label}
+            </li>)
       }
+      </ul>
     </div>
   )
 }

@@ -139,11 +139,11 @@ const serviceBySubProcess = (subprocess) => `
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   PREFIX cspa:<http://rdf.unece.org/models/cspa#>
 
-  SELECT ?service ?label WHERE {
+  SELECT ?serviceId ?label WHERE {
     ?function cspa:gsbpmSubProcess <${subprocess}> .
     ?definition cspa:aimsAt ?function .
-    ?service cspa:hasPackageDefinition ?definition .
-    ?service cspa:label ?label
+    ?serviceId cspa:hasPackageDefinition ?definition .
+    ?serviceId cspa:label ?label
   }
 `
 
