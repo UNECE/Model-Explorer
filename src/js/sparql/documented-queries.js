@@ -122,7 +122,12 @@ export default {
   serviceBySubProcess: {
     descr: 'Retrieve a list of services implementing a GSBPM subprocess',
     whatWeGet: 'services',
-    params: [],
+    params: [
+      {
+        name: 'subprocess',
+        descr: 'The subprocess id'
+      }
+    ],
     results: {
       service: 'CSPA Service (uri)',
       label: 'CSPA Service label'

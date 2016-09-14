@@ -136,13 +136,14 @@ const gsimInputServices = gsimClass => `
 
 const serviceBySubProcess = (subprocess) => `
   PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   PREFIX cspa:<http://rdf.unece.org/models/cspa#>
 
-  SELECT ?service ?sub ?function WHERE {
-    ?sub skos:notation "${subprocess}" .
-    ?function cspa:gsbpmSubProcess ?sub .
+  SELECT ?service ?label WHERE {
+    ?function cspa:gsbpmSubProcess <${subprocess}> .
     ?definition cspa:aimsAt ?function .
-    ?service cspa:hasPackageDefinition ?definition
+    ?service cspa:hasPackageDefinition ?definition .
+    ?service cspa:label ?label
   }
 `
 

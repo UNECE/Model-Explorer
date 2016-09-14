@@ -15,7 +15,7 @@ const regedPrefix = (prefix) => new RegExp(prefix + '(.*)')
 const routes = {
   // create: {
   //   pattern: 'create',
-  //   paramsToProps: 
+  //   paramsToProps:
   // }
   create: {
     pattern: 'create',
@@ -42,16 +42,16 @@ const routes = {
     }
   },
   serviceBySubProcess: {
-    pattern: 'servicebysubprocess/:subprocess',
+    pattern: '/servicebysubprocess/:subprocess',
     paramsToProps: (state, { subprocess }) => ({
       subprocess: `${GSBPMPrefix}${subprocess}`
     }),
     uriToLink: uri => {
       const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `servicebysubprocess/${subprocessId}`
+      return `/servicebysubprocess/${subprocessId}`
     }
   }
-} 
+}
 
 export const {
   connectFromRoute,
