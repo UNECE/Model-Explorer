@@ -12,27 +12,6 @@ const serviceURIFromLabel = label => {
   return `${servicePrefix}${name}`
 }
 
-const queryInsertBuilderOld = (uri, label) => `
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX cspa: <http://rdf.unece.org/models/cspa#>
-PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
-
-INSERT DATA {
-  <${uri}> rdf:type cspa:package ;
-           cspa:label "${label}" ;
-           cspa:hasPackageDefinition _:b0 .
-  _:b0     rdf:type cspa:ServiceDefinition ;
-           cspa:aimsAt _:b1 ;
-           cspa:definitionHasInput _:b2 ;
-           cspa:definitionHasOutput _:b3 .
-  _:b1     rdf:type cspa:BusinessFuncion .
-  _:b2     rdf:type cspa:DefinitionInput ;
-           cspa:gsimInput gsim:Variable .
-  _:b3     rdf:type cspa:DefinitionInput ;
-           cspa:gsimInput gsim:DataSet .
-}
-`
-
 const queryInsertBuilder = ({ uri, label, GSBPMSub, GSIMIn, GSIMOut,
   description, restrictions, outcomes,
   uriPckgDef, uriAimsAt, uriIn, uriOut }) => `
