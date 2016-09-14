@@ -11,10 +11,10 @@ function Services({ loaded, services }) {
   if (loaded !== LOADED) return <span>loading services</span>
   return (
     <div>
-      <ServiceList services={services}/>
       <button type="button"
               className="btn btn-primary"
               onClick={handleClick}>Create a new service</button>
+      <ServiceList services={services}/>
     </div>
   )
 }
