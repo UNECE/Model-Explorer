@@ -6,14 +6,14 @@ export default function ServiceList({ services }) {
   return(
     <div>
       <h1>Service list</h1>
-      <ul>
+        <div className="list-group">
         { services.map(({ service, label }) =>
-          <li key={service}>
-            <Link to={uriToLink.serviceDetails(service)}>
-              { label }
-            </Link>
-          </li>)}
-      </ul>
+          <Link to={uriToLink.serviceDetails(service)}
+                className="list-group-item" key={service}>
+            { label }
+          </Link>
+        )}
+      </div>
     </div>
   )
 }
