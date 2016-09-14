@@ -10,7 +10,8 @@ const {
   gsimInputServices,
   GSIMClasses,
   subprocesses,
-  serviceBySubProcess
+  serviceBySubProcess,
+  GSIMGroups
 } = queries
 
 export default {
@@ -133,5 +134,15 @@ export default {
       label: 'CSPA Service label'
     },
     queryBuilder: serviceBySubProcess
+  },
+  GSIMGroups: {
+    descr: 'Retrieve the GSIM groups',
+    whatWeGet: 'groups',
+    params: [],
+    results: {
+      group: 'Group id (uri)',
+      label: 'Group label'
+    },
+    queryBuilder: GSIMGroups
   }
 }

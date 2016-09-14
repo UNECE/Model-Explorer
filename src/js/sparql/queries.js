@@ -94,11 +94,13 @@ const serviceInputs = service => `
       ?gsimClass gsim:classDefinition ?definition
   }
 `
-const GSIMgroups = () => `
+const GSIMGroups = () => `
   PREFIX gsim:<http://rdf.unece.org/models/gsim#>
+  PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
 
-  SELECT ?pack WHERE {
-  	?pack rdfs:subClassOf gsim:GSIMObject
+  SELECT ?group ?label WHERE {
+  	?group rdfs:subClassOf gsim:GSIMObject .
+    ?group rdfs:label ?label
   }
 `
 
@@ -156,5 +158,6 @@ export default {
   gsimInputServices,
   subprocesses,
   GSIMClasses,
-  serviceBySubProcess
+  serviceBySubProcess,
+  GSIMGroups
 }

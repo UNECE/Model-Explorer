@@ -1,34 +1,23 @@
 import React from 'react'
 import { browserHistory, Link } from 'react-router'
+import { sparqlConnect } from '../sparql/configure-sparql'
+import { LOADED } from 'sparql-connect'
 
-// FIXME mock data while waiting for
-const _fakeGSIM = {
-  groups: {
-    business: {},
-    exchange: {},
-    structures: {},
-    concepts: {}
-  },
-  classes: {
-    informationSet: {},
-    dataSet: {},
-    referentialMetadataStructure: {}
+function GSIMGroupSelector({ location, children, loaded, groups }) {
+  if (loaded !== LOADED) {
+    return(<div>LOADING...</div>)
   }
-}
-
-function GSIMGroupSelector({ location, children }) {
-  console.dir(children)
+  console.log(groups)
   return(
     <div>
       <h3>GSIM group selector</h3>
       {
-        Object
-          .keys(_fakeGSIM.groups)
+        groups
           .map(group =>
-            <div key={group} className="panel panel-default">
-              <Link to={`${location.pathname}/${group}`}>
+            <div key={group.group} className="panel panel-default">
+              <Link to={`${location.pathname}/${group.group}`}>
                 <div className="panel-body">
-                  {group} <span className="glyphicon glyphicon-arrow-right pull-right"></span>
+                  {group.label} <span className="glyphicon glyphicon-arrow-right pull-right"></span>
                 </div>
               </Link>
             </div>)
@@ -38,4 +27,4 @@ function GSIMGroupSelector({ location, children }) {
   )
 }
 
-export default GSIMGroupSelector
+export default sparqlConnect.GSIMGroups(GSIMGroupSelector)
