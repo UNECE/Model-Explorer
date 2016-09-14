@@ -25,7 +25,7 @@ const routes = {
   serviceBySubProcess: {
     pattern: 'servicebysubprocess/:subprocess',
     paramsToProps: (state, { subprocess }) => ({
-
+      subprocess: `${GSBPMPrefix}${subprocess}`
     }),
     uriToLink: uri => {
       const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]

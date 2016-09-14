@@ -63,8 +63,8 @@ const serviceSubprocesses = service => `
 
 const serviceInputs = service => `
   PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#> 
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
   PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 
   SELECT DISTINCT ?gsimClass ?label ?definition
@@ -73,7 +73,7 @@ const serviceInputs = service => `
           cspa:label ?servicelabel ;
           cspa:hasPackageDefinition ?pckgDefinition .
 
-      ?pckgDefinition   
+      ?pckgDefinition
           cspa:definitionHasInput ?input .
       ?input cspa:gsimInput ?gsimClass .
       ?gsimClass rdfs:label ?label .
@@ -85,6 +85,18 @@ const GSIMgroups = () => `
 
   SELECT ?pack WHERE {
   	?pack rdfs:subClassOf gsim:GSIMObject
+  }
+`
+
+const serviceBySubProcess = (subprocess) => `
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
+
+  SELECT ?service ?sub ?function WHERE {
+    ?sub skos:notation "${subprocess}" .
+    ?function cspa:gsbpmSubProcess ?sub .
+    ?definition cspa:aimsAt ?function .
+    ?service cspa:hasPackageDefinition ?definition
   }
 `
 
