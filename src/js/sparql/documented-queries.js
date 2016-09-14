@@ -103,8 +103,8 @@ export default {
     params: [],
     results: {
       sub: 'gsbpm subprocess (uri)',
-      code: 'gsbpm subprocess code',
-      label: 'gsbpm subprocess label'
+      label: 'gsbpm subprocess label',
+      code: 'gsbpm subprocess code'
     },
     queryBuilder: subprocesses
   },
@@ -115,7 +115,7 @@ export default {
     results: {
       GSIMClass: 'GSIM class (uri)',
       label: 'GSIM class label',
-      code: 'GSIM class code'
+      definition: 'GSIM class definition'
     },
     queryBuilder: GSIMClasses
   },

@@ -35,7 +35,11 @@ const routes = {
       service: `${servicePrefix}${serviceId}`
     }),
     uriToLink: uri => {
-      const serviceId = uri.match(regedPrefix(servicePrefix))[1]
+      const seriveIdMatch = uri.match(regedPrefix(servicePrefix))
+      if (!seriveIdMatch) throw new Error(
+        `${uri} does not match the expected prefix ${servicePrefix}`
+      )
+      const serviceId = seriveIdMatch[1]
       return `service/${serviceId}`
     }
   },
