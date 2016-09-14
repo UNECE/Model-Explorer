@@ -9,9 +9,10 @@ function ServiceBySubProcess({ loaded, services }) {
     return(<div>LOADING...</div>)
   }
   if(services.length === 0) {
-    return(<div>
-      There is no service implementing this subprocess.
-    </div>)
+    return(
+      <div className="alert alert-warning" role="alert">
+        Sorry, there is no service implementing this subprocess.
+      </div>)
   }
   return(
     <div>
