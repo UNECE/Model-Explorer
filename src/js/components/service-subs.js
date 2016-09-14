@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
+import { uriToLink } from '../routes'
 
 function ServiceSubs({ loaded, subs }) {
   if (loaded !== LOADED) return <span>loading subprocesses</span>
@@ -9,7 +11,11 @@ function ServiceSubs({ loaded, subs }) {
       Subprocess(es):
       <ul>
         { subs.map(({ sub, label }) =>
-            <li key={sub}>{label}</li> )}
+            <li key={sub}>
+              <Link to={uriToLink.serviceBySubProcess(sub)}>
+                {label}
+              </Link>
+            </li> )}
       </ul>
     </div>
   )
