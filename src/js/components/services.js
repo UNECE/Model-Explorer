@@ -12,7 +12,9 @@ function Services({ loaded, services }) {
   return (
     <div>
       <ServiceList services={services}/>
-      <button onClick={handleClick}>Create a new service</button>
+      <button type="button"
+              className="btn btn-primary"
+              onClick={handleClick}>Create a new service</button>
     </div>
   )
 }

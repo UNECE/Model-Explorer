@@ -18,7 +18,7 @@ export default class ServiceEditor extends Component {
     this.changeGSBPMSub = GSBPMSub => this.setState({ GSBPMSub })
     this.changeGSIMIn = GSIMIn => this.setState({ GSIMIn })
     this.changeGSIMOut = GSIMOut => this.setState({ GSIMOut })
-    
+
     this.handleClick = () => {
       const {
         label, GSBPMSub, GSIMIn, GSIMOut, outcomes, description, restrictions
@@ -28,34 +28,36 @@ export default class ServiceEditor extends Component {
       })
     }
   }
-  
+
   render() {
     const { label, GSIMIn, GSIMOut, GSBPMSub } = this.state
     return (
       <form>
-        <div>
+        <div className="form-group">
           <label>Service label:</label>
-          <input type="text" value={label}
-                 onChange={e => this.changeLabel(e.target.value )}/>  
+          <input className="form-control" type="text"
+                 value={label}
+                 onChange={e => this.changeLabel(e.target.value )}/>
         </div>
-        <div>
+        <div className="form-group">
           <label>GSBPM Subprocess:</label>
           <SelectSubprocess value={GSBPMSub}
                             handleChange={this.changeGSBPMSub} />
         </div>
-        <div>
+        <div className="form-group">
           <label>GSIM input:</label>
-          <SelectClass value={GSIMIn} 
+          <SelectClass value={GSIMIn}
                       handleChange={this.changeGSIMIn}/>
-        </div>  
-        <div>
+        </div>
+        <div className="form-group">
           <label>GSIM output:</label>
           <SelectClass value={GSIMOut}
                        handleChange={this.changeGSIMOut}/>
-        </div>                 
-        <button onClick={e => {
-          e.preventDefault()
-          this.handleClick()
+        </div>
+        <button type="button" className="btn btn-success"
+                onClick={e => {
+                  e.preventDefault()
+                  this.handleClick()
         }}>Create</button>
       </form>
     )
