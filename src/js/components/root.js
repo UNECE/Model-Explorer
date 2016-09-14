@@ -15,6 +15,7 @@ import GSIMExplorer from './gsim-explorer'
 import ExplorerChoice from './explorer-choice'
 import ServiceDetails from './service-details'
 import Services from './services'
+import ServiceCreator from './service-creator'
 import GSIMGroupSelector from './gsim-group-selector'
 import GSIMClassSelector from './gsim-class-selector'
 import ServiceBySubProcess from './service-by-subprocess'
@@ -34,7 +35,8 @@ export default class Root extends Component {
             {/* default component if the route does not match any over
                 route */}
             <IndexRoute component={Services} />
-            <Route path={path.create} />
+            <Route path={path.create}
+                  component={ServiceCreator} />
             <Route path={path.serviceDetails}
                    component={ServiceDetails} />
             <Route path="/gsbpm"

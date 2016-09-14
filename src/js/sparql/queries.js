@@ -61,6 +61,20 @@ const serviceSubprocesses = service => `
   }
 `
 
+/* Retrieve all GSBPM subprocesses */
+const subprocesses = () => `
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+  SELECT ?sub ?label ?code
+  WHERE {
+    ?sub a gsbpm:SubProcess ;
+         skos:prefLabel ?label ;
+         skos:notation ?code
+  }
+  ORDER BY ?code
+`
+
 const serviceInputs = service => `
   PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
   PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
@@ -87,6 +101,21 @@ const GSIMgroups = () => `
   	?pack rdfs:subClassOf gsim:GSIMObject
   }
 `
+
+/* Retrieve all GSIM classes */
+const GSIMClasses = () => `
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
+
+  SELECT ?GSIMClass ?label ?definition WHERE {
+    ?GSIMClass rdfs:subClassOf gsim:Concepts ;
+               gsim:classDefinition ?definition ;
+               rdfs:label ?label
+  }
+`
+
 const gsimInputServices = gsimClass => `
   PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
   PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
@@ -123,5 +152,7 @@ export default {
   serviceDetails,
   serviceSubprocesses,
   serviceInputs,
-  gsimInputServices
+  gsimInputServices,
+  subprocesses,
+  GSIMClasses
 }

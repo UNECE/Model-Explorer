@@ -9,7 +9,9 @@ const authorization = 'Basic ' + btoa(`${username}:${password}`)
 
 const queryURL = config.queryURL
 
+export const fetchQuery = buildFetch(queryURL, authorization)
+
 export const {
   sparqlConnect,
   mainReducer
-} = buildSparqlConnector(queries, buildFetch(queryURL, authorization))
+} = buildSparqlConnector(queries, fetchQuery)

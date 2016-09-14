@@ -17,6 +17,10 @@ const routes = {
   //   pattern: 'create',
   //   paramsToProps: 
   // }
+  create: {
+    pattern: 'create',
+    uriToLink: () => 'create'
+  },
   serviceDetails: {
     pattern: 'service/:serviceId',
     paramsToProps: (state, { serviceId }) => ({
