@@ -12,6 +12,14 @@ const GSBPMPrefix = 'http://id.unece.org/models/gsbpm/'
 
 const regedPrefix = (prefix) => new RegExp(prefix + '(.*)')
 
+/*
+React router doesn't support point (.) in the URL.
+We have to translate point in id to underscore,
+and back.
+*/
+const pointToUnderscore = (str) => str.replace('.', '_')
+const underscoreToPoint = (str) => str.replace('_', '.')
+
 const routes = {
   // create: {
   //   pattern: 'create',
@@ -44,11 +52,11 @@ const routes = {
   serviceBySubProcess: {
     pattern: '/servicebysubprocess/:subprocess',
     paramsToProps: (state, { subprocess }) => ({
-      subprocess: `${GSBPMPrefix}${subprocess}`
+      subprocess: `${GSBPMPrefix}${underscoreToPoint(subprocess)}`
     }),
     uriToLink: uri => {
       const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `/servicebysubprocess/${subprocessId}`
+      return `/servicebysubprocess/${pointToUnderscore(subprocessId)}`
     }
   }
 }
