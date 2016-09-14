@@ -129,7 +129,7 @@ export default {
       }
     ],
     results: {
-      serviceId: 'CSPA Service (uri)',
+      service: 'CSPA Service (uri)',
       label: 'CSPA Service label'
     },
     queryBuilder: serviceBySubProcess

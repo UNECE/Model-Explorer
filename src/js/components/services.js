@@ -6,7 +6,7 @@ import { sparqlConnect } from '../sparql/configure-sparql'
 import ServiceList from './service-list'
 
 function Services({ loaded, services }) {
-  const handleClick = () => 
+  const handleClick = () =>
     browserHistory.push(uriToLink.create())
   if (loaded !== LOADED) return <span>loading services</span>
   return (
