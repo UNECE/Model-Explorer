@@ -106,7 +106,7 @@ const GSIMgroups = () => `
 const GSIMClasses = () => `
   PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  
+
   PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
 
   SELECT ?GSIMClass ?label ?definition WHERE {
@@ -118,8 +118,8 @@ const GSIMClasses = () => `
 
 const gsimInputServices = gsimClass => `
   PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#> 
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#> 
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
   PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 
   SELECT DISTINCT ?service ?label
@@ -154,5 +154,6 @@ export default {
   serviceInputs,
   gsimInputServices,
   subprocesses,
-  GSIMClasses
+  GSIMClasses,
+  serviceBySubProcess
 }

@@ -9,7 +9,8 @@ const {
   serviceInputs,
   gsimInputServices,
   GSIMClasses,
-  subprocesses
+  subprocesses,
+  serviceBySubProcess
 } = queries
 
 export default {
@@ -45,7 +46,7 @@ export default {
       label: 'label of the service'
     },
     queryBuilder: services
-  }, 
+  },
   serviceDetails: {
     descr: 'Retrieve details for a service',
     singleResult: true,
@@ -117,5 +118,15 @@ export default {
       code: 'GSIM class code'
     },
     queryBuilder: GSIMClasses
+  },
+  serviceBySubProcess: {
+    descr: 'Retrieve a list of services implementing a GSBPM subprocess',
+    whatWeGet: 'services',
+    params: [],
+    results: {
+      service: 'CSPA Service (uri)',
+      label: 'CSPA Service label'
+    },
+    queryBuilder: serviceBySubProcess
   }
 }
