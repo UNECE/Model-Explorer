@@ -115,7 +115,7 @@ const serviceOutputs = service => `
   }
 `
 
-const GSIMgroups = () => `
+const GSIMGroups = () => `
   PREFIX gsim:<http://rdf.unece.org/models/gsim#>
   PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
 
