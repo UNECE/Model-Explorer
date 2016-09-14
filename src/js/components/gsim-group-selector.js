@@ -10,7 +10,7 @@ function GSIMGroupSelector({ location, children, loaded, groups }) {
   console.log(groups)
   return(
     <div>
-      <h3>You may select a GSIM group</h3>
+      <h2>You may select a GSIM group</h2>
       {
         groups
           .map(group =>

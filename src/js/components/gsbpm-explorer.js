@@ -12,6 +12,7 @@ function GSBPMExplorer({ loaded, phases }) {
   return (
     <div className="row">
       <h1>GSBPM Explorer</h1>
+      <h2>You may select a subprocess</h2>
       { refinedPhases.map(({ id, props, entries }) =>
         <div className="col-md-1" key={id}>
           <div className="phases">{props.phaseLabel}</div>
