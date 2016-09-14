@@ -61,7 +61,10 @@ INSERT DATA {
     <${uriIn}>
          a cspa:DefinitionInput ; 
          cspa:gsimInput <${GSIMIn}> .
- 
+
+   <${uriOut}>
+        a cspa:definitionHasOutput ; 
+        cspa:gsimOutput <${GSIMOut}> . 
 }
 `
 /*
