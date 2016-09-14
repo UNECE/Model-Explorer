@@ -2,14 +2,14 @@ import React from 'react'
 import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
-function SelectSubprocess({ loaded, subs }) {
-  if (loaded !== LOADED) return <span>loading gsbpm subprocesses</span>
+function SelectClass({ value, handleChange, loaded, GSIMClasses }) {
+  if (loaded !== LOADED) return <span>loading GSIM classes</span>
   return (
-    <select>
-      { subs.map(({ sub, label, code }) => 
-          <option key={sub}>{`${code} - ${label}`}</option> )}
+    <select value={value} onChange={e => handleChange(e.target.value)}>
+      { GSIMClasses.map(({ GSIMClass, label, code }) => 
+          <option key={GSIMClass} value={GSIMClass}>{`${label}`}</option> )}
     </select>
   )
 }
 
-export default sparqlConnect.subprocesses(SelectSubprocess)
+export default sparqlConnect.GSIMClasses(SelectClass)

@@ -14,3 +14,7 @@ html, body {
 .subprocess {
   border: 2px solid red;
 }
+
+label {
+  margin-right: 5px;
+}
