@@ -94,6 +94,27 @@ const serviceInputs = service => `
       ?gsimClass gsim:classDefinition ?definition
   }
 `
+
+const serviceOutputs = service => `
+  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
+  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
+  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+  SELECT DISTINCT ?gsimClass ?label ?definition
+  WHERE {
+      <${service}> a cspa:package ;
+          cspa:label ?servicelabel ;
+          cspa:hasPackageDefinition ?pckgDefinition .
+
+      ?pckgDefinition
+          cspa:definitionHasOutput ?input .
+      ?input cspa:gsimOutput ?gsimClass .
+      ?gsimClass rdfs:label ?label .
+      ?gsimClass gsim:classDefinition ?definition
+  }
+`
+
 const GSIMgroups = () => `
   PREFIX gsim:<http://rdf.unece.org/models/gsim#>
 
@@ -106,8 +127,6 @@ const GSIMgroups = () => `
 const GSIMClasses = () => `
   PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
 
   SELECT ?GSIMClass ?label ?definition WHERE {
     ?GSIMClass rdfs:subClassOf gsim:Concepts ;
@@ -153,6 +172,7 @@ export default {
   serviceDetails,
   serviceSubprocesses,
   serviceInputs,
+  serviceOutputs,
   gsimInputServices,
   subprocesses,
   GSIMClasses,
