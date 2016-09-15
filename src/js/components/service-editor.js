@@ -24,7 +24,10 @@ export default class ServiceEditor extends Component {
         label, GSBPMSub, GSIMIn, GSIMOut, outcomes, description, restrictions
       } = this.state
       this.props.handleClick({
-        label, GSBPMSub, GSIMIn, GSIMOut, outcomes, description, restrictions
+        label, outcomes, description, restrictions,
+        GSBPMSub: [GSBPMSub],
+        GSIMIn: [GSIMIn],
+        GSIMOut: [GSIMOut]
       })
     }
   }

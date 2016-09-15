@@ -12,54 +12,50 @@ export const insertService = ({
   //TODO add upper case at the beginning of each word
   //TODO replace special characters
   const name = 'sprinttest' + label.replace(/\s*/g, '')
-  const serviceURI = `${servicePrefix}${name}`
-  //We generate URIs where we could have use blank nodes since we didn't manage
-  //to insert multiple blank nodes in an INSERT query
-  const pckgDefURI = serviceURI + '_packageDefinition'
-  const aimsAtURI = serviceURI + '_aimsAt'
-  const inURI = serviceURI + '_in'
-  const outURI = serviceURI + '_out'
-       
-  const GSIMInStmts = GSIMIn.map(GSIMClass => `
-    <${inURI}>
-       a cspa:DefinitionInput ; 
-       cspa:gsimInput <${GSIMClass}> .
-  `).join('\n')
+
+  const GSIMInTriples = GSIMIn.map(GSIMClass =>
+    `cspa:gsimInput <${GSIMClass}>`
+  ).join(' ;')
   
-  const GSIMOutStmts = GSIMOut.map(GSIMClass => `
-    <${outURI}>
-       a cspa:DefinitionOutput ; 
-       cspa:gsimOutput <${GSIMClass}> .
-  `).join('\n')
+  const GSIMOutTriples = GSIMOut.map(GSIMClass =>
+    `cspa:gsimOutput <${GSIMClass}>`
+  ).join(' ;')
+  
+  const GSBPMSubTriples = GSBPMSub.map(sub =>
+    `cspa:gsbpmSubProcess <${sub}>`
+  ).join(' ;')
   
   const query = `
-    PREFIX cspa: <${CSPAPrefix}>
-    PREFIX gsbpm: <${GSBPMPrefix}>
-    PREFIX gsim: <${GSIMPrefix}>
+PREFIX cspa:    <${CSPAPrefix}>
+PREFIX gsbpm:   <${GSBPMPrefix}>
+PREFIX gsim:    <${GSIMPrefix}>
+PREFIX service: <${servicePrefix}>
 
-    INSERT DATA { 
-      <${serviceURI}> a cspa:package ; 
-               cspa:label "${label}" ; 
-               cspa:hasPackageDefinition <${pckgDefURI}> . 
-
-      <${pckgDefURI}> a cspa:ServiceDefinition ; 
-           cspa:aimsAt <${aimsAtURI}> ; 
-           cspa:definitionHasInput <${inURI}> ; 
-           cspa:definitionHasOutput <${outURI}> . 
-
-      <${aimsAtURI}>
-          a cspa:BusinessFuncion ;
-           cspa:description "${description}" ;
-           cspa:outcomes "${outcomes}" ;
-           cspa:gsbpmSubProcess <${GSBPMSub}> ;
-           cspa:restrictions "${restrictions}" .
-
-      ${GSIMInStmts}
-      ${GSIMOutStmts}
-    }
-  `
+INSERT DATA { 
+  service:${name}
+    a cspa:package ; 
+    cspa:label "${label}" ; 
+    cspa:hasPackageDefinition [
+      a cspa:ServiceDefinition ; 
+      cspa:aimsAt [
+        a cspa:BusinessFuncion ;
+        cspa:description "${description}" ;
+        cspa:outcomes "${outcomes}" ;
+        cspa:restrictions "${restrictions}" ;
+        ${GSBPMSubTriples}
+      ] ;
+      cspa:definitionHasInput [
+        a cspa:DefinitionInput ; 
+        ${GSIMInTriples}
+      ] ;
+      cspa:definitionHasOutput [
+        a cspa:DefinitionOutput ;
+        ${GSIMOutTriples}
+      ]
+    ]
+}`
   return {
     query,
-    serviceURI
+    serviceURI: `${servicePrefix}${name}`
   }
 }
