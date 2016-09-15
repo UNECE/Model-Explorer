@@ -9,8 +9,8 @@ import {
  * Builds the query that retrieve the GSBPM overlook
  */
 const GSBPMDescription = () => `
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX skos:  ${SKOSPrefix}
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
   select ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode ?subprocessCode where {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
@@ -31,9 +31,9 @@ const GSBPMDescription = () => `
 
 
 const services = () => `
-  PREFIX cspa:  ${CSPAPrefix}
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX skos:  ${SKOSPrefix}
+  PREFIX cspa:  <${CSPAPrefix}>
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
 
   SELECT distinct ?service ?label
   WHERE {
@@ -43,8 +43,8 @@ const services = () => `
 `
 
 const serviceDetails = service => `
-  PREFIX cspa: ${CSPAPrefix}
-  PREFIX skos: ${SKOSPrefix}
+  PREFIX cspa: <${CSPAPrefix}>
+  PREFIX skos: <${SKOSPrefix}>
 
   SELECT ?label
   WHERE {
@@ -54,8 +54,8 @@ const serviceDetails = service => `
 
 //TODO investigate, we shouldn't need DISTINCT, should we ?
 const serviceSubprocesses = service => `
-  PREFIX cspa: ${CSPAPrefix}
-  PREFIX skos: ${SKOSPrefix}
+  PREFIX cspa: <${CSPAPrefix}>
+  PREFIX skos: <${SKOSPrefix}>
 
   SELECT DISTINCT ?sub ?label
   WHERE {
@@ -68,8 +68,8 @@ const serviceSubprocesses = service => `
 
 /* Retrieve all GSBPM subprocesses */
 const subprocesses = () => `
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX skos:  ${SKOSPrefix}
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
 
   SELECT ?sub ?label ?code
   WHERE {
@@ -81,10 +81,10 @@ const subprocesses = () => `
 `
 
 const serviceInputs = service => `
-  PREFIX cspa:  ${CSPAPrefix}
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX gsim:  ${GSIMPrefix}
-  PREFIX rdfs:  ${RDFSPrefix}
+  PREFIX cspa:  <${CSPAPrefix}>
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
 
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
@@ -101,10 +101,10 @@ const serviceInputs = service => `
 `
 
 const serviceOutputs = service => `
-  PREFIX cspa:  ${CSPAPrefix}
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX gsim:  ${GSIMPrefix}
-  PREFIX rdfs:  ${RDFSPrefix}
+  PREFIX cspa:  <${CSPAPrefix}>
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
 
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
@@ -121,8 +121,8 @@ const serviceOutputs = service => `
 `
 
 const GSIMGroups = () => `
-  PREFIX gsim: ${GSIMPrefix}
-  PREFIX rdfs: ${RDFSPrefix}
+  PREFIX gsim: <${GSIMPrefix}>
+  PREFIX rdfs: <${RDFSPrefix}>
 
   SELECT ?group ?label WHERE {
   	?group rdfs:subClassOf gsim:GSIMObject .
@@ -132,8 +132,8 @@ const GSIMGroups = () => `
 
 /* Retrieve all GSIM classes */
 const GSIMClasses = () => `
-  PREFIX gsim:  ${GSIMPrefix}
-  PREFIX skos:  ${SKOSPrefix}
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
 
   SELECT ?GSIMClass ?label ?definition WHERE {
     ?GSIMClass rdfs:subClassOf gsim:Concepts ;
@@ -143,10 +143,10 @@ const GSIMClasses = () => `
 `
 
 const gsimInputServices = gsimClass => `
-  PREFIX cspa:  ${CSPAPrefix}
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX gsim:  ${GSIMPrefix}
-  PREFIX rdfs:  ${RDFSPrefix}
+  PREFIX cspa:  <${CSPAPrefix}>
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
 
   SELECT DISTINCT ?service ?label
   WHERE {
@@ -161,9 +161,9 @@ const gsimInputServices = gsimClass => `
 
 
 const serviceBySubProcess = (subprocess) => `
-  PREFIX gsbpm: ${GSBPMPrefix}
-  PREFIX skos:  ${SKOSPrefix}
-  PREFIX cspa:  ${CSPAPrefix}
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+  PREFIX cspa:  <${CSPAPrefix}>
 
   SELECT ?service ?label WHERE {
     ?function cspa:gsbpmSubProcess <${subprocess}> .
