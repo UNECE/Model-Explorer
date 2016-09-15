@@ -1,11 +1,16 @@
+import {
+  SKOSPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
+} from './prefixes'
+
+
 //TODO we might need to filter on the language, but for now english seems to be
 //the only language available
 /**
  * Builds the query that retrieve the GSBPM overlook
  */
 const GSBPMDescription = () => `
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX skos:  ${SKOSPrefix}
   select ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode ?subprocessCode where {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
@@ -26,9 +31,9 @@ const GSBPMDescription = () => `
 
 
 const services = () => `
-  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX cspa:  ${CSPAPrefix}
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX skos:  ${SKOSPrefix}
 
   SELECT distinct ?service ?label
   WHERE {
@@ -38,8 +43,8 @@ const services = () => `
 `
 
 const serviceDetails = service => `
-  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX cspa: ${CSPAPrefix}
+  PREFIX skos: ${SKOSPrefix}
 
   SELECT ?label
   WHERE {
@@ -49,8 +54,8 @@ const serviceDetails = service => `
 
 //TODO investigate, we shouldn't need DISTINCT, should we ?
 const serviceSubprocesses = service => `
-  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX cspa: ${CSPAPrefix}
+  PREFIX skos: ${SKOSPrefix}
 
   SELECT DISTINCT ?sub ?label
   WHERE {
@@ -63,8 +68,8 @@ const serviceSubprocesses = service => `
 
 /* Retrieve all GSBPM subprocesses */
 const subprocesses = () => `
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX skos:  ${SKOSPrefix}
 
   SELECT ?sub ?label ?code
   WHERE {
@@ -76,10 +81,10 @@ const subprocesses = () => `
 `
 
 const serviceInputs = service => `
-  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
-  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX cspa:  ${CSPAPrefix}
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX gsim:  ${GSIMPrefix}
+  PREFIX rdfs:  ${RDFSPrefix}
 
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
@@ -96,10 +101,10 @@ const serviceInputs = service => `
 `
 
 const serviceOutputs = service => `
-  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
-  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX cspa:  ${CSPAPrefix}
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX gsim:  ${GSIMPrefix}
+  PREFIX rdfs:  ${RDFSPrefix}
 
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
@@ -116,8 +121,8 @@ const serviceOutputs = service => `
 `
 
 const GSIMGroups = () => `
-  PREFIX gsim:<http://rdf.unece.org/models/gsim#>
-  PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX gsim: ${GSIMPrefix}
+  PREFIX rdfs: ${RDFSPrefix}
 
   SELECT ?group ?label WHERE {
   	?group rdfs:subClassOf gsim:GSIMObject .
@@ -127,8 +132,8 @@ const GSIMGroups = () => `
 
 /* Retrieve all GSIM classes */
 const GSIMClasses = () => `
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX gsim:  ${GSIMPrefix}
+  PREFIX skos:  ${SKOSPrefix}
 
   SELECT ?GSIMClass ?label ?definition WHERE {
     ?GSIMClass rdfs:subClassOf gsim:Concepts ;
@@ -138,10 +143,10 @@ const GSIMClasses = () => `
 `
 
 const gsimInputServices = gsimClass => `
-  PREFIX cspa:  <http://rdf.unece.org/models/cspa#>
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX gsim:  <http://rdf.unece.org/models/gsim#>
-  PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX cspa:  ${CSPAPrefix}
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX gsim:  ${GSIMPrefix}
+  PREFIX rdfs:  ${RDFSPrefix}
 
   SELECT DISTINCT ?service ?label
   WHERE {
@@ -156,9 +161,9 @@ const gsimInputServices = gsimClass => `
 
 
 const serviceBySubProcess = (subprocess) => `
-  PREFIX gsbpm: <http://rdf.unece.org/models/gsbpm#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  PREFIX cspa:<http://rdf.unece.org/models/cspa#>
+  PREFIX gsbpm: ${GSBPMPrefix}
+  PREFIX skos:  ${SKOSPrefix}
+  PREFIX cspa:  ${CSPAPrefix}
 
   SELECT ?service ?label WHERE {
     ?function cspa:gsbpmSubProcess <${subprocess}> .
