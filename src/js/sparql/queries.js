@@ -11,7 +11,9 @@ import {
 const GSBPMDescription = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
-  select ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode ?subprocessCode where {
+  SELECT ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode
+         ?subprocessCode
+  WHERE {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
    OPTIONAL {
