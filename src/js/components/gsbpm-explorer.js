@@ -10,6 +10,7 @@ const select = subprocess =>
   browserHistory.push(uriToLink.serviceBySubProcess(subprocess))
   
 function GSBPMExplorer({ loaded, phases, activeSubs }) {
+  if (loaded !== LOADED) return <span>loading...</span>
   const refinedPhases = groupByWithOrder(
     phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return (
