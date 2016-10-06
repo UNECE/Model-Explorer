@@ -9,6 +9,7 @@ html, body {
 
 .gsbpm {
   font-family: Arial, sans-serif;
+  min-width: 650px;
 }
 
 .gsbpm > .title {

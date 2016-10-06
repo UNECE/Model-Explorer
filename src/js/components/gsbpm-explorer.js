@@ -9,10 +9,7 @@ import { uriToLink } from '../routes'
 const select = subprocess => 
   browserHistory.push(uriToLink.serviceBySubProcess(subprocess))
   
-function GSBPMExplorer({ loaded, phases }) {
-  if(loaded !== LOADED) {
-    return <p>LOADING...</p>
-  }
+function GSBPMExplorer({ loaded, phases, activeSubs }) {
   const refinedPhases = groupByWithOrder(
     phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return (
@@ -22,7 +19,7 @@ function GSBPMExplorer({ loaded, phases }) {
       </div>
       <div className="phases">
       { refinedPhases.map(({ id, props, entries }) =>
-        <div className="phase">
+        <div key={id} className="phase">
           <div className="cell title">
             {props.phaseLabel}
           </div>
@@ -33,11 +30,12 @@ function GSBPMExplorer({ loaded, phases }) {
                 return a.subprocessCode > b.subprocessCode
               })
               .map(({ subprocess, subprocessCode, subprocessLabel}) =>
-                <li className="subprocess cell"
-                    key={subprocess}
-                    onClick={() => select(subprocess)} >
-                  <div>{subprocessCode}</div>
-                  <div>{subprocessLabel}</div>
+                <li key={subprocess}>
+                  <GSBPMSubprocess 
+                    code={subprocessCode}
+                    label={subprocessLabel}
+                    active={true}
+                    hndlClick={() => select(subprocess)} />
                 </li> ) }
               </ul>
           </div>
