@@ -8,7 +8,7 @@ import { uriToLink } from '../routes'
 function ServiceSubs({ loaded, subs, remove, disabled }) {
   if (loaded !== LOADED) return <span>loading subprocesses</span>
   return (
-      <ul className="list-group" style={{ marginBottom: 0 }}>
+      <ul className="list-group" style={{ marginBottom: '5px' }}>
         { subs.map(({ sub, label }) =>
             <li className="list-group-item" key={sub}>
               <Link to={uriToLink.serviceBySubProcess(sub)}>

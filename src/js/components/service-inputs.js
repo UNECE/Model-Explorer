@@ -9,14 +9,14 @@ function ServiceInputs({ loaded, inputs, remove, disabled }) {
     if (inputs.length === 0)
       return <span className="form-control">No GSIM input</span>
     return (
-        <ul className="list-group">
+        <ul className="list-group" style={{ marginBottom: '5px' }}>
         { inputs.map(({ gsimClass, label }) =>
           <li className="list-group-item" key={gsimClass}>
             <Link to={uriToLink.servicesByGsim(gsimClass)}>
               {label}
             </Link>
             { !disabled &&
-             <a href="#" className="pull-right"
+             <a className="pull-right"
                 onClick={() => remove(gsimClass)} >
                <span className="glyphicon glyphicon-remove"></span>
              </a>

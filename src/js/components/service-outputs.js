@@ -9,7 +9,7 @@ function ServiceOutputs({ loaded, outputs, remove, disabled }) {
     if (outputs.length === 0)
       return <span className="form-control">No GSIM output</span>
     return (
-        <ul className="list-group">
+        <ul className="list-group" style={{ marginBottom: '5px' }}>
         { outputs.map(({ gsimClass, label }) =>
           <li className="list-group-item" key={gsimClass}>
             <Link to={uriToLink.servicesByGsim(gsimClass)}>

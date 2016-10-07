@@ -8,6 +8,16 @@ import { LOADED } from 'sparql-connect'
 import { browserHistory } from 'react-router'
 import { removeService } from '../sparql/updates'
 
+function AddButton({ label, hndlClick, disabled }) {
+  return (
+    <button className="btn btn-default btn-sm pull-right"
+            onClick={hndlClick} 
+            disabled={disabled} >
+      <span className="glyphicon glyphicon-plus"></span>&nbsp;
+      {label}
+    </button>
+  )
+}
 class ServiceDetails extends Component {
   constructor(props) {
     super(props)
@@ -26,6 +36,18 @@ class ServiceDetails extends Component {
         .then(() => browserHistory.push(''))
     }
     this.save = () => {
+      
+    }
+    
+    this.addInput = () => {
+      
+    }
+    
+    this.addOutput = () => {
+      
+    }
+    
+    this.addSub = () => {
       
     }
   }
@@ -77,18 +99,27 @@ class ServiceDetails extends Component {
           <label className="col-sm-3 control-label">Subprocess</label>
           <div className="col-sm-9">
             <ServiceSubs disabled={!editing} service={service} />
+            <AddButton
+              label="Add subprocess" hndlClick={this.addSub}
+              disabled={!editing} />
           </div>
         </div>
         <div className="form-group">
           <label className="col-sm-3 control-label">GSIM Inputs</label>
           <div className="col-sm-9">
             <ServiceInputs disabled={!editing} service={service} />
+            <AddButton 
+              label="Add input" hndlClick={this.addInput}
+              disabled={!editing} />
           </div>
         </div>
         <div className="form-group">
           <label className="col-sm-3 control-label">GSIM Outputs</label>
           <div className="col-sm-9">
             <ServiceOutputs disabled={!editing} service={service} />
+            <AddButton
+              label="Add ouput" hndlClick={this.addOutput}
+              disabled={!editing} />
           </div>
         </div>                          
         { !editing &&
