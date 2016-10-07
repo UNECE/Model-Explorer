@@ -46,13 +46,10 @@ export default class Root extends Component {
             </Route>
             <Route path="/gsim">
                 <IndexRoute component={GSIMExplorer} />
-                <Route path=":group"
-                       component={GSIMClassSelector}/>
+                <Route path={path.servicesByGsimInput}
+                       component={ServicesByGsimInput}/>
             </Route>
-            <Route path={path.servicesByGsimInput} 
-                   component={ServicesByGsimInput} />
           </Route>
-
         </Router>
       </Provider>
     )
