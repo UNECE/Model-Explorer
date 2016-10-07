@@ -12,7 +12,7 @@ function ServiceInputs({ loaded, inputs, label }) {
         <ul>
         { inputs.map(({ gsimClass, label }) =>
           <li key={gsimClass}>
-            <Link to={uriToLink.servicesByGsimInput(gsimClass)}>
+            <Link to={uriToLink.servicesByGsim(gsimClass)}>
               {label}
             </Link>
           </li> )}

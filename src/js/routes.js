@@ -43,14 +43,14 @@ const routes = {
       return `service/${serviceId}`
     }
   },
-  servicesByGsimInput: {
-    pattern: ':gsimClassId',
-    paramsToProps: (state, { gsimClassId }) => ({
-      gsimClass: `${GSIMPrefix}${gsimClassId}`
+  servicesByGsim: {
+    pattern: ':gsimClass',
+    paramsToProps: (state, { gsimClass }) => ({
+      gsimClass: `${GSIMPrefix}${gsimClass}`
     }),
     uriToLink: uri => {
-      const gsimClassId = uri.match(regedPrefix(GSIMPrefix))[1]
-      return `/gsim/${gsimClassId}`
+      const gsimClass = uri.match(regedPrefix(GSIMPrefix))[1]
+      return `/gsim/${gsimClass}`
     }
   },
   //TODO we should define these mappings in a hierarchical way, corresponding

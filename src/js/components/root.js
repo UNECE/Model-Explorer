@@ -19,7 +19,7 @@ import ServiceCreator from './service-creator'
 import GSIMGroupSelector from './gsim-group-selector'
 import GSIMClassSelector from './gsim-class-selector'
 import ServiceBySubProcess from './service-by-subprocess'
-import ServicesByGsimInput from './services-by-gsim-input'
+import ServicesByGsim from './services-by-gsim'
 
 //We need to create a store. `configureStore` add a little extra config to
 //allow to work with asyncrhonous actions and to use the redux dev tools.
@@ -46,8 +46,8 @@ export default class Root extends Component {
             </Route>
             <Route path="/gsim">
                 <IndexRoute component={GSIMExplorer} />
-                <Route path={path.servicesByGsimInput}
-                       component={ServicesByGsimInput}/>
+                <Route path=":gsimClass"
+                       component={ServicesByGsim}/>
             </Route>
           </Route>
         </Router>

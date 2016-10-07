@@ -161,6 +161,22 @@ const gsimInputServices = gsimClass => `
   }
 `
 
+const gsimOutputServices = gsimClass => `
+  PREFIX cspa:  <${CSPAPrefix}>
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
+
+  SELECT DISTINCT ?service ?label
+  WHERE {
+    ?service a cspa:package ;
+             cspa:label ?label ;
+             cspa:hasPackageDefinition ?pckgDefinition .
+
+    ?pckgDefinition cspa:definitionHasOutput ?input .
+    ?input cspa:gsimOutput <${gsimClass}>
+  }
+`
 
 const serviceBySubProcess = (subprocess) => `
   PREFIX gsbpm: <${GSBPMPrefix}>
@@ -183,6 +199,7 @@ export default {
   serviceInputs,
   serviceOutputs,
   gsimInputServices,
+  gsimOutputServices,
   subprocesses,
   GSIMClasses,
   serviceBySubProcess,

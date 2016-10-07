@@ -9,6 +9,7 @@ const {
   serviceInputs,
   serviceOutputs,
   gsimInputServices,
+  gsimOutputServices,
   GSIMClasses,
   subprocesses,
   serviceBySubProcess,
@@ -111,6 +112,18 @@ export default {
       label: 'service label'
     },
     queryBuilder: gsimInputServices
+  },
+  gsimOutputServices: {
+    descr: 'Retrieve all services with the given gsim class as output',
+    whatWeGet: 'services',
+    params: [{
+      name: 'gsimClass'
+    }],
+    results: {
+      service: 'service (uri)',
+      label: 'service label'
+    },
+    queryBuilder: gsimOutputServices
   },
   subprocesses: {
     descr: 'Retrieve all GSBPM subprocesses',

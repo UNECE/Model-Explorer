@@ -59,7 +59,7 @@ function GSIMSelectClass_({ loaded, GSIMClasses, selectClass }){
         <a
           key={GSIMClass}
           className="list-group-item"
-          href={uriToLink.servicesByGsimInput(GSIMClass)}>{label}</a>)
+          href={uriToLink.servicesByGsim(GSIMClass)}>{label}</a>)
     }
     </div>
   )

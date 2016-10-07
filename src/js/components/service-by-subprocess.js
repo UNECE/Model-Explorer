@@ -4,21 +4,13 @@ import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 import ServiceList from './service-list'
 
+//TODO add an option to `sparql-connect` to generate the pending message 
+//(if(loaded !== LOADED) return <span>loading......</span>)
+//automatically, so we can write:
+//const ServiceBySubProcess = sparqlConnect.serviceSubprocess(ServiceList)
 function ServiceBySubProcess({ loaded, services }) {
-  if(loaded !== LOADED) {
-    return(<div>LOADING...</div>)
-  }
-  if(services.length === 0) {
-    return(
-      <div className="alert alert-warning" role="alert">
-        Sorry, there is no service implementing this subprocess.
-      </div>)
-  }
-  return(
-    <div>
-      <ServiceList services={services} />
-    </div>
-  )
+  if(loaded !== LOADED) return <span>loading......</span>
+  return <ServiceList services={services} />
 }
 
 export default connectFromRoute(
