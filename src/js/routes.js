@@ -40,7 +40,7 @@ const routes = {
         `${uri} does not match the expected prefix ${servicePrefix}`
       )
       const serviceId = seriveIdMatch[1]
-      return `service/${serviceId}`
+      return `/service/${serviceId}`
     }
   },
   servicesByGsim: {
