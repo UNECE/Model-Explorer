@@ -62,9 +62,6 @@ html, body {
   margin: 0;
 }
 
-label {
-  margin-right: 5px;
-}
 
 .gsim-explorer {
   display: flex;

@@ -58,7 +58,12 @@ export default {
       descr: 'service (uri)'
     }],
     results: {
-      label: 'service label'
+      label: 'service label',
+      description: 'service description',
+      outcomes: 'outcomes',
+      subprocess: 'subprocess',
+      restrictions: 'restrictions',
+      serviceGraph: 'service graph'
     },
     queryBuilder: serviceDetails
   },

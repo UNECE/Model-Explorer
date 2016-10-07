@@ -4,20 +4,25 @@ import { sparqlConnect } from '../sparql/configure-sparql'
 import { Link } from 'react-router'
 import { uriToLink } from '../routes'
 
-function ServiceOutputs({ loaded, outputs, label }) {
-    if (loaded !== LOADED) return <span>loading gsim inputs</span>
+function ServiceOutputs({ loaded, outputs, remove, disabled }) {
+    if (loaded !== LOADED) return <span>loading gsim outputs</span>
+    if (outputs.length === 0)
+      return <span className="form-control">No GSIM output</span>
     return (
-      <div>
-        Outputs:
-        <ul>
+        <ul className="list-group">
         { outputs.map(({ gsimClass, label }) =>
-          <li key={gsimClass}>
+          <li className="list-group-item" key={gsimClass}>
             <Link to={uriToLink.servicesByGsim(gsimClass)}>
               {label}
             </Link>
+            { !disabled &&
+             <a href="#" className="pull-right"
+                onClick={() => remove(gsimClass)} >
+               <span className="glyphicon glyphicon-remove"></span>
+             </a>
+            }            
           </li> )}
         </ul>
-      </div>
     )
 }
 

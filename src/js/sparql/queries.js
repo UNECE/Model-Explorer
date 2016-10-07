@@ -48,9 +48,17 @@ const serviceDetails = service => `
   PREFIX cspa: <${CSPAPrefix}>
   PREFIX skos: <${SKOSPrefix}>
 
-  SELECT DISTINCT ?label
+  SELECT ?label ?description ?outcomes ?subprocess ?restrictions ?serviceGraph
   WHERE {
-      <${service}> cspa:label ?label
+    GRAPH ?serviceGraph {
+      <${service}> cspa:hasPackageDefinition [
+    	   a cspa:ServiceDefinition; cspa:aimsAt [ 
+           cspa:description ?description ;
+    	     cspa:outcomes ?outcomes ;
+    	     cspa:gsbpmSubProcess ?subprocess ;
+    	     cspa:restrictions ?restrictions ]] ;
+    	 cspa:label ?label ;
+    }
   }
 `
 
