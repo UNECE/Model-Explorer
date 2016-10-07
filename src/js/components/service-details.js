@@ -6,6 +6,7 @@ import ServiceInputs from './service-inputs'
 import ServiceOutputs from './service-outputs'
 import { LOADED } from 'sparql-connect'
 import { browserHistory } from 'react-router'
+import { removeService } from '../sparql/updates'
 
 class ServiceDetails extends Component {
   constructor(props) {
@@ -19,6 +20,11 @@ class ServiceDetails extends Component {
     this.cancel = () => this.setState({ 
       editing: false
     })
+    this.remove = () => {
+      this.props.flush()
+      removeService(this.props.serviceGraph)
+        .then(() => browserHistory.push(''))
+    }
     this.save = () => {
       
     }
@@ -91,6 +97,11 @@ class ServiceDetails extends Component {
                     onClick={e => { e.preventDefault(); this.edit() }}>
               <span className="glyphicon glyphicon-pencil"></span>&nbsp;
               Edit
+            </button>
+            <button className="btn btn-danger"
+                    onClick={e => { e.preventDefault(); this.remove() }}>
+              <span className="glyphicon glyphicon-remove"></span>&nbsp;
+              Delete
             </button>
           </div>
         }
