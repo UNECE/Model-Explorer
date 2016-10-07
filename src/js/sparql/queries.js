@@ -48,7 +48,7 @@ const serviceDetails = service => `
   PREFIX cspa: <${CSPAPrefix}>
   PREFIX skos: <${SKOSPrefix}>
 
-  SELECT ?label
+  SELECT DISTINCT ?label
   WHERE {
       <${service}> cspa:label ?label
   }
