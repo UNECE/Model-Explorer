@@ -132,13 +132,13 @@ const GSIMGroups = () => `
   }
 `
 
-/* Retrieve all GSIM classes */
-const GSIMClasses = () => `
+/* Retrieve all GSIM classes for a group */
+const GSIMClasses = group => `
   PREFIX gsim:  <${GSIMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
 
   SELECT ?GSIMClass ?label ?definition WHERE {
-    ?GSIMClass rdfs:subClassOf gsim:Concepts ;
+    ?GSIMClass rdfs:subClassOf <${group}> ;
                gsim:classDefinition ?definition ;
                rdfs:label ?label
   }

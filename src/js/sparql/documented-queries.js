@@ -126,7 +126,10 @@ export default {
   GSIMClasses: {
     descr: 'Retrieve all GSIM classes',
     whatWeGet: 'GSIMClasses',
-    params: [],
+    params: [{
+      name: 'group',
+      descr: 'GSIM group'
+    }],
     results: {
       GSIMClass: 'GSIM class (uri)',
       label: 'GSIM class label',

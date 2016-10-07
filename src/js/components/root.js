@@ -41,9 +41,8 @@ export default class Root extends Component {
                    component={ServiceDetails} />
             <Route path="/gsbpm"
                    component={GSBPMExplorer} />
-            <Route path="/gsim"
-                   component={GSIMExplorer}>
-                <IndexRoute component={GSIMGroupSelector} />
+            <Route path="/gsim">
+                <IndexRoute component={GSIMExplorer} />
                 <Route path=":group"
                        component={GSIMClassSelector}/>
             </Route>
