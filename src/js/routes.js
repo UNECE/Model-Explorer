@@ -53,14 +53,18 @@ const routes = {
       return `/servicesByGsimInput/${gsimClassId}`
     }
   },
+  //TODO we should define these mappings in a hierarchical way, corresponding
+  //to the hierarchy of routes defined in `Root` (to avoid mistakes like
+  //defining a mapping for the pattern `gsbpm:subprocess` instead of
+  //`:subprocess`)
   serviceBySubProcess: {
-    pattern: '/servicebysubprocess/:subprocess',
+    pattern: ':subprocess',
     paramsToProps: (state, { subprocess }) => ({
       subprocess: `${GSBPMPrefix}${underscoreToPoint(subprocess)}`
     }),
     uriToLink: uri => {
       const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `/servicebysubprocess/${pointToUnderscore(subprocessId)}`
+      return `/gsbpm/${pointToUnderscore(subprocessId)}`
     }
   }
 }

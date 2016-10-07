@@ -39,15 +39,16 @@ export default class Root extends Component {
                   component={ServiceCreator} />
             <Route path={path.serviceDetails}
                    component={ServiceDetails} />
-            <Route path="/gsbpm"
-                   component={GSBPMExplorer} />
+            <Route path="/gsbpm">
+              <IndexRoute component={GSBPMExplorer} />
+              <Route path=":subprocess"
+                component={ServiceBySubProcess} />
+            </Route>
             <Route path="/gsim">
                 <IndexRoute component={GSIMExplorer} />
                 <Route path=":group"
                        component={GSIMClassSelector}/>
             </Route>
-            <Route path="/servicebysubprocess/:subprocess"
-                   component={ServiceBySubProcess} />
             <Route path={path.servicesByGsimInput} 
                    component={ServicesByGsimInput} />
           </Route>
