@@ -3,11 +3,7 @@ import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADING, LOADED, FAILED } from 'sparql-connect'
 import { groupByWithOrder } from '../utils/group-by'
 import GSBPMSubprocess from './gsbpm-subprocess'
-import { browserHistory } from 'react-router'
-import { uriToLink } from '../routes'
 
-const select = subprocess => 
-  browserHistory.push(uriToLink.serviceBySubProcess(subprocess))
   
 function GSBPMExplorer({ loaded, phases, activeSubs }) {
   if (loaded !== LOADED) return <span>loading...</span>
@@ -33,10 +29,10 @@ function GSBPMExplorer({ loaded, phases, activeSubs }) {
               .map(({ subprocess, subprocessCode, subprocessLabel}) =>
                 <li key={subprocess}>
                   <GSBPMSubprocess 
+                    subprocess={subprocess}
                     code={subprocessCode}
                     label={subprocessLabel}
-                    active={true}
-                    hndlClick={() => select(subprocess)} />
+                    active={true} />
                 </li> ) }
               </ul>
           </div>
