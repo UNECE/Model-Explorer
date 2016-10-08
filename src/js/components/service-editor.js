@@ -1,86 +1,78 @@
-import React, { Component } from 'react'
-import SelectSubprocess from './select-subprocess'
-import SelectClass from './select-class'
+import React, { Component, PropTypes } from 'react'
+import { browserHistory } from 'react-router'
+import { removeService } from '../sparql/updates'
+import ServiceEditorDetails from './service-editor-details'
 
 export default class ServiceEditor extends Component {
   constructor(props) {
     super(props)
+    const { descr, commit } = props
+    const {
+      label, description, outcomes, subprocess, restrictions,
+      inputs, outputs, subs
+    } = descr
+    
     this.state = {
-      label: '',
-      GSIMIn: '',
-      GSIMOut: '',
-      GSBPMSub: '',
-      description: '',
-      outcomes: '',
-      restrictions: ''
+      label,
+      description,
+      outcomes,
+      restrictions,
+      subprocess,
+      subs,
+      inputs,
+      outputs,
+    }
+  
+    this.save = () => {
+      
     }
     
-    this.changeLabel = label => this.setState({ label })
-    this.changeDescription = description => this.setState({ description })
-    this.changeRestrictions = restrictions => this.setState({ restrictions })
-    this.changeOutcomes = outcomes => this.setState({ outcomes })
-    this.changeGSBPMSub = GSBPMSub => this.setState({ GSBPMSub })
-    this.changeGSIMIn = GSIMIn => this.setState({ GSIMIn })
-    this.changeGSIMOut = GSIMOut => this.setState({ GSIMOut })
-
-    this.handleClick = () => {
-      const {
-        label, GSBPMSub, GSIMIn, GSIMOut, outcomes, description, restrictions
-      } = this.state
-      this.props.handleClick({
-        label, outcomes, description, restrictions,
-        GSBPMSub: [GSBPMSub],
-        GSIMIn: [GSIMIn],
-        GSIMOut: [GSIMOut]
-      })
+    this.addInput = () => {
+      
     }
+    
+    this.addOutput = () => {
+      
+    }
+    
+    this.addSubprocess = () => {
+      
+    }
+    this.removeInput = () => {}
+    this.removeOutput = () => {}
+    this.removeSubprocess = () => {}
+    this.updateDescr = () => {}
   }
-
+  
   render() {
-    const { label, GSIMIn, GSIMOut, GSBPMSub } = this.state
+    const {
+      descr, editing
+    } = this.props
+
+    
+    const editUtils = {
+      addInput: this.addInput,
+      addOutput: this.addOutput,
+      addSubprocess: this.addSubprocess,
+      removeInput: this.removeInput,
+      removeOutput: this.removeOutput,
+      removeSubprocess: this.removeSubprocess,
+      updateDescr: this.updateDescr
+    }
+    
     return (
-      <form>
-        <div>
-          <label>Label:</label>
-          <input type="text" value={label}
-                 onChange={e => this.changeLabel(e.target.value )}/>  
-        </div>
-        <div>
-          <label>Description:</label>
-          <input type="text" value={label}
-                 onChange={e => this.changeDescriptionl(e.target.value )}/>  
-        </div>
-        <div>
-          <label>Outcomes:</label>
-          <input type="text" value={label}
-                 onChange={e => this.changeOutcomes(e.target.value )}/>  
-        </div>
-        <div>
-          <label>Restrictions:</label>
-          <input type="text" value={label}
-                 onChange={e => this.changeRestrictions(e.target.value )}/>  
-        </div>                        
-        <div>
-          <label>GSBPM Subprocess:</label>
-          <SelectSubprocess value={GSBPMSub}
-                            handleChange={this.changeGSBPMSub} />
-        </div>
-        <div className="form-group">
-          <label>GSIM input:</label>
-          <SelectClass value={GSIMIn}
-                      handleChange={this.changeGSIMIn}/>
-        </div>
-        <div className="form-group">
-          <label>GSIM output:</label>
-          <SelectClass value={GSIMOut}
-                       handleChange={this.changeGSIMOut}/>
-        </div>
-        <button type="button" className="btn btn-success"
-                onClick={e => {
-                  e.preventDefault()
-                  this.handleClick()
-        }}>Create</button>
-      </form>
+      <div>
+        <ServiceEditorDetails
+          descr={descr}
+          editing={editing}
+          editUtils={editUtils} />
+      </div>
     )
   }
+}
+
+ServiceEditor.propTypes = {
+  descr: PropTypes.object.isRequired,
+  editing: PropTypes.bool.isRequired,
+  commit: PropTypes.func.isRequired
 }

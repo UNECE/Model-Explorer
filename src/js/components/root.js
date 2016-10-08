@@ -13,7 +13,7 @@ import App from './app'
 import GSBPMExplorer from './gsbpm-explorer'
 import GSIMExplorer from './gsim-explorer'
 import ExplorerChoice from './explorer-choice'
-import ServiceDetails from './service-details'
+import Service from './service'
 import Services from './services'
 import ServiceCreator from './service-creator'
 import GSIMGroupSelector from './gsim-group-selector'
@@ -38,7 +38,7 @@ export default class Root extends Component {
             <Route path={path.create}
                   component={ServiceCreator} />
             <Route path={path.serviceDetails}
-                   component={ServiceDetails} />
+                   component={Service} />
             <Route path="/gsbpm">
               <IndexRoute component={GSBPMExplorer} />
               <Route path=":subprocess"

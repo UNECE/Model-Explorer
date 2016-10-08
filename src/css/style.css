@@ -141,4 +141,6 @@ html, body {
   font-style: italic;
 }
 
-
+.small-button {
+  margin-top: 5px;
+}
