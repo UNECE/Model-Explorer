@@ -3,15 +3,17 @@ import { Link } from 'react-router'
 
 //TODO make it generic (it's duplicated for gsim inputs and outputs)
 export default function ServiceSubEntities(
-    { entities, remove, disabled, noMsg, makeLink }) {
+    { entities, uriName, remove, disabled, noMsg, makeLink }) {
   if (entities.length === 0)
     return <span className="form-control">{noMsg}</span>
   return (
-      <ul className="list-group" style={{ marginBottom: '5px' }}>
-        { entities.map(({ uri, label }) =>
+    <ul className="list-group" style={{ marginBottom: '5px' }}>
+      { entities.map(entity => {
+          const uri = entity[uriName]
+          return (
             <li className="list-group-item" key={uri}>
               <Link to={makeLink(uri)}>
-                {label}
+                {entity.label}
               </Link>
               { !disabled &&
                <a href="#" className="pull-right"
@@ -19,8 +21,11 @@ export default function ServiceSubEntities(
                  <span className="glyphicon glyphicon-remove"></span>
                </a>
               }
-            </li> )}
-      </ul>
+            </li>
+          )
+        })
+      }
+    </ul>
   )
 }
 
@@ -29,5 +34,5 @@ ServiceSubEntities.propTypes = {
   remove: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   noMsg: PropTypes.string.isRequired,
-  makeLink: PropTypes.func.isRequired
+  makeLink: PropTypes.func.isre
 }

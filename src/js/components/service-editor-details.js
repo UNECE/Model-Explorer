@@ -66,6 +66,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
           <ServiceSubEntities
             disabled={!editing}
             entities={subs}
+            uriName="sub"
             makeLink={uriToLink.serviceBySubProcess}
             noMsg="No GSBPM subprocess"
             add={addSubprocess}
@@ -81,6 +82,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
           <ServiceSubEntities
             disabled={!editing}
             entities={inputs}
+            uriName="gsimClass"
             makeLink={uriToLink.servicesByGsim}
             noMsg="No GSIM input"
             add={addInput}
@@ -96,6 +98,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
           <ServiceSubEntities
             disabled={!editing}
             entities={outputs}
+            uriName="gsimClass"
             makeLink={uriToLink.servicesByGsim}
             noMsg="No GSIM ouput"
             add={addOutput}
