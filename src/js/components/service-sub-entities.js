@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-//TODO make it generic (it's duplicated for gsim inputs and outputs)
 export default function ServiceSubEntities(
     { entities, uriName, remove, disabled, noMsg, makeLink }) {
   if (entities.length === 0)
@@ -34,5 +33,5 @@ ServiceSubEntities.propTypes = {
   remove: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   noMsg: PropTypes.string.isRequired,
-  makeLink: PropTypes.func.isre
+  makeLink: PropTypes.func.isRequired
 }
