@@ -152,6 +152,19 @@ const GSIMClasses = group => `
   }
 `
 
+/* Retrieve all GSIM classes */
+const GSIMAllClasses = () => `
+  PREFIX gsim:  <${GSIMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+
+  SELECT ?GSIMClass ?label ?definition WHERE {
+    ?GSIMClass rdfs:subClassOf ?group ;
+               gsim:classDefinition ?definition ;
+               rdfs:label ?label .
+    ?group rdfs:subClassOf gsim:GSIMObject
+  }
+`
+
 const gsimInputServices = gsimClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
@@ -210,6 +223,7 @@ export default {
   gsimOutputServices,
   subprocesses,
   GSIMClasses,
+  GSIMAllClasses,
   serviceBySubProcess,
   GSIMGroups
 }

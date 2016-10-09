@@ -4,7 +4,8 @@ import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 import { browserHistory } from 'react-router'
 import { removeService } from '../sparql/updates'
-import ServiceEditor from './service-editor'
+import ServiceEditorDetails from './service-editor-details'
+import { removeInArrByKey, addInArr } from '../utils/arrays'
 
 export class Service extends Component {
   constructor(props) {
@@ -22,11 +23,33 @@ export class Service extends Component {
     
     this.remove = () => {
       this.props.flush()
-      removeService(this.props.serviceGraph)
+      removeService(this.props.serviceInformation.serviceDetails.serviceGraph)
         .then(() => browserHistory.push(''))
     }
-    this.commit = () => {
-      
+    //TODO see service creator and DRY
+    this.editUtils = {
+      hndlLabelChange: label => this.setState({ label }),
+      hndlDescriptionChange: description => this.setState({ description }),
+      hndlOutcomesChange: outcomes => this.setState({ outcomes }),
+      hndlRestrictionsChange: restrictions => this.setState({ restrictions }),
+      addInput: input => this.setState({
+        inputs: addInArr(this.state.inputs, input)
+      }),
+      addOutput: output => this.setState({
+        outputs: addInArr(this.state.Outputs, output)
+      }),
+      addSubprocess: subprocess => this.setState({
+        subs: addInArr(this.state.subs, subprocess)
+      }),
+      removeInput: input => this.setState({
+        inputs: removeInArrByKey(this.state.inputs, input, 'gsimClass')
+      }),
+      removeOutput: output => this.setState({
+        outputs: removeInArrByKey(this.state.outputs, output, 'gsimClass')
+      }),
+      removeSubprocess: subprocess => this.set({
+        subs: removeInArrByKey(this.state.subs, subprocess, 'sub')
+      })
     }
   }
   
@@ -64,7 +87,8 @@ export class Service extends Component {
     
     return (
       <form className="form-horizontal">
-        <ServiceEditor descr={descr} editing={editing} commit={this.commit} />
+        <ServiceEditorDetails 
+          descr={descr} editing={editing} editUtils={this.editUtils} />
         { !editing &&
           <div className="btn-toolbar pull-right">
             <button className="btn btn-primary"
@@ -96,6 +120,10 @@ export class Service extends Component {
       </form>
     )
   }
+}
+
+Service.propTypes = {
+  
 }
 
 export default connectFromRoute(

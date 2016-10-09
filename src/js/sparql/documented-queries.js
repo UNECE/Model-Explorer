@@ -11,6 +11,7 @@ const {
   gsimInputServices,
   gsimOutputServices,
   GSIMClasses,
+  GSIMAllClasses,
   subprocesses,
   serviceBySubProcess,
   GSIMGroups
@@ -154,6 +155,17 @@ const queries_ = {
       definition: 'GSIM class definition'
     },
     queryBuilder: GSIMClasses
+  },
+  GSIMAllClasses: {
+    descr: 'Retrieve all GSIM classes',
+    whatWeGet: 'GSIMClasses',
+    params: [],
+    results: {
+      GSIMClass: 'GSIM class (uri)',
+      label: 'GSIM class label',
+      definition: 'GSIM class definition'
+    },
+    queryBuilder: GSIMAllClasses
   },
   serviceBySubProcess: {
     descr: 'Retrieve a list of services implementing a GSBPM subprocess',
