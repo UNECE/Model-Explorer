@@ -18,9 +18,10 @@ const ServicesByGsimOuput =
 function ServicesByGsimInputAndOutput({ gsimClass }) {
     return (
       <div>
-        <h2>Inputs</h2>
+        <h2>Services with { gsimClass } as</h2>
+        Input:
         <ServicesByGsimInput gsimClass={gsimClass} />
-        <h2>Output</h2>
+        Output:
         <ServicesByGsimOuput gsimClass={gsimClass} />
       </div>
     )
