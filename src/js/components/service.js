@@ -32,16 +32,23 @@ export class Service extends Component {
   
   render() {
     if (this.props.loaded !== LOADED) return <span>loading...</span>
+    //we refrence the simple queries combined by `serviceEverything`
     const {
-      service, label, description, outcomes, restrictions,
-      serviceGraph
-    } = this.props
+      serviceDetails: {
+        service, label, description, outcomes, restrictions,
+        serviceGraph
+      },
+      serviceInputs: inputs,
+      serviceOutputs: outputs,
+      serviceSubprocesses: subs
+    } = this.props.serviceInformation
+    
     const descr = {
       label, description, outcomes, restrictions,
       //FIXME we need multiple queries to gel all this information
-      inputs: [],
-      outputs: [],
-      subs: []
+      inputs: inputs,
+      outputs: outputs,
+      subs: subs
     }
     
     const { editing } = this.state
@@ -92,5 +99,5 @@ export class Service extends Component {
 }
 
 export default connectFromRoute(
-  sparqlConnect.serviceDetails(Service)
+  sparqlConnect.serviceEverything(Service)
 )
