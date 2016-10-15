@@ -12,6 +12,7 @@ import mainReducer from '../reducers/index'
 import App from './app'
 import GSBPMExplorer from './gsbpm-explorer'
 import GSIMExplorer from './gsim-explorer'
+import NSIExplorer from './nsi-explorer'
 import ExplorerChoice from './explorer-choice'
 import Service from './service'
 import Services from './services'
@@ -48,6 +49,9 @@ export default class Root extends Component {
                 <IndexRoute component={GSIMExplorer} />
                 <Route path=":gsimClass"
                        component={ServicesByGsim}/>
+            </Route>
+            <Route path="/nsis">
+                <IndexRoute component={NSIExplorer} />
             </Route>
           </Route>
         </Router>
