@@ -1,10 +1,27 @@
 import {
-  SKOSPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
+  SKOSPrefix, ORGPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
 } from './prefixes'
 
 
 //TODO we might need to filter on the language, but for now english seems to be
 //the only language available
+
+/**
+ * Builds the query that retrieves the list of NSIs
+ */
+const NSIList = () => `
+  PREFIX org: <${ORGPrefix}>
+  PREFIX skos: <${SKOSPrefix}>
+
+  SELECT ?nsi ?label
+
+  WHERE {
+    ?nsi a org:Organization ; skos:prefLabel ?label .
+  }
+  ORDER BY ?nsi
+ `
+
+
 /**
  * Builds the query that retrieve the GSBPM overlook
  */
