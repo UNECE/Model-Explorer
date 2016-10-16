@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { LOADED } from 'sparql-connect'
+import { sparqlConnect } from '../sparql/configure-sparql'
 
-export default class NSIExplorer extends Component {
-  render() {
-    return(
-      <div className="nsi-explorer">
-        <p>List of NSIs</p>
-      </div>
-    )
-  }
+function NSIExplorer({ loaded, nsis }) {
+  if (loaded !== LOADED) return <span>Loading NSI list...</span>
+  return(
+    <div className="nsi-explorer">
+      <p>List of NSIs loaded</p>
+    </div>
+  )
 }
+
+export default sparqlConnect.NSIList(NSIExplorer);
