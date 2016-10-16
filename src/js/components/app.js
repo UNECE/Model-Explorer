@@ -18,6 +18,9 @@ export default function App({ children }) {
                 <li>
                   <Link to="/gsim">Search the GSIM</Link>
                 </li>
+                <li>
+                  <Link to="/nsis">NSIs</Link>
+                </li>
               </ul>
             </div>
           </div>
