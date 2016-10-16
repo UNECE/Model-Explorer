@@ -10,13 +10,13 @@ export default function NSIList({ nsis }) {
     )
     
   return(
-    <div className="list-group">
+    <ul className="list-group">
       { nsis.map(({ nsi, label }) =>
-          <p>
+          <li className="list-group-item">
             { label }
-          </p>)
+          </li>)
        }
-    </div>
+    </ul>
   )
 }
 
