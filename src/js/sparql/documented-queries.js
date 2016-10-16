@@ -1,6 +1,7 @@
 import queries from './queries'
 
 const {
+  NSIList,
   GSBPMDescription,
   subprocessServices,
   services,
@@ -18,6 +19,16 @@ const {
 } = queries
 
 const queries_ = {
+  NSIList: {
+    descr: 'Retrieve a list of statistical institutes',
+    whatWeGet: 'nsis',
+    params: [],
+    results: {
+      nsi: 'Statistical institute (uri)',
+      label: 'label of the NSI'
+    },
+    queryBuilder: NSIList
+  },
   GSBPMDescription: {
     descr: 'Retrieve a global description of the GSBPM',
     whatWeGet: 'phases',

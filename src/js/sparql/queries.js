@@ -230,6 +230,7 @@ const serviceBySubProcess = (subprocess) => `
 `
 
 export default {
+  NSIList,
   GSBPMDescription,
   services,
   serviceDetails,
