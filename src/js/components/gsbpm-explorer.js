@@ -4,33 +4,41 @@ import { LOADING, LOADED, FAILED } from 'sparql-connect'
 import { groupByWithOrder } from '../utils/group-by'
 import GSBPMSubprocess from './gsbpm-subprocess'
 
-function GSBPMExplorer({ loaded, phases }) {
-  if(loaded !== LOADED) {
-    return <p>LOADING...</p>
-  }
-  const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
+  
+function GSBPMExplorer({ loaded, phases, activeSubs }) {
+  if (loaded !== LOADED) return <span>loading...</span>
+  const refinedPhases = groupByWithOrder(
+    phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return (
-    <div className="row">
-      <h1>GSBPM Explorer</h1>
-      <h2>You may select a subprocess</h2>
+    <div className="gsbpm">
+      <div className="title cell">
+        Quality management / Metadata management
+      </div>
+      <div className="phases">
       { refinedPhases.map(({ id, props, entries }) =>
-        <div className="col-md-1" key={id}>
-          <div className="phases">{props.phaseLabel}</div>
-          { entries
+        <div key={id} className="phase">
+          <div className="cell title">
+            {props.phaseLabel}
+          </div>
+          <div className="subprocesses">
+            <ul>
+            { entries
               .sort((a, b) => {
                 return a.subprocessCode > b.subprocessCode
               })
-              .map(({ subprocess, subprocessLabel}) =>
-                <div className="subprocess" key={subprocess}>
-                  <GSBPMSubprocess
-                    id={subprocess}
-                    label={subprocessLabel} />
-                </div>
-          )}
-        </div>
-      )}
-
-  </div>
+              .map(({ subprocess, subprocessCode, subprocessLabel}) =>
+                <li key={subprocess}>
+                  <GSBPMSubprocess 
+                    subprocess={subprocess}
+                    code={subprocessCode}
+                    label={subprocessLabel}
+                    active={true} />
+                </li> ) }
+              </ul>
+          </div>
+        </div> ) }
+      </div>
+    </div>
   );
 }
 

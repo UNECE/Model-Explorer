@@ -1,0 +1,330 @@
+@prefix cspa:<http://rdf.unece.org/models/cspa#> .
+@prefix gsbpm:<http://rdf.unece.org/models/gsbpm#> .
+@prefix igsbpm: <http://id.unece.org/models/gsbpm/> .
+@prefix gsim:<http://rdf.unece.org/models/gsim#> .
+@prefix org:<http://www.w3.org/ns/org#> .
+@prefix service:<http://unece.org/services#> .
+@prefix stamina:<http://stamina-project.org/graphs/cspa-service/> .
+
+stamina:RetrieveStatisticalClassification {
+	service:RetrieveStatisticalClassification a cspa:package;
+		cspa:label "Retrieve Statistical Classification";
+		cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+			cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    			cspa:description "Retrieve a statistical classification with all of its attributes"; 
+	    			cspa:outcomes "Statistical classification with all of its attributes"; 
+	    			cspa:gsbpmSubProcess igsbpm:2.2; 
+	    			cspa:restrictions "None planned, but restrictions by administrative/life cycle status eg open for use/valid could be considered." 
+	   		] ;
+		] ;
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:NO
+				]
+			]
+		]
+	.
+}
+
+stamina:ListStatisticalClassifications {
+	service:ListStatisticalClassifications a cspa:package;
+		cspa:label "List Statistical Classifications";
+		cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+			cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    			cspa:description "Retrieve a list of Statistical Classification Identifiers with Release Date, Termination Date and Name in all available languages"; 
+	    			cspa:outcomes "List of Statistical Classification Identifiers with Release Date, Termination Date and Name in all available languages"; 
+	    			cspa:gsbpmSubProcess igsbpm:2.2; 
+	    			cspa:restrictions "None planned, but restrictions by administrative/life cycle status eg open for use/valid could be considered." 
+	   		] ;
+			cspa:definitionHasInput [ a cspa:DefinitionInput ;
+				cspa:gsimInput gsim:StatisticalClassification
+			] ;
+
+			cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+				cspa:gsimOutput gsim:StatisticalClassification
+			] ;
+
+		];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:NO
+				]
+			]
+		]
+	.
+}
+
+stamina:SampleSelection {
+	service:SampleSelection a cspa:package;
+		cspa:label "Sample Selection";
+		cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+		cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    		cspa:description "An important design goal of the service is to facilitate spreading the administrative burden across individual units of the population. For this, the service can be set up to recognize groups of Statistical Programs. The burden is then spread within each group. Groups may (and often will) have the same or overlapping populations, but there is no coordination across groups."; 
+	    		cspa:outcomes "The output of the service is a sample drawn from the population frame according to the design and the parameters specified in the input. In addition, the service keeps state, i.e. information about the group population, about the administrative burden per population unit and about panels within the group, to be used in subsequent executions of the service. "; 
+	    		cspa:gsbpmSubProcess igsbpm:4.1; 
+	    		cspa:restrictions "The user must ensure that 1. the Population Frame provided in the input matches the design in terms of classifications 2. every Unit in the Population Frame can be assigned to a cell in the Base Stratification of the design" 
+	   	] ;
+
+		cspa:definitionHasInput [ a cspa:DefinitionInput ;
+			cspa:gsimInput gsim:UnitDataSet;
+			cspa:gsimInput gsim:UnitDataStructure
+		] ;
+
+		cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+			cspa:gsimOutput gsim:UnitDataSet;
+			cspa:gsimOutput gsim:UnitDataStructure
+		] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:NL
+				]
+			]
+		]
+	.
+}
+
+stamina:LinearRuleChecking {
+	service:LinearRuleChecking a cspa:package;
+	cspa:label "Linear Rule Checking";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "The service checks compliance of data with predefined Restriction Rules. In literature these are usually referred to as edit rules."; 
+	    cspa:outcomes "For each UnitDataRecord it is determined whether each Restriction Rule is satisfied, violated or cannot be evaluated because of missing data."; 
+	    cspa:gsbpmSubProcess igsbpm:5.3; 
+	    cspa:restrictions "The service is restricted to numerical data. The allowed Restriction Rules are linear (in-) equalisties and are to be evaluated for each record separately (in-record). Cross record and cross data set error localisation are not supported
+	" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:Rule;
+	cspa:gsimInput gsim:UnitDataPoint;
+	cspa:gsimInput gsim:UnitDataRecord;
+	cspa:gsimInput gsim:UnitDataSet;
+	cspa:gsimInput gsim:UnitDataStructure
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:UnitDataPoint;
+	cspa:gsimOutput gsim:UnitDataRecord;
+	cspa:gsimOutput gsim:UnitDataSet;
+	cspa:gsimOutput gsim:UnitDataStructure
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:NL
+				]
+			]
+		]
+	.
+}
+
+stamina:DataSetRe-Code {
+	service:DataSetRe-Code a cspa:package;
+	cspa:label "Data Set Re-code";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "Often a dataset will need to be coded differently at different points in a statistical process. This difference can take two forms:
+	A concept may reference a particular code list but need to be re-coded to another (eg The concept of Country of Origin may be collected using an ISO 3166-1 alpha-2 code list but need to be disseminated using ISO 3166-1 alpha-3); A data set that uses a concept referencing a particular code list may need to switch to a different concept using the same code list (eg A dataset with a concept of Reference Area may be more easily interpretable by a given audience if the concept of Location was used). This service re-codes a dataset to meet one or a combination of these forms."; 
+	    cspa:outcomes "The business outcome of use of this service is that an existing dataset, not fit for particular needs, can easily be re-coded to be fit for that purpose."; 
+	    cspa:gsbpmSubProcess igsbpm:5.2; 
+	    cspa:restrictions "None" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:CodeList;
+	cspa:gsimInput gsim:CorrespondenceTable;
+	cspa:gsimInput gsim:DimensionalDataSet;
+	cspa:gsimInput gsim:DimensionalDataStructure
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:DimensionalDataSet
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:OECD
+				]
+			]
+		]
+	.
+}
+
+stamina:ErrorCorrection {
+	service:ErrorCorrection a cspa:package;
+	cspa:label "Error Correction";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "This Statistical Service corrects erroneous values in record"; 
+	    cspa:outcomes "A consistent repair of records"; 
+	    cspa:gsbpmSubProcess igsbpm:5.4; 
+	    cspa:restrictions "None" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:UnitType;
+	cspa:gsimInput gsim:UnitDataSet;
+	cspa:gsimInput gsim:UnitDataStructure
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:UnitDataStructure
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:IT
+				]
+			]
+		]
+	.
+}
+
+stamina:LinearErrorLocalization {
+	service:LinearErrorLocalization a cspa:package;
+	cspa:label " Linear Error Localization";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "The service flags (the minimal number of) values in a Data Set that should be adapted to achieve compliance with a predefined set of Restriction Rules (according to the principle of Fellegi and Holt). In literature these rules are usually referred to as edit rules."; 
+	    cspa:outcomes "The service flags (the minimal number of) values in a Data Set that should be adapted to achieve compliance with a predefined set of Restriction Rules (according to the principle of Fellegi and Holt). In literature these rules are usually referred to as edit rules."; 
+	    cspa:gsbpmSubProcess igsbpm:5.3; 
+	    cspa:restrictions "The service is restricted to numerical data
+	The allowed Restriction Rules are linear (in-) equalisties and are to be evaluated for each record separately (in-record). Cross record and cross data set error localisation are not supported" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:Rule;
+	cspa:gsimInput gsim:UnitDataSet;
+	cspa:gsimInput gsim:UnitDataStructure
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:UnitDataPoint;
+	cspa:gsimOutput gsim:UnitDataRecord;
+	cspa:gsimOutput gsim:UnitDataSet;
+	cspa:gsimOutput gsim:UnitDataStructure
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:NL
+				]
+			]
+		]
+	.
+}
+
+stamina:SeasonalAdjustment {
+	service:SeasonalAdjustment a cspa:package;
+	cspa:label "Seasonal Adjustment";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "This Statistical Service seasonally adjusts and trends time series"; 
+	    cspa:outcomes "This results in seasonally adjusted and trend estimates suitable for publication / release"; 
+	    cspa:gsbpmSubProcess igsbpm:6.1; 
+	    cspa:restrictions "None" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:IdentifiableArtefact;
+	cspa:gsimInput gsim:ProcessMethod;
+	cspa:gsimInput gsim:InstanceVariable;
+	cspa:gsimInput gsim:InformationConsumer;
+	cspa:gsimInput gsim:DimensionalDataSet
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:ProcessOutput;
+	cspa:gsimOutput gsim:InstanceVariable;
+	cspa:gsimOutput gsim:DimensionalDataSet
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:FR
+				]
+			]
+		]
+	.
+}
+
+stamina:StatisticalChartGenerator {
+	service:StatisticalChartGenerator a cspa:package;
+	cspa:label "Statistical Chart Generator";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "This Graphical Service generates charts and maps out of (multidimensional quantitative) statistical data (primarily for dissemination purposes to communicate/visualize a precise message).
+	It eases the generation of standardized charts and maps for release and publication on the web as well as on paper and electronic formats and allows applying a specific look and feel. There is no explicit limitation on the use of this web service and even though functionality is limited in this regard, it could also be used for analysis if this is needed."; 
+	    cspa:outcomes "This results in an (interactive web or static paper) chart or map suitable for publication / release"; 
+	    cspa:gsbpmSubProcess igsbpm:6.1; 
+	    cspa:restrictions "None" 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:ProcessInput;
+	cspa:gsimInput gsim:DimensionalDataSet
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:ProcessOutput;
+	cspa:gsimOutput gsim:Presentation
+	] ;
+
+	];
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:OECD
+				]
+			]
+		]
+	.
+}
+
+stamina:ConfidentializedAnalysis {
+	service:ConfidentializedAnalysis a cspa:package;
+	cspa:label "Confidentialized Analysis";
+	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
+	cspa:aimsAt[ a cspa:BusinessFunction ; 
+	    cspa:description "Perform analysis on non-confidential microdata and provide confidentialized results"; 
+	    cspa:outcomes "Confidentialized statistics available to external users as per their specifications."; 
+	    cspa:gsbpmSubProcess igsbpm:6.4; 
+	    cspa:restrictions "The service assumes microdata has been validated/screened prior to be input." 
+	   ] ;
+
+	cspa:definitionHasInput [ a cspa:DefinitionInput ;
+	cspa:gsimInput gsim:ProcessInputSpecification;
+	cspa:gsimInput gsim:Variable;
+	cspa:gsimInput gsim:DataSet
+	] ;
+
+	cspa:definitionHasOutput [ a cspa:DefinitionOutput ;
+	cspa:gsimOutput gsim:OutputSpecification
+	] ;
+	] ;
+		cspa:hasPackageImplementation [ a cspa:ServiceImplementationDescription;
+			cspa:comesFrom [ a cspa:Provenance; 
+				cspa:builderOrganization [ a cspa:Organization;
+					cspa:organization org:CA
+				]
+			]
+		]
+	.
+}
+

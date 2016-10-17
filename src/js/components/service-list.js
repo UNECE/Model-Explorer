@@ -3,17 +3,22 @@ import { Link } from 'react-router'
 import { uriToLink } from '../routes'
 
 export default function ServiceList({ services }) {
+  
+  if (services.length === 0) 
+    return (
+      <div className="alert alert-warning" role="alert">
+        Sorry, there is no service for this search criteria.
+      </div>
+    )
+    
   return(
-    <div>
-      <h1>Service list</h1>
-        <div className="list-group">
-        { services.map(({ service, label }) =>
+    <div className="list-group">
+      { services.map(({ service, label }) =>
           <Link to={uriToLink.serviceDetails(service)}
                 className="list-group-item" key={service}>
             { label }
-          </Link>
-        )}
-      </div>
+          </Link>)
+       }
     </div>
   )
 }

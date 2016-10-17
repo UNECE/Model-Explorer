@@ -1,20 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { uriToLink } from '../routes'
 
-const removeWhiteSpaces = (str) => str.replace(/\s+/g, '')
-
-export default function GSBPMSubprocess(props) {
-  return(
-    <p>
-      <Link to={uriToLink.serviceBySubProcess(props.id)}>
-        {props.label}
-      </Link>
-    </p>
+export default function GSBPMSubprocess({ subprocess, code, label, active }) {
+  return (
+    <a className="subprocess cell" 
+        href={uriToLink.serviceBySubProcess(subprocess)}>
+      <div>{code}</div>
+      <div>{label}</div>
+    </a>
   )
-}
-
-GSBPMSubprocess.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
 }

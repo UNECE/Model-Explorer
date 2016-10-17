@@ -12,14 +12,15 @@ import mainReducer from '../reducers/index'
 import App from './app'
 import GSBPMExplorer from './gsbpm-explorer'
 import GSIMExplorer from './gsim-explorer'
+import NSIExplorer from './nsi-explorer'
 import ExplorerChoice from './explorer-choice'
-import ServiceDetails from './service-details'
+import Service from './service'
 import Services from './services'
 import ServiceCreator from './service-creator'
 import GSIMGroupSelector from './gsim-group-selector'
 import GSIMClassSelector from './gsim-class-selector'
 import ServiceBySubProcess from './service-by-subprocess'
-import ServicesByGsimInput from './services-by-gsim-input'
+import ServicesByGsim from './services-by-gsim'
 
 //We need to create a store. `configureStore` add a little extra config to
 //allow to work with asyncrhonous actions and to use the redux dev tools.
@@ -38,21 +39,21 @@ export default class Root extends Component {
             <Route path={path.create}
                   component={ServiceCreator} />
             <Route path={path.serviceDetails}
-                   component={ServiceDetails} />
-            <Route path="/gsbpm"
-                   component={GSBPMExplorer} />
-            <Route path="/gsim"
-                   component={GSIMExplorer}>
-                <IndexRoute component={GSIMGroupSelector} />
-                <Route path=":group"
-                       component={GSIMClassSelector}/>
+                   component={Service} />
+            <Route path="/gsbpm">
+              <IndexRoute component={GSBPMExplorer} />
+              <Route path=":subprocess"
+                component={ServiceBySubProcess} />
             </Route>
-            <Route path="/servicebysubprocess/:subprocess"
-                   component={ServiceBySubProcess} />
-            <Route path={path.servicesByGsimInput} 
-                   component={ServicesByGsimInput} />
+            <Route path="/gsim">
+                <IndexRoute component={GSIMExplorer} />
+                <Route path=":gsimClass"
+                       component={ServicesByGsim}/>
+            </Route>
+            <Route path="/nsis">
+                <IndexRoute component={NSIExplorer} />
+            </Route>
           </Route>
-
         </Router>
       </Provider>
     )

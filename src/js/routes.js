@@ -40,27 +40,31 @@ const routes = {
         `${uri} does not match the expected prefix ${servicePrefix}`
       )
       const serviceId = seriveIdMatch[1]
-      return `service/${serviceId}`
+      return `/service/${serviceId}`
     }
   },
-  servicesByGsimInput: {
-    pattern: 'servicesByGsimInput/:gsimClassId',
-    paramsToProps: (state, { gsimClassId }) => ({
-      gsimClass: `${GSIMPrefix}${gsimClassId}`
+  servicesByGsim: {
+    pattern: ':gsimClass',
+    paramsToProps: (state, { gsimClass }) => ({
+      gsimClass: `${GSIMPrefix}${gsimClass}`
     }),
     uriToLink: uri => {
-      const gsimClassId = uri.match(regedPrefix(GSIMPrefix))[1]
-      return `/servicesByGsimInput/${gsimClassId}`
+      const gsimClass = uri.match(regedPrefix(GSIMPrefix))[1]
+      return `/gsim/${gsimClass}`
     }
   },
+  //TODO we should define these mappings in a hierarchical way, corresponding
+  //to the hierarchy of routes defined in `Root` (to avoid mistakes like
+  //defining a mapping for the pattern `gsbpm:subprocess` instead of
+  //`:subprocess`)
   serviceBySubProcess: {
-    pattern: '/servicebysubprocess/:subprocess',
+    pattern: ':subprocess',
     paramsToProps: (state, { subprocess }) => ({
       subprocess: `${GSBPMPrefix}${underscoreToPoint(subprocess)}`
     }),
     uriToLink: uri => {
       const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `/servicebysubprocess/${pointToUnderscore(subprocessId)}`
+      return `/gsbpm/${pointToUnderscore(subprocessId)}`
     }
   }
 }
