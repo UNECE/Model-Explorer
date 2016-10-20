@@ -13,9 +13,9 @@ export default function ServiceList({ services }) {
     
   return(
     <div className="list-group">
-      { services.map(({ service, label }) =>
+      { services.map(({ service, label, description }) =>
           <Link to={uriToLink.serviceDetails(service)}
-                className="list-group-item" key={service}>
+                className="list-group-item" key={service} title={description}>
             { label }
           </Link>)
        }

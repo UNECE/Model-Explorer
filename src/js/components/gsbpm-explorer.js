@@ -14,32 +14,59 @@ function GSBPMExplorer({ loaded, phases, activeSubs }) {
       <div className="title cell">
         Quality management / Metadata management
       </div>
+	<GSBPMPhasesList 
+		refinedPhases={refinedPhases}
+	/>
+    </div>
+  );
+}
+
+function GSBPMPhasesList({ refinedPhases }){
+return(
       <div className="phases">
-      { refinedPhases.map(({ id, props, entries }) =>
+		{ refinedPhases.map(({ id, props, entries }) =>
+			<GSBPMPhase
+				id = {id}
+				phaseLabel={props.phaseLabel}
+				entries={entries}
+				/>
+		)	
+		} 
+      </div>
+);
+}
+
+function GSBPMPhase({id, phaseLabel, entries}){
+return(
         <div key={id} className="phase">
           <div className="cell title">
-            {props.phaseLabel}
+            {phaseLabel}
           </div>
-          <div className="subprocesses">
+          <GSBPMSubprocessList entries={entries}/>
+        </div> 
+);
+}
+
+function GSBPMSubprocessList({entries}){
+	return(<div className="subprocesses">
             <ul>
             { entries
               .sort((a, b) => {
                 return a.subprocessCode > b.subprocessCode
               })
-              .map(({ subprocess, subprocessCode, subprocessLabel}) =>
+              .map(({ subprocess, subprocessCode, subprocessLabel,prefLabel,subprocessDefinition}) =>
                 <li key={subprocess}>
                   <GSBPMSubprocess 
                     subprocess={subprocess}
                     code={subprocessCode}
                     label={subprocessLabel}
+					prefLabel={prefLabel}
+					definition={subprocessDefinition}
                     active={true} />
                 </li> ) }
               </ul>
-          </div>
-        </div> ) }
-      </div>
-    </div>
-  );
+          </div>)
+	
 }
 
 export default sparqlConnect.GSBPMDescription(GSBPMExplorer);
