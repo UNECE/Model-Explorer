@@ -38,7 +38,8 @@ const queries_ = {
       phaseCode: 'phase code',
       subprocess: 'subprocess (uri)',
       subprocessLabel: 'subprocess label',
-      subprocessCode: 'subprocess code'
+      subprocessCode: 'subprocess code',
+	  subprocessDefinition: 'subprocess definition'
     },
     params: [],
     queryBuilder: GSBPMDescription
@@ -58,7 +59,8 @@ const queries_ = {
     params: [],
     results: {
       service: 'service (uri)',
-      label: 'label of the service'
+      label: 'label of the service',
+	  description: 'description of the service'
     },
     queryBuilder: services
   },
