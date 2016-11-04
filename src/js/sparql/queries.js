@@ -29,7 +29,7 @@ const GSBPMDescription = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
   SELECT ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode
-         ?subprocessCode
+         ?subprocessCode ?subprocessDefinition
   WHERE {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
@@ -38,6 +38,9 @@ const GSBPMDescription = () => `
    }
    OPTIONAL {
      ?subprocess skos:prefLabel ?subprocessLabel
+	 }
+   OPTIONAL {
+     ?subprocess skos:definition ?subprocessDefinition
    }
    OPTIONAL {
      ?phase skos:notation ?phaseCode
@@ -54,10 +57,12 @@ const services = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
 
-  SELECT distinct ?service ?label
+  SELECT distinct ?service ?label ?description
   WHERE {
     ?service a cspa:package .
-    ?service cspa:label ?label
+    OPTIONAL {?service cspa:label ?label}
+	OPTIONAL {?service cspa:hasPackageDefinition [
+    	   a cspa:ServiceDefinition; cspa:aimsAt [cspa:description ?description]]}
   }
 `
 
