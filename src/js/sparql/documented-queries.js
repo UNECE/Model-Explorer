@@ -39,7 +39,7 @@ const queries_ = {
       subprocess: 'subprocess (uri)',
       subprocessLabel: 'subprocess label',
       subprocessCode: 'subprocess code',
-	  subprocessDefinition: 'subprocess definition'
+	    subprocessDefinition: 'subprocess definition'
     },
     params: [],
     queryBuilder: GSBPMDescription
@@ -60,7 +60,7 @@ const queries_ = {
     results: {
       service: 'service (uri)',
       label: 'label of the service',
-	  description: 'description of the service'
+	    description: 'description of the service'
     },
     queryBuilder: services
   },
@@ -119,7 +119,7 @@ const queries_ = {
       definition: 'definition of the gsim class'
     },
     queryBuilder: serviceOutputs
-  },  
+  },
   gsimInputServices: {
     descr: 'Retrieve all services with the given gsim class as input',
     whatWeGet: 'services',
@@ -225,7 +225,7 @@ queries_.serviceEverything = {
     queries_.serviceSubprocesses],
   //`whatWeGet` from initial queries will not be valued, all the results will be
   //available as entries in the `serviceInformation` prop passed to the
-  //connected component. For example, `serviceInformation` will look like 
+  //connected component. For example, `serviceInformation` will look like
   //`{
   //  serviceDetails: {},
   //  serviceInputs: [],

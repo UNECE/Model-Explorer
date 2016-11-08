@@ -3,23 +3,18 @@ import { uriToLink } from '../routes'
 
 export default function GSBPMSubprocess({ subprocess, code, label, definition, active }) {
  return (
-    <div className="subprocess cell" >
-      <a 
-		//clasName="subprocess title" 
-		href={uriToLink.serviceBySubProcess(subprocess)} 
-		title={definition}
-		>
-		<div>{code}</div>
-		<div>{label}</div>
-	  </a>
-	  <GSBPMSubprocessDefinition 
-		definition={definition}  />
+    <div className="subprocess cell">
+      <a href={uriToLink.serviceBySubProcess(subprocess)} title={definition}>
+	      <div>{code}</div>
+		    <div>{label}</div>
+	    </a>
+	    <GSBPMSubprocessDefinition definition={definition}/>
     </div>
   )
 }
 
-function GSBPMSubprocessDefinition({definition}){
-var divDefinitionStyle = {display: 'none'} ;
+function GSBPMSubprocessDefinition({definition}) {
+  var divDefinitionStyle = {display: 'none'};
   return (
 	  <div style={divDefinitionStyle}>{definition}</div>
   )
