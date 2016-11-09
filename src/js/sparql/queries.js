@@ -210,7 +210,7 @@ const GSIMAllClasses = () => `
 /**
  * Builds the query that retrieves the list of all CSPA services with a given GSIM input.
  */
-const gsimInputServices = gsimClass => `
+const servicesByGSIMInput = gsimClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -230,7 +230,7 @@ const gsimInputServices = gsimClass => `
 /**
  * Builds the query that retrieves the list of all CSPA services with a given GSIM output.
  */
-const gsimOutputServices = gsimClass => `
+const servicesByGSIMOutput = gsimClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -250,7 +250,7 @@ const gsimOutputServices = gsimClass => `
 /**
  * Builds the query that retrieves the list of all CSPA services in a given GSBPM subprocess.
  */
-const serviceBySubProcess = (subprocess) => `
+const servicesBySubProcess = (subprocess) => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
   PREFIX cspa:  <${CSPAPrefix}>
@@ -271,11 +271,11 @@ export default {
   serviceSubprocesses,
   serviceInputs,
   serviceOutputs,
-  gsimInputServices,
-  gsimOutputServices,
+  servicesByGSIMInput,
+  servicesByGSIMOutput,
   subprocesses,
   GSIMClasses,
   GSIMAllClasses,
-  serviceBySubProcess,
+  servicesBySubProcess,
   GSIMGroups
 }

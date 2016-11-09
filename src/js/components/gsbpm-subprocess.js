@@ -4,7 +4,7 @@ import { uriToLink } from '../routes'
 export default function GSBPMSubprocess({ subprocess, code, label, definition, active }) {
  return (
     <div className="subprocess cell">
-      <a href={uriToLink.serviceBySubProcess(subprocess)} title={definition}>
+      <a href={uriToLink.servicesBySubProcess(subprocess)} title={definition}>
 	      <div>{code}</div>
 		    <div>{label}</div>
 	    </a>
