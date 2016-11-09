@@ -263,6 +263,21 @@ const servicesBySubProcess = (subprocess) => `
   }
 `
 
+/**
+ * Builds the query that retrieves the details for a GSIM class
+ */
+const GSIMClassDetails = GSIMClass => `
+  PREFIX gsim: <${GSIMPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
+  
+  SELECT ?label ?definition ?explanatoryText
+  WHERE {
+    <${GSIMClass}> rdfs:label ?label ;
+                   gsim:classDefinition ?definition ;
+                   gsim:classExplanatoryText ?explanatoryText
+  }
+`
+
 export default {
   NSIList,
   GSBPMDescription,
@@ -277,5 +292,6 @@ export default {
   GSIMClasses,
   GSIMAllClasses,
   servicesBySubProcess,
-  GSIMGroups
+  GSIMGroups,
+  GSIMClassDetails
 }

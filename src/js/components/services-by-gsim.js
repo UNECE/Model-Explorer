@@ -3,6 +3,7 @@ import { connectFromRoute } from '../routes'
 import { sparqlConnect } from '../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 import ServiceList from './service-list.js'
+import GSIMClassDetails from './gsim-class-details'
 
 function ServicesByGsimInputOrOutput({ loaded, services }){
   if (loaded !== LOADED) return <span>loading services</span>
@@ -18,7 +19,7 @@ const ServicesByGsimOuput =
 function ServicesByGsimInputAndOutput({ gsimClass }) {
     return (
       <div>
-        <h2>Services with { gsimClass } as</h2>
+        <GSIMClassDetails GSIMClass={gsimClass} />
         Input:
         <ServicesByGsimInput gsimClass={gsimClass} />
         Output:
