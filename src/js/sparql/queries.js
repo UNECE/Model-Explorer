@@ -2,12 +2,11 @@ import {
   SKOSPrefix, ORGPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
 } from './prefixes'
 
-
-//TODO we might need to filter on the language, but for now english seems to be
-//the only language available
+// TODO we might need to filter on the language, but for now English seems to be
+// the only language available
 
 /**
- * Builds the query that retrieves the list of NSIs
+ * Builds the query that retrieves the list of NSIs.
  */
 const NSIList = () => `
   PREFIX org: <${ORGPrefix}>
@@ -21,15 +20,14 @@ const NSIList = () => `
   ORDER BY ?nsi
  `
 
-
 /**
- * Builds the query that retrieve the GSBPM overlook
+ * Builds the query that retrieves the GSBPM overview.
  */
 const GSBPMDescription = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
   SELECT ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode
-         ?subprocessCode
+         ?subprocessCode ?subprocessDefinition
   WHERE {
    ?phase a gsbpm:Phase ;
           skos:narrower ?subprocess ;
@@ -38,6 +36,9 @@ const GSBPMDescription = () => `
    }
    OPTIONAL {
      ?subprocess skos:prefLabel ?subprocessLabel
+	 }
+   OPTIONAL {
+     ?subprocess skos:definition ?subprocessDefinition
    }
    OPTIONAL {
      ?phase skos:notation ?phaseCode
@@ -48,19 +49,26 @@ const GSBPMDescription = () => `
   }
  `
 
-
+ /**
+  * Builds the query that retrieves the list of CSPA services.
+  */
 const services = () => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
 
-  SELECT distinct ?service ?label
+  SELECT distinct ?service ?label ?description
   WHERE {
     ?service a cspa:package .
-    ?service cspa:label ?label
+    OPTIONAL {?service cspa:label ?label}
+	  OPTIONAL {?service cspa:hasPackageDefinition [
+    	   a cspa:ServiceDefinition; cspa:aimsAt [cspa:description ?description]]}
   }
 `
 
+/**
+ * Builds the query that retrieves the details of a given CSPA service.
+ */
 const serviceDetails = service => `
   PREFIX cspa: <${CSPAPrefix}>
   PREFIX skos: <${SKOSPrefix}>
@@ -69,7 +77,7 @@ const serviceDetails = service => `
   WHERE {
     GRAPH ?serviceGraph {
       <${service}> cspa:hasPackageDefinition [
-    	   a cspa:ServiceDefinition; cspa:aimsAt [ 
+    	   a cspa:ServiceDefinition; cspa:aimsAt [
            cspa:description ?description ;
     	     cspa:outcomes ?outcomes ;
     	     cspa:gsbpmSubProcess ?subprocess ;
@@ -79,6 +87,9 @@ const serviceDetails = service => `
   }
 `
 
+/**
+ * Builds the query that retrieves the GSBPM subprocess for a given service.
+ */
 //TODO investigate, we shouldn't need DISTINCT, should we ?
 const serviceSubprocesses = service => `
   PREFIX cspa: <${CSPAPrefix}>
@@ -93,7 +104,9 @@ const serviceSubprocesses = service => `
   }
 `
 
-/* Retrieve all GSBPM subprocesses */
+/**
+ * Builds the query that retrieves the list of all GSBPM subprocesses.
+ */
 const subprocesses = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
@@ -107,6 +120,9 @@ const subprocesses = () => `
   ORDER BY ?code
 `
 
+/**
+ * Builds the query that retrieves the list of GSIM inputs of a given CSPA service.
+ */
 const serviceInputs = service => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
@@ -126,7 +142,9 @@ const serviceInputs = service => `
       ?gsimClass gsim:classDefinition ?definition
   }
 `
-
+/**
+ * Builds the query that retrieves the list of GSIM outputs of a given CSPA service.
+ */
 const serviceOutputs = service => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
@@ -147,6 +165,9 @@ const serviceOutputs = service => `
   }
 `
 
+/**
+ * Builds the query that retrieves the list of all GSIM groups.
+ */
 const GSIMGroups = () => `
   PREFIX gsim: <${GSIMPrefix}>
   PREFIX rdfs: <${RDFSPrefix}>
@@ -157,7 +178,9 @@ const GSIMGroups = () => `
   }
 `
 
-/* Retrieve all GSIM classes for a group */
+/**
+ * Builds the query that retrieves the list of all GSIM objects of a given group.
+ */
 const GSIMClasses = group => `
   PREFIX gsim:  <${GSIMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
@@ -169,7 +192,9 @@ const GSIMClasses = group => `
   }
 `
 
-/* Retrieve all GSIM classes */
+/**
+ * Builds the query that retrieves the list of all GSIM objects.
+ */
 const GSIMAllClasses = () => `
   PREFIX gsim:  <${GSIMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
@@ -182,7 +207,10 @@ const GSIMAllClasses = () => `
   }
 `
 
-const gsimInputServices = gsimClass => `
+/**
+ * Builds the query that retrieves the list of all CSPA services with a given GSIM input.
+ */
+const servicesByGSIMInput = gsimClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -199,7 +227,10 @@ const gsimInputServices = gsimClass => `
   }
 `
 
-const gsimOutputServices = gsimClass => `
+/**
+ * Builds the query that retrieves the list of all CSPA services with a given GSIM output.
+ */
+const servicesByGSIMOutput = gsimClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -216,7 +247,10 @@ const gsimOutputServices = gsimClass => `
   }
 `
 
-const serviceBySubProcess = (subprocess) => `
+/**
+ * Builds the query that retrieves the list of all CSPA services in a given GSBPM subprocess.
+ */
+const servicesBySubProcess = (subprocess) => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
   PREFIX cspa:  <${CSPAPrefix}>
@@ -237,11 +271,11 @@ export default {
   serviceSubprocesses,
   serviceInputs,
   serviceOutputs,
-  gsimInputServices,
-  gsimOutputServices,
+  servicesByGSIMInput,
+  servicesByGSIMOutput,
   subprocesses,
   GSIMClasses,
   GSIMAllClasses,
-  serviceBySubProcess,
+  servicesBySubProcess,
   GSIMGroups
 }
