@@ -60,7 +60,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={subs}
             uriName="sub"
-            makeLink={uriToLink.serviceBySubProcess}
+            makeLink={uriToLink.servicesBySubProcess}
             noMsg="No GSBPM subprocess"
             add={addSubprocess}
             remove={removeSubprocess} />

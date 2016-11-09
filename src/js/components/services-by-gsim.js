@@ -10,10 +10,10 @@ function ServicesByGsimInputOrOutput({ loaded, services }){
 }
 
 const ServicesByGsimInput = 
-  sparqlConnect.gsimInputServices(ServicesByGsimInputOrOutput)
+  sparqlConnect.servicesByGSIMInput(ServicesByGsimInputOrOutput)
 
 const ServicesByGsimOuput =
-  sparqlConnect.gsimOutputServices(ServicesByGsimInputOrOutput)
+  sparqlConnect.servicesByGSIMOutput(ServicesByGsimInputOrOutput)
 
 function ServicesByGsimInputAndOutput({ gsimClass }) {
     return (

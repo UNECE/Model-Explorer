@@ -57,7 +57,7 @@ const routes = {
   //to the hierarchy of routes defined in `Root` (to avoid mistakes like
   //defining a mapping for the pattern `gsbpm:subprocess` instead of
   //`:subprocess`)
-  serviceBySubProcess: {
+  servicesBySubProcess: {
     pattern: ':subprocess',
     paramsToProps: (state, { subprocess }) => ({
       subprocess: `${GSBPMPrefix}${underscoreToPoint(subprocess)}`

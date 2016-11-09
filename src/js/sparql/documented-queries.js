@@ -9,12 +9,12 @@ const {
   serviceSubprocesses,
   serviceInputs,
   serviceOutputs,
-  gsimInputServices,
-  gsimOutputServices,
+  servicesByGSIMInput,
+  servicesByGSIMOutput,
   GSIMClasses,
   GSIMAllClasses,
   subprocesses,
-  serviceBySubProcess,
+  servicesBySubProcess,
   GSIMGroups
 } = queries
 
@@ -120,7 +120,7 @@ const queries_ = {
     },
     queryBuilder: serviceOutputs
   },
-  gsimInputServices: {
+  servicesByGSIMInput: {
     descr: 'Retrieve all services with the given gsim class as input',
     whatWeGet: 'services',
     params: [{
@@ -130,9 +130,9 @@ const queries_ = {
       service: 'service (uri)',
       label: 'service label'
     },
-    queryBuilder: gsimInputServices
+    queryBuilder: servicesByGSIMInput
   },
-  gsimOutputServices: {
+  servicesByGSIMOutput: {
     descr: 'Retrieve all services with the given gsim class as output',
     whatWeGet: 'services',
     params: [{
@@ -142,7 +142,7 @@ const queries_ = {
       service: 'service (uri)',
       label: 'service label'
     },
-    queryBuilder: gsimOutputServices
+    queryBuilder: servicesByGSIMOutput
   },
   subprocesses: {
     descr: 'Retrieve all GSBPM subprocesses',
@@ -180,7 +180,7 @@ const queries_ = {
     },
     queryBuilder: GSIMAllClasses
   },
-  serviceBySubProcess: {
+  servicesBySubProcess: {
     descr: 'Retrieve a list of services implementing a GSBPM subprocess',
     whatWeGet: 'services',
     params: [
@@ -193,7 +193,7 @@ const queries_ = {
       service: 'CSPA Service (uri)',
       label: 'CSPA Service label'
     },
-    queryBuilder: serviceBySubProcess
+    queryBuilder: servicesBySubProcess
   },
   GSIMGroups: {
     descr: 'Retrieve the GSIM groups',
