@@ -15,7 +15,8 @@ const {
   GSIMAllClasses,
   subprocesses,
   servicesBySubProcess,
-  GSIMGroups
+  GSIMGroups,
+  GSIMClassDetails
 } = queries
 
 const queries_ = {
@@ -204,6 +205,20 @@ const queries_ = {
       label: 'Group label'
     },
     queryBuilder: GSIMGroups
+  },
+  GSIMClassDetails: {
+    descr: 'Retrieve details for a GSIM class',
+    singleResult: true,
+    params: [{
+      name: 'GSIMClass',
+      descr: 'The GSIM class (uri)'
+    }],
+    results: {
+      label: 'Label of the GSIM class',
+      explanatoryText: 'Explanatory text for the GSIM class',
+      definition: 'Definition for the GSIM class'
+    },
+    queryBuilder: GSIMClassDetails
   }
 }
 

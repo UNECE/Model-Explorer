@@ -156,3 +156,7 @@ html, body {
   color: #23527c;
   background-color: #eee;
 }
+
+dd {
+  margin-bottom: 15px;
+}
