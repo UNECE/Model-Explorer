@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-export default function App({ children }) {
+export default function App({ location, children }) {
+  
   return (
     <div className="container-fluid">
       <header>
@@ -13,13 +14,13 @@ export default function App({ children }) {
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
                 <li>
-                  <Link to="/gsbpm">Search the GSBPM</Link>
+                  <Link className={/^\/gsbpm/.test(location.pathname) && 'active'} to="/gsbpm">Search the GSBPM</Link>
                 </li>
                 <li>
-                  <Link to="/gsim">Search the GSIM</Link>
+                  <Link className={/^\/gsim/.test(location.pathname) && 'active'} to="/gsim">Search the GSIM</Link>
                 </li>
                 <li>
-                  <Link to="/nsis">NSIs</Link>
+                  <Link className={/^\/nsis/.test(location.pathname) && 'active'} to="/nsis">NSIs</Link>
                 </li>
               </ul>
             </div>
