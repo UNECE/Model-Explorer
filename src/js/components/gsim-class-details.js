@@ -7,9 +7,9 @@ import ServiceList from './service-list.js'
 
 function ServicesByGSIMInputOrOutput({ loaded, services, msg }){
   return <ServiceList
-            services={services}
-            msg={msg}
-            loaded={loaded === LOADED}/>
+    services={services}
+    msg={msg}
+    loaded={loaded === LOADED} />
 }
 
 const ServicesByGSIMInput = 

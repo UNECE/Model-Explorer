@@ -19,10 +19,10 @@ export default function ServiceList({
   return(
     <div className="list-group">
       { services.map(({ service, label, description }) =>
-          <Link to={uriToLink.serviceDetails(service)}
-                className="list-group-item" key={service} title={description}>
-            { label }
-          </Link>)
+        <Link key={service} to={uriToLink.serviceDetails(service)}
+          className="list-group-item" key={service} title={description}>
+          { label }
+        </Link>)
        }
     </div>
   )
@@ -31,5 +31,6 @@ export default function ServiceList({
 ServiceList.propTypes = {
   loaded: PropTypes.bool.isRequired,
   msg: PropTypes.string,
-  services: React.PropTypes.array.isRequired
+  services: React.PropTypes.array // not required since the component can be
+                                  // call before restults are loaded
 }

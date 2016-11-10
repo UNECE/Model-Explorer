@@ -250,13 +250,13 @@ const servicesByGSIMOutput = GSIMClass => `
 /**
  * Builds the query that retrieves the list of all CSPA services in a given GSBPM subprocess.
  */
-const servicesBySubProcess = (subprocess) => `
+const servicesByGSBPMSubProcess = (GSBPMSub) => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
   PREFIX cspa:  <${CSPAPrefix}>
 
   SELECT ?service ?label WHERE {
-    ?function cspa:gsbpmSubProcess <${subprocess}> .
+    ?function cspa:gsbpmSubProcess <${GSBPMSub}> .
     ?definition cspa:aimsAt ?function .
     ?service cspa:hasPackageDefinition ?definition .
     ?service cspa:label ?label
@@ -278,6 +278,21 @@ const GSIMClassDetails = GSIMClass => `
   }
 `
 
+/**
+ * Builds the query that retrieves the details for a GSBPM sub process
+ */
+const GSBPMSubProcessDetails = GSBPMSub => `
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+  
+  SELECT ?label ?code ?definition
+  WHERE {
+    <${GSBPMSub}> skos:prefLabel ?label ;
+                  skos:notation ?code ;
+                  skos:definition ?definition
+  }
+`
+
 export default {
   NSIList,
   GSBPMDescription,
@@ -291,7 +306,8 @@ export default {
   subprocesses,
   GSIMClasses,
   GSIMAllClasses,
-  servicesBySubProcess,
+  servicesByGSBPMSubProcess,
   GSIMGroups,
-  GSIMClassDetails
+  GSIMClassDetails,
+  GSBPMSubProcessDetails
 }

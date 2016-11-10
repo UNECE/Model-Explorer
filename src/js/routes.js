@@ -55,16 +55,16 @@ const routes = {
   },
   //TODO we should define these mappings in a hierarchical way, corresponding
   //to the hierarchy of routes defined in `Root` (to avoid mistakes like
-  //defining a mapping for the pattern `gsbpm:subprocess` instead of
-  //`:subprocess`)
-  servicesBySubProcess: {
-    pattern: ':subprocess',
-    paramsToProps: (state, { subprocess }) => ({
-      subprocess: `${GSBPMPrefix}${underscoreToPoint(subprocess)}`
+  //defining a mapping for the pattern `gsbpm:GSBPMSub` instead of
+  //`:GSBPMSub`)
+  GSBPMSubProcessDetails: {
+    pattern: ':GSBPMSub',
+    paramsToProps: (state, { GSBPMSub }) => ({
+      GSBPMSub: `${GSBPMPrefix}${underscoreToPoint(GSBPMSub)}`
     }),
     uriToLink: uri => {
-      const subprocessId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `/gsbpm/${pointToUnderscore(subprocessId)}`
+      const GSBPMSubId = uri.match(regedPrefix(GSBPMPrefix))[1]
+      return `/gsbpm/${pointToUnderscore(GSBPMSubId)}`
     }
   }
 }
