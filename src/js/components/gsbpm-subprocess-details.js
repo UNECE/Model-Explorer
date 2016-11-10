@@ -15,9 +15,9 @@ function GSBPMSubProcessDetails({
           <dd>{label}</dd>
           <dt>Definition</dt>
           <dd>{definition}</dd>
-          <dt>Cpde</dt>
+          <dt>Code</dt>
           <dd>{code}</dd>
-          <dt>Services implementing this GSBPM sub process</dt>
+          <dt>Services</dt>
           <dd>
             <ServicesByGSBPMSubProcess GSBPMSub={GSBPMSub} />
           </dd>
