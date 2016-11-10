@@ -13,8 +13,8 @@ const GSBPMPrefix = 'http://id.unece.org/models/gsbpm/'
 const regedPrefix = (prefix) => new RegExp(prefix + '(.*)')
 
 /*
-React router doesn't support point (.) in the URL.
-We have to translate point in id to underscore,
+React router doesn't support dot (.) in the URL.
+We have to translate dot in id to underscore,
 and back.
 */
 const pointToUnderscore = (str) => str.replace('.', '_')
@@ -58,13 +58,23 @@ const routes = {
   //defining a mapping for the pattern `gsbpm:GSBPMSub` instead of
   //`:GSBPMSub`)
   GSBPMSubProcessDetails: {
-    pattern: ':GSBPMSub',
+    pattern: 'subprocess/:GSBPMSub',
     paramsToProps: (state, { GSBPMSub }) => ({
       GSBPMSub: `${GSBPMPrefix}${underscoreToPoint(GSBPMSub)}`
     }),
     uriToLink: uri => {
       const GSBPMSubId = uri.match(regedPrefix(GSBPMPrefix))[1]
-      return `/gsbpm/${pointToUnderscore(GSBPMSubId)}`
+      return `/gsbpm/subprocess/${pointToUnderscore(GSBPMSubId)}`
+    }
+  },
+  GSBPMPhaseDetails: {
+    pattern: 'phase/:GSBPMPhase',
+    paramsToProps: (state, { GSBPMPhase }) => ({
+      GSBPMPhase: `${GSBPMPrefix}${underscoreToPoint(GSBPMPhase)}`
+    }),
+    uriToLink: uri => {
+      const GSBPMPhaseId = uri.match(regedPrefix(GSBPMPrefix))[1]
+      return `/gsbpm/phase/${pointToUnderscore(GSBPMPhaseId)}`
     }
   }
 }

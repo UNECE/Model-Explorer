@@ -264,6 +264,23 @@ const servicesByGSBPMSubProcess = (GSBPMSub) => `
 `
 
 /**
+ * Builds the query that retrieves the list of all CSPA services in a given GSBPM phase.
+ */
+const servicesByGSBPMPhase = (GSBPMPhase) => `
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+  PREFIX cspa:  <${CSPAPrefix}>
+
+  SELECT ?service ?label WHERE {
+    <${GSBPMPhase}> skos:narrower ?subprocess .
+    ?function cspa:gsbpmSubProcess ?subprocess .
+    ?definition cspa:aimsAt ?function .
+    ?service cspa:hasPackageDefinition ?definition .
+    ?service cspa:label ?label
+  }
+`
+
+/**
  * Builds the query that retrieves the details for a GSIM class
  */
 const GSIMClassDetails = GSIMClass => `
@@ -293,6 +310,21 @@ const GSBPMSubProcessDetails = GSBPMSub => `
   }
 `
 
+/**
+ * Builds the query that retrieves the details for a GSBPM sub process
+ */
+const GSBPMPhaseDetails = GSBPMPhase => `
+  PREFIX gsbpm: <${GSBPMPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+  
+  SELECT ?label ?code ?definition
+  WHERE {
+    <${GSBPMPhase}> skos:prefLabel ?label ;
+                  skos:notation ?code ;
+                  skos:definition ?definition
+  }
+`
+
 export default {
   NSIList,
   GSBPMDescription,
@@ -307,7 +339,9 @@ export default {
   GSIMClasses,
   GSIMAllClasses,
   servicesByGSBPMSubProcess,
+  servicesByGSBPMPhase,
   GSIMGroups,
   GSIMClassDetails,
-  GSBPMSubProcessDetails
+  GSBPMSubProcessDetails,
+  GSBPMPhaseDetails 
 }
