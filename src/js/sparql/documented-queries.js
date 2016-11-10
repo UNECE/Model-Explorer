@@ -125,7 +125,7 @@ const queries_ = {
     descr: 'Retrieve all services with the given gsim class as input',
     whatWeGet: 'services',
     params: [{
-      name: 'gsimClass'
+      name: 'GSIMClass'
     }],
     results: {
       service: 'service (uri)',
@@ -137,7 +137,7 @@ const queries_ = {
     descr: 'Retrieve all services with the given gsim class as output',
     whatWeGet: 'services',
     params: [{
-      name: 'gsimClass'
+      name: 'GSIMClass'
     }],
     results: {
       service: 'service (uri)',
