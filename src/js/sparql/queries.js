@@ -210,7 +210,7 @@ const GSIMAllClasses = () => `
 /**
  * Builds the query that retrieves the list of all CSPA services with a given GSIM input.
  */
-const servicesByGSIMInput = gsimClass => `
+const servicesByGSIMInput = GSIMClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -223,14 +223,14 @@ const servicesByGSIMInput = gsimClass => `
              cspa:hasPackageDefinition ?pckgDefinition .
 
     ?pckgDefinition cspa:definitionHasInput ?input .
-    ?input cspa:gsimInput <${gsimClass}>
+    ?input cspa:gsimInput <${GSIMClass}>
   }
 `
 
 /**
  * Builds the query that retrieves the list of all CSPA services with a given GSIM output.
  */
-const servicesByGSIMOutput = gsimClass => `
+const servicesByGSIMOutput = GSIMClass => `
   PREFIX cspa:  <${CSPAPrefix}>
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX gsim:  <${GSIMPrefix}>
@@ -243,7 +243,7 @@ const servicesByGSIMOutput = gsimClass => `
              cspa:hasPackageDefinition ?pckgDefinition .
 
     ?pckgDefinition cspa:definitionHasOutput ?input .
-    ?input cspa:gsimOutput <${gsimClass}>
+    ?input cspa:gsimOutput <${GSIMClass}>
   }
 `
 

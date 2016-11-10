@@ -76,7 +76,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={inputs}
             uriName="gsimClass"
-            makeLink={uriToLink.servicesByGsim}
+            makeLink={uriToLink.GSIMClassDetails}
             noMsg="No GSIM input"
             add={addInput}
             remove={removeInput} />
@@ -92,7 +92,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={outputs}
             uriName="gsimClass"
-            makeLink={uriToLink.servicesByGsim}
+            makeLink={uriToLink.GSIMClassDetails}
             noMsg="No GSIM ouput"
             add={addOutput}
             remove={removeOutput} />

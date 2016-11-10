@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { uriToLink } from '../routes'
 
-export default function ServiceList({ services }) {
+export default function ServiceList({
+  loaded,
+  services,
+  msg = 'Sorry, there is no service for this search criteria.' }) {
+  
+  if (!loaded) return (
+    <span>loading services</span>
+  )
   
   if (services.length === 0) 
     return (
-      <div className="alert alert-warning" role="alert">
-        Sorry, there is no service for this search criteria.
-      </div>
+      <span>{msg}</span>
     )
     
   return(
@@ -24,5 +29,7 @@ export default function ServiceList({ services }) {
 }
 
 ServiceList.propTypes = {
+  loaded: PropTypes.bool.isRequired,
+  msg: PropTypes.string,
   services: React.PropTypes.array.isRequired
 }
