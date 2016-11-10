@@ -54,12 +54,12 @@ function GSIMSelectClass_({ loaded, GSIMClasses, selectClass }){
   if (loaded !== LOADED) return <span>loading...</span>
   return (
     <div className="list-group">
-    {
-      GSIMClasses.map(({ GSIMClass, label }) =>
-        <a
-          key={GSIMClass}
-          className="list-group-item"
-          href={uriToLink.servicesByGsim(GSIMClass)}>{label}</a>)
+      {
+        GSIMClasses.map(({ GSIMClass, label }) =>
+          <a
+            key={GSIMClass}
+            className="list-group-item"
+            href={uriToLink.GSIMClassDetails(GSIMClass)}>{label}</a>)
     }
     </div>
   )

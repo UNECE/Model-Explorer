@@ -14,9 +14,10 @@ const {
   GSIMClasses,
   GSIMAllClasses,
   subprocesses,
-  servicesBySubProcess,
+  servicesByGSBPMSubProcess,
   GSIMGroups,
-  GSIMClassDetails
+  GSIMClassDetails,
+  GSBPMSubProcessDetails
 } = queries
 
 const queries_ = {
@@ -181,12 +182,12 @@ const queries_ = {
     },
     queryBuilder: GSIMAllClasses
   },
-  servicesBySubProcess: {
+  servicesByGSBPMSubProcess: {
     descr: 'Retrieve a list of services implementing a GSBPM subprocess',
     whatWeGet: 'services',
     params: [
       {
-        name: 'subprocess',
+        name: 'GSBPMSub',
         descr: 'The subprocess id'
       }
     ],
@@ -194,7 +195,7 @@ const queries_ = {
       service: 'CSPA Service (uri)',
       label: 'CSPA Service label'
     },
-    queryBuilder: servicesBySubProcess
+    queryBuilder: servicesByGSBPMSubProcess
   },
   GSIMGroups: {
     descr: 'Retrieve the GSIM groups',
@@ -219,6 +220,20 @@ const queries_ = {
       definition: 'Definition for the GSIM class'
     },
     queryBuilder: GSIMClassDetails
+  },
+  GSBPMSubProcessDetails: {
+    descr: 'Retrieve details for a GSBPM sub process',
+    singleResult: true,
+    params: [{
+      name: 'GSBPMSub',
+      descr: 'The GSBPM sub process (uri)'
+    }],
+    results: {
+      label: 'Label of the GSBPM sub process',
+      code: 'Code of the GSBPM sub process',
+      definition: 'Definition of the GSBPM sub process'
+    },
+    queryBuilder: GSBPMSubProcessDetails
   }
 }
 

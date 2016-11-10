@@ -19,7 +19,7 @@ import Services from './services'
 import ServiceCreator from './service-creator'
 import GSIMGroupSelector from './gsim-group-selector'
 import GSIMClassSelector from './gsim-class-selector'
-import servicesBySubProcess from './service-by-subprocess'
+import GSBPMSubProcessDetails from './gsbpm-subprocess-details'
 import GSIMClassDetails from './gsim-class-details'
 
 //We need to create a store. `configureStore` add a little extra config to
@@ -32,18 +32,18 @@ export default class Root extends Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path="/"
-                 component={App}>
+            component={App}>
             {/* default component if the route does not match any over
-                route */}
+            route */}
             <IndexRoute component={Services} />
             <Route path={path.create}
-                  component={ServiceCreator} />
+              component={ServiceCreator} />
             <Route path={path.serviceDetails}
-                   component={Service} />
+              component={Service} />
             <Route path="/gsbpm">
               <IndexRoute component={GSBPMExplorer} />
-              <Route path=":subprocess"
-                component={servicesBySubProcess} />
+              <Route path=":GSBPMSub"
+                component={GSBPMSubProcessDetails} />
             </Route>
             <Route path="/gsim">
                 <IndexRoute component={GSIMExplorer} />
