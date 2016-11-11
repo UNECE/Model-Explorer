@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
-var postcssGradientFixer = require('postcss-gradientfixer')
 
 module.exports = {
   entry: [
@@ -24,7 +23,7 @@ module.exports = {
     ]
   },
   postcss: function () {
-    return [precss, autoprefixer({ browsers: ['> 5%'] }), postcssGradientFixer]
+    return [precss, autoprefixer({ browsers: ['> 5%'] })]
   },
   resolve: {
     extensions: ['', '.js']
