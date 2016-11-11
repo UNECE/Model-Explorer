@@ -1,13 +1,13 @@
 import {
   SKOSPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix, servicePrefix,
-  CSPANamed
+  CSPANamed, NSIPrefix
 } from './prefixes'
 
 /* Create a new service. This query is not intended to be used with 
    sparqlConnect.
 */
 export const insertService = ({ 
-    label, subs, inputs, outputs,
+    label, subs, inputs, outputs, builderOrg,
     description, restrictions, outcomes }) => {
   
   //TODO add upper case at the beginning of each word
@@ -53,6 +53,7 @@ PREFIX cspa:    <${CSPAPrefix}>
 PREFIX gsbpm:   <${GSBPMPrefix}>
 PREFIX gsim:    <${GSIMPrefix}>
 PREFIX service: <${servicePrefix}>
+PREFIX nsi:     <${NSIPrefix}>
 
 INSERT DATA {
   GRAPH <${CSPANamed}${name}> {
@@ -70,7 +71,17 @@ INSERT DATA {
         ]
         ${GSIMInTriples}
         ${GSIMOutTriples}
-      ]
+      ] ;
+      cspa:hasPackageImplementation [
+        a cspa:ServiceImplementationDescription;
+  			cspa:comesFrom [
+          a cspa:Provenance; 
+  				cspa:builderOrganization [
+            a cspa:Organization;
+  					cspa:organization <${builderOrg}>
+  				]
+  			]
+  		]
     }
 }`
   return {
