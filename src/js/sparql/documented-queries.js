@@ -79,7 +79,6 @@ const queries_ = {
       label: 'service label',
       description: 'service description',
       outcomes: 'outcomes',
-      subprocess: 'subprocess',
       restrictions: 'restrictions',
       serviceGraph: 'service graph',
       builderOrg: 'builder organization (uri)',
