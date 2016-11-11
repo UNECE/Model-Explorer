@@ -6,12 +6,14 @@ function AddButton({ disabled, hndlClick, label }) {
   return (
     <div className="form-group">
       <div className="col-sm-3 col-sm-offset-9">
-        <button className="form-control btn btn-default btn-sm"
-        onClick={e => { e.preventDefault(); hndlClick() }} 
-        disabled={disabled} >
-        <span className="glyphicon glyphicon-plus"></span>&nbsp;
-        {label}
+        { !disabled && 
+          <button 
+            className="form-control btn btn-default btn-sm"
+            onClick={e => { e.preventDefault(); hndlClick() }} >
+          <span className="glyphicon glyphicon-plus"></span>&nbsp;
+          {label}
         </button>
+      }
       </div>
     </div>
   )
