@@ -300,7 +300,7 @@ const GSIMClassDetails = GSIMClass => `
   WHERE {
     <${GSIMClass}> rdfs:label ?label ;
                    gsim:classDefinition ?definition ;
-                   gsim:classExplanatoryText ?explanatoryText
+    OPTIONAL { <${GSIMClass}>  gsim:classExplanatoryText ?explanatoryText }
   }
 `
 
