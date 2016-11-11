@@ -3,17 +3,20 @@ import {
   CSPANamed, NSIPrefix
 } from './prefixes'
 
+
+//IMPORTANT: when we update a service, we first clear the graph, that means that
+//afterwards, the graph will consist only of the data handled by the ui. This is
+//OK for now because we expose all the data constituent of a graph in the UI,
+//but it will no be satisfactory if manually add some data.
+
 /* Create a new service. This query is not intended to be used with 
    sparqlConnect.
 */
-export const insertService = ({ 
-    label, subs, inputs, outputs, builderOrg,
-    description, restrictions, outcomes }) => {
+export const insertUpdateService = ({ 
+    graphName, name, label, subs, inputs, outputs, builderOrg,
+    description, restrictions, outcomes }, update = false ) => {
   
-  //TODO add upper case at the beginning of each word
-  //TODO replace special characters
-  const name = 'sprinttest' + label.replace(/\s*/g, '')
-
+  const clearGraphIfNeeded = update ? `CLEAR GRAPH <${graphName}>;` : ''
   const GSIMInTriples = 
     inputs.length === 0 ?
       '' :
@@ -55,8 +58,10 @@ PREFIX gsim:    <${GSIMPrefix}>
 PREFIX service: <${servicePrefix}>
 PREFIX nsi:     <${NSIPrefix}>
 
+${clearGraphIfNeeded}
+
 INSERT DATA {
-  GRAPH <${CSPANamed}${name}> {
+  GRAPH <${graphName}> {
     service:${name}
       a cspa:package ; 
       cspa:label "${label}" ; 

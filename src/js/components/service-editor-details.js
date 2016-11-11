@@ -6,6 +6,7 @@ import OrganizationPicker from './organization-picker'
 
 export default function ServiceEditorDetails({ descr, editing, editUtils }) {
   const  {
+    name, graphName,
     label, description, outcomes, restrictions, builderOrgLabel, builderOrg,
     inputs, outputs, subs
   } = descr

@@ -74,10 +74,10 @@ const serviceDetails = service => `
   PREFIX skos: <${SKOSPrefix}>
 
   SELECT 
-    ?label ?description ?outcomes ?subprocess ?restrictions ?serviceGraph
+    ?label ?description ?outcomes ?subprocess ?restrictions ?graphName
     ?builderOrg
   WHERE {
-    GRAPH ?serviceGraph {
+    GRAPH ?graphName {
       <${service}>
         cspa:hasPackageDefinition [
     	     a cspa:ServiceDefinition; cspa:aimsAt [

@@ -81,7 +81,7 @@ const queries_ = {
       description: 'service description',
       outcomes: 'outcomes',
       restrictions: 'restrictions',
-      serviceGraph: 'service graph',
+      graphName: 'service graph name',
       builderOrg: 'builder organization (uri)'
     },
     queryBuilder: serviceDetails
