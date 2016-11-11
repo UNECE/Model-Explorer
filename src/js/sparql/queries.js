@@ -64,6 +64,7 @@ const services = () => `
 	  OPTIONAL {?service cspa:hasPackageDefinition [
     	   a cspa:ServiceDefinition; cspa:aimsAt [cspa:description ?description]]}
   }
+  ORDER BY ?label
 `
 
 /**
