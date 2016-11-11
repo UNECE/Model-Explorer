@@ -2,10 +2,11 @@ import React, { Component , PropTypes} from 'react'
 import ServiceSubEntities from './service-sub-entities'
 import { uriToLink } from '../routes'
 import { AddGSIM, AddGSBPM } from './add-gsim-gsbpm.js'
+import OrganizationPicker from './organization-picker'
 
 export default function ServiceEditorDetails({ descr, editing, editUtils }) {
   const  {
-    label, description, outcomes, restrictions, builderOrgLabel,
+    label, description, outcomes, restrictions, builderOrgLabel, builderOrg,
     inputs, outputs, subs
   } = descr
   
@@ -56,10 +57,9 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
       <div className="form-group">
         <label className="col-sm-3 control-label">Builder organization</label>
         <div className="col-sm-9">
-          <input
-            disabled={!editing} type="text" className="form-control"
-            value={builderOrgLabel}
-            onChange={ e => hndlBuilderOrgChange(e.target.value) }/>
+          <OrganizationPicker disabled={!editing} 
+            value={builderOrg}
+            onChange={org => hndlBuilderOrgChange(org)} />
         </div>
       </div>                
       <div className="form-group">
