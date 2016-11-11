@@ -5,13 +5,13 @@ import { AddGSIM, AddGSBPM } from './add-gsim-gsbpm.js'
 
 export default function ServiceEditorDetails({ descr, editing, editUtils }) {
   const  {
-    label, description, outcomes, restrictions,
+    label, description, outcomes, restrictions, builderOrgLabel,
     inputs, outputs, subs
   } = descr
   
   const {
     hndlLabelChange, hndlDescriptionChange, hndlOutcomesChange,
-    hndlRestrictionsChange,
+    hndlRestrictionsChange, hndlBuilderOrgChange,
     addInput, addOutput, addSubprocess,
     removeInput, removeOutput, removeSubprocess
   } = editUtils
@@ -52,7 +52,16 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             value={restrictions}
             onChange={ e => hndlRestrictionsChange(e.target.value) }/>
         </div>
-      </div>             
+      </div>
+      <div className="form-group">
+        <label className="col-sm-3 control-label">Builder organization</label>
+        <div className="col-sm-9">
+          <input
+            disabled={!editing} type="text" className="form-control"
+            value={builderOrgLabel}
+            onChange={ e => hndlBuilderOrgChange(e.target.value) }/>
+        </div>
+      </div>                
       <div className="form-group">
         <label className="col-sm-3 control-label">Subprocess</label>
         <div className="col-sm-9">

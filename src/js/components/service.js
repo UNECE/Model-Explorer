@@ -32,6 +32,7 @@ export class Service extends Component {
       hndlDescriptionChange: description => this.setState({ description }),
       hndlOutcomesChange: outcomes => this.setState({ outcomes }),
       hndlRestrictionsChange: restrictions => this.setState({ restrictions }),
+      hndlBuilderOrgChange: builderOrg => this.setState({ builderOrg }),
       addInput: input => this.setState({
         inputs: addInArr(this.state.inputs, input)
       }),
@@ -58,7 +59,7 @@ export class Service extends Component {
     //we refrence the simple queries combined by `serviceEverything`
     const {
       serviceDetails: {
-        service, label, description, outcomes, restrictions,
+        service, label, description, outcomes, restrictions, builderOrgLabel,
         serviceGraph
       },
       serviceInputs: inputs,
@@ -67,8 +68,7 @@ export class Service extends Component {
     } = this.props.serviceInformation
     
     const descr = {
-      label, description, outcomes, restrictions,
-      //FIXME we need multiple queries to gel all this information
+      label, description, outcomes, restrictions, builderOrgLabel,
       inputs: inputs,
       outputs: outputs,
       subs: subs
