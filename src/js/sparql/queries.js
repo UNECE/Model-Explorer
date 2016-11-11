@@ -73,17 +73,26 @@ const serviceDetails = service => `
   PREFIX cspa: <${CSPAPrefix}>
   PREFIX skos: <${SKOSPrefix}>
 
-  SELECT ?label ?description ?outcomes ?subprocess ?restrictions ?serviceGraph
+  SELECT 
+    ?label ?description ?outcomes ?subprocess ?restrictions ?serviceGraph
+    ?builderOrg ?builderOrgLabel
   WHERE {
     GRAPH ?serviceGraph {
-      <${service}> cspa:hasPackageDefinition [
-    	   a cspa:ServiceDefinition; cspa:aimsAt [
-           cspa:description ?description ;
-    	     cspa:outcomes ?outcomes ;
-    	     cspa:gsbpmSubProcess ?subprocess ;
-    	     cspa:restrictions ?restrictions ]] ;
-    	 cspa:label ?label ;
+      <${service}>
+        cspa:hasPackageDefinition [
+    	     a cspa:ServiceDefinition; cspa:aimsAt [
+             cspa:description ?description ;
+    	        cspa:outcomes ?outcomes ;
+    	        cspa:gsbpmSubProcess ?subprocess ;
+    	        cspa:restrictions ?restrictions ]] ;
+        cspa:hasPackageImplementation [
+         	a cspa:ServiceImplementationDescription ;
+            cspa:comesFrom [
+              cspa:builderOrganization [
+              	cspa:organization ?builderOrg ]]] ;         
+    	  cspa:label ?label ;
     }
+    OPTIONAL { ?builderOrg skos:prefLabel ?builderOrgLabel . }
   }
 `
 

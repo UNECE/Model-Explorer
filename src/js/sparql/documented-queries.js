@@ -81,7 +81,9 @@ const queries_ = {
       outcomes: 'outcomes',
       subprocess: 'subprocess',
       restrictions: 'restrictions',
-      serviceGraph: 'service graph'
+      serviceGraph: 'service graph',
+      builderOrg: 'builder organization (uri)',
+      builderOrgLabel: 'builder organization label'
     },
     queryBuilder: serviceDetails
   },
