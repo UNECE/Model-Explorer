@@ -75,7 +75,7 @@ const serviceDetails = service => `
 
   SELECT 
     ?label ?description ?outcomes ?subprocess ?restrictions ?serviceGraph
-    ?builderOrg ?builderOrgLabel
+    ?builderOrg
   WHERE {
     GRAPH ?serviceGraph {
       <${service}>
@@ -87,11 +87,11 @@ const serviceDetails = service => `
         cspa:hasPackageImplementation [
          	a cspa:ServiceImplementationDescription ;
             cspa:comesFrom [
+              a cspa:Provenance ; 
               cspa:builderOrganization [
               	cspa:organization ?builderOrg ]]] ;         
     	  cspa:label ?label ;
     }
-    OPTIONAL { ?builderOrg skos:prefLabel ?builderOrgLabel . }
   }
 `
 
@@ -332,7 +332,19 @@ const GSBPMPhaseDetails = GSBPMPhase => `
                   skos:definition ?definition
   }
 `
-
+/**
+ * Builds the query that retrives all the organizations
+ */
+const organizations = () => `
+  PREFIX org: <${ORGPrefix}>
+  PREFIX skos:  <${SKOSPrefix}>
+  
+  SELECT ?org ?label
+  WHERE {
+    ?org a org:Organization ;
+         skos:prefLabel ?label
+  }
+`
 export default {
   NSIList,
   GSBPMDescription,
@@ -351,5 +363,6 @@ export default {
   GSIMGroups,
   GSIMClassDetails,
   GSBPMSubProcessDetails,
-  GSBPMPhaseDetails 
+  GSBPMPhaseDetails,
+  organizations
 }

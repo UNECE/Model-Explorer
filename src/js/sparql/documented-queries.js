@@ -19,7 +19,8 @@ const {
   GSIMGroups,
   GSIMClassDetails,
   GSBPMSubProcessDetails,
-  GSBPMPhaseDetails
+  GSBPMPhaseDetails,
+  organizations
 } = queries
 
 const queries_ = {
@@ -81,8 +82,7 @@ const queries_ = {
       outcomes: 'outcomes',
       restrictions: 'restrictions',
       serviceGraph: 'service graph',
-      builderOrg: 'builder organization (uri)',
-      builderOrgLabel: 'builder organization label'
+      builderOrg: 'builder organization (uri)'
     },
     queryBuilder: serviceDetails
   },
@@ -266,6 +266,16 @@ const queries_ = {
       definition: 'Definition of the GSBPM phase'
     },
     queryBuilder: GSBPMPhaseDetails
+  },
+  organizations: {
+    descr: 'Retrieve all the organizations',
+    params: [],
+    results: {
+      org: 'organization (uri)',
+      label: 'organization label'
+    },
+    whatWeGet: 'organizations',
+    queryBuilder: organizations
   }
 }
 
