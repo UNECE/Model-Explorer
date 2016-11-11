@@ -15,6 +15,7 @@ export default class ServiceCreator extends Component {
       description: '',
       outcomes: '',
       restrictions: '',
+      builderOrg: '',
       subs: [],
       inputs: [],
       outputs: []
@@ -25,6 +26,7 @@ export default class ServiceCreator extends Component {
       hndlDescriptionChange: description => this.setState({ description }),
       hndlOutcomesChange: outcomes => this.setState({ outcomes }),
       hndlRestrictionsChange: restrictions => this.setState({ restrictions }),
+      hndlBuilderOrgChange: builderOrg => this.setState({ builderOrg }),
       addInput: input => this.setState({
         inputs: addInArr(this.state.inputs, input)
       }),
@@ -47,10 +49,11 @@ export default class ServiceCreator extends Component {
     
     this.create = () => {
       const  {
-        label, description, outcomes, restrictions, inputs, outputs, subs
+        label, description, outcomes, restrictions, builderOrg,
+        inputs, outputs, subs
       } = this.state
       const descr = {
-        label, description, outcomes, restrictions,
+        label, description, outcomes, restrictions, builderOrg,
         inputs: inputs.map(({ gsimClass }) => gsimClass),
         outputs: outputs.map(({ gsimClass }) => gsimClass),
         subs: subs.map(({ sub }) => sub)

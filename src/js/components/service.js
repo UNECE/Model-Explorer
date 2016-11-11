@@ -59,7 +59,7 @@ export class Service extends Component {
     //we refrence the simple queries combined by `serviceEverything`
     const {
       serviceDetails: {
-        service, label, description, outcomes, restrictions, builderOrgLabel,
+        service, label, description, outcomes, restrictions, builderOrg,
         serviceGraph
       },
       serviceInputs: inputs,
@@ -68,7 +68,7 @@ export class Service extends Component {
     } = this.props.serviceInformation
     
     const descr = {
-      label, description, outcomes, restrictions, builderOrgLabel,
+      label, description, outcomes, restrictions, builderOrg,
       inputs: inputs,
       outputs: outputs,
       subs: subs
