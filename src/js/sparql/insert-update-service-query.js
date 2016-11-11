@@ -13,7 +13,7 @@ import {
    sparqlConnect.
 */
 export const insertUpdateService = ({ 
-    graphName, name, label, subs, inputs, outputs, builderOrg,
+    graphName, service, label, subs, inputs, outputs, builderOrg,
     description, restrictions, outcomes }, update = false ) => {
   
   const clearGraphIfNeeded = update ? `CLEAR GRAPH <${graphName}>;` : ''
@@ -62,7 +62,7 @@ ${clearGraphIfNeeded}
 
 INSERT DATA {
   GRAPH <${graphName}> {
-    service:${name}
+    <${service}>
       a cspa:package ; 
       cspa:label "${label}" ; 
       cspa:hasPackageDefinition [
