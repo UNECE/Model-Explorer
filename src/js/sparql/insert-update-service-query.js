@@ -31,7 +31,7 @@ cspa:definitionHasInput [
   ]`
   
   const GSIMOutTriples = 
-    inputs.length === 0 ?
+    outputs.length === 0 ?
       '' :
 ` ;
 cspa:definitionHasOutput [
