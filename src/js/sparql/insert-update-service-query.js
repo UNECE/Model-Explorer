@@ -99,6 +99,6 @@ INSERT DATA {
 }`
   return {
     query,
-    serviceURI: `${servicePrefix}${name}`
+    serviceURI: service
   }
 }
