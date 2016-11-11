@@ -83,7 +83,6 @@ const serviceDetails = service => `
     	     a cspa:ServiceDefinition; cspa:aimsAt [
              cspa:description ?description ;
     	        cspa:outcomes ?outcomes ;
-    	        cspa:gsbpmSubProcess ?subprocess ;
     	        cspa:restrictions ?restrictions ]] ;
         cspa:hasPackageImplementation [
          	a cspa:ServiceImplementationDescription ;
