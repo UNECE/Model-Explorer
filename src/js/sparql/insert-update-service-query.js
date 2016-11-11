@@ -4,6 +4,9 @@ import {
 } from './prefixes'
 
 
+function escapeWhitespaces(str) {
+  return str.replace(/\n/g, '\\n')
+}
 //IMPORTANT: when we update a service, we first clear the graph, that means that
 //afterwards, the graph will consist only of the data handled by the ui. This is
 //OK for now because we expose all the data constituent of a graph in the UI,
@@ -12,9 +15,14 @@ import {
 /* Create a new service. This query is not intended to be used with 
    sparqlConnect.
 */
+
 export const insertUpdateService = ({ 
     graphName, service, label, subs, inputs, outputs, builderOrg,
     description, restrictions, outcomes }, update = false ) => {
+  
+  const _description = escapeWhitespaces(description)
+  const _restrictions = escapeWhitespaces(restrictions)
+  const _outcomes = escapeWhitespaces(outcomes)
   
   const clearGraphIfNeeded = update ? `CLEAR GRAPH <${graphName}>;` : ''
   const GSIMInTriples = 
@@ -69,9 +77,9 @@ INSERT DATA {
         a cspa:ServiceDefinition ; 
         cspa:aimsAt [
           a cspa:BusinessFuncion ;
-          cspa:description "${description}" ;
-          cspa:outcomes "${outcomes}" ;
-          cspa:restrictions "${restrictions}"
+          cspa:description "${_description}" ;
+          cspa:outcomes "${_outcomes}" ;
+          cspa:restrictions "${_restrictions}"
           ${GSBPMSubTriples}
         ]
         ${GSIMInTriples}
