@@ -195,7 +195,7 @@ stamina:ErrorCorrection {
 
 stamina:LinearErrorLocalization {
 	service:LinearErrorLocalization a cspa:package;
-	cspa:label " Linear Error Localization";
+	cspa:label "Linear Error Localization";
 	cspa:hasPackageDefinition [ a cspa:ServiceDefinition; 
 	cspa:aimsAt[ a cspa:BusinessFunction ; 
 	    cspa:description "The service flags (the minimal number of) values in a Data Set that should be adapted to achieve compliance with a predefined set of Restriction Rules (according to the principle of Fellegi and Holt). In literature these rules are usually referred to as edit rules."; 
