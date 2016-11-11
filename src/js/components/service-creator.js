@@ -69,6 +69,7 @@ export default class ServiceCreator extends Component {
       }
       return createService(descr)
         .then(uri => {
+          this.props.flush()
           browserHistory.push(uriToLink.serviceDetails(uri))
         })
     }

@@ -110,6 +110,7 @@ export class Service extends Component {
       }
       return updateService(descr)
         .then(uri => {
+          this.props.flush()
           this.setState({ editing: false })
         })      
     }
