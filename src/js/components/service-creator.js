@@ -6,8 +6,9 @@ import { createService } from '../sparql/updates'
 import ServiceEditorDetails from './service-editor-details'
 import { removeInArrByKey, addInArr } from '../utils/arrays'
 import { CSPANamed, servicePrefix } from '../sparql/prefixes'
+import { flush } from '../sparql/configure-sparql'
 
-export default class ServiceCreator extends Component {
+class ServiceCreator extends Component {
   constructor() {
     super()
     
@@ -103,3 +104,5 @@ export default class ServiceCreator extends Component {
     )
   }
 }
+
+export default connect(undefined, { flush })(ServiceCreator)
