@@ -59,7 +59,7 @@ export class Service extends Component {
     
     this.remove = () => {
       this.props.flush()
-      removeService(this.props.serviceInformation.serviceDetails.serviceGraph)
+      removeService(this.props.serviceInformation.serviceDetails.graphName)
         .then(() => browserHistory.push(''))
     }
     //TODO see service creator and DRY
