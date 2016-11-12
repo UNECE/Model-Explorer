@@ -1,5 +1,5 @@
 import {
-  SKOSPrefix, ORGPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
+  SKOSPrefix, ORGPrefix, VCARDPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix
 } from './prefixes'
 
 // TODO we might need to filter on the language, but for now English seems to be
@@ -13,12 +13,32 @@ const NSIList = () => `
   PREFIX skos: <${SKOSPrefix}>
 
   SELECT ?nsi ?label
-
   WHERE {
     ?nsi a org:Organization ; skos:prefLabel ?label .
   }
   ORDER BY ?nsi
  `
+
+ /**
+  * Builds the query that retrieves the details on a given NSI.
+  */
+ const NSIDetails = () => `
+   PREFIX org: <${ORGPrefix}>
+   PREFIX skos: <${SKOSPrefix}>
+   PREFIX vcard: <${VCARDPrefix}>
+
+   SELECT ?name ?shortName ?address ?geo
+   WHERE {
+     <${nsi}> skos:prefLabel ?name .
+     OPTIONAL {
+       <${nsi}> skos:altLabel ?shortName .
+     }
+     OPTIONAL {
+       <${nsi}> org:hasSite/org:siteAddress ?card .
+       ?card vcard:street-address ?address ; vcard:hasGeo ?geo .
+     }
+   }
+  `
 
 /**
  * Builds the query that retrieves the GSBPM overview.
@@ -74,7 +94,7 @@ const serviceDetails = service => `
   PREFIX cspa: <${CSPAPrefix}>
   PREFIX skos: <${SKOSPrefix}>
 
-  SELECT 
+  SELECT
     ?label ?description ?outcomes ?subprocess ?restrictions ?graphName
     ?builderOrg
   WHERE {
@@ -88,9 +108,9 @@ const serviceDetails = service => `
         cspa:hasPackageImplementation [
          	a cspa:ServiceImplementationDescription ;
             cspa:comesFrom [
-              a cspa:Provenance ; 
+              a cspa:Provenance ;
               cspa:builderOrganization [
-              	cspa:organization ?builderOrg ]]] ;         
+              	cspa:organization ?builderOrg ]]] ;
     	  cspa:label ?label ;
     }
   }
@@ -295,7 +315,7 @@ const servicesByGSBPMPhase = (GSBPMPhase) => `
 const GSIMClassDetails = GSIMClass => `
   PREFIX gsim: <${GSIMPrefix}>
   PREFIX rdfs:  <${RDFSPrefix}>
-  
+
   SELECT ?label ?definition ?explanatoryText
   WHERE {
     <${GSIMClass}> rdfs:label ?label ;
@@ -310,7 +330,7 @@ const GSIMClassDetails = GSIMClass => `
 const GSBPMSubProcessDetails = GSBPMSub => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
-  
+
   SELECT ?label ?code ?definition
   WHERE {
     <${GSBPMSub}> skos:prefLabel ?label ;
@@ -325,7 +345,7 @@ const GSBPMSubProcessDetails = GSBPMSub => `
 const GSBPMPhaseDetails = GSBPMPhase => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
-  
+
   SELECT ?label ?code ?definition
   WHERE {
     <${GSBPMPhase}> skos:prefLabel ?label ;
@@ -339,7 +359,7 @@ const GSBPMPhaseDetails = GSBPMPhase => `
 const organizations = () => `
   PREFIX org: <${ORGPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
-  
+
   SELECT ?org ?label
   WHERE {
     ?org a org:Organization ;
@@ -348,6 +368,7 @@ const organizations = () => `
 `
 export default {
   NSIList,
+  NSIDetails,
   GSBPMDescription,
   services,
   serviceDetails,

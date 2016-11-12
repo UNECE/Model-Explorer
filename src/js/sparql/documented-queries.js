@@ -2,6 +2,7 @@ import queries from './queries'
 
 const {
   NSIList,
+  NSIDetails,
   GSBPMDescription,
   subprocessServices,
   services,
@@ -33,6 +34,21 @@ const queries_ = {
       label: 'label of the NSI'
     },
     queryBuilder: NSIList
+  },
+  NSIDetails: {
+    descr: 'Retrieve details for an NSI',
+    singleResult: true,
+    params: [{
+      name: 'nsi',
+      descr: 'Statistical institute (uri)'
+    }],
+    results: {
+      name: 'NSI name',
+      shortName: 'NSI short name',
+      address: 'NSI address',
+      geo: 'NSI coordinates (geo URI)'
+    },
+    queryBuilder: NSIDetails
   },
   GSBPMDescription: {
     descr: 'Retrieve a global description of the GSBPM',

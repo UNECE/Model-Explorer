@@ -9,6 +9,7 @@ and unique identifiers (most of the time URI).
 const servicePrefix = 'http://unece.org/services#'
 const GSIMPrefix = 'http://rdf.unece.org/models/gsim#'
 const GSBPMPrefix = 'http://id.unece.org/models/gsbpm/'
+const NSIPrefix = 'http://id.unece.org/nsi/'
 
 const regedPrefix = (prefix) => new RegExp(prefix + '(.*)')
 
@@ -75,6 +76,16 @@ const routes = {
     uriToLink: uri => {
       const GSBPMPhaseId = uri.match(regedPrefix(GSBPMPrefix))[1]
       return `/gsbpm/phase/${pointToUnderscore(GSBPMPhaseId)}`
+    }
+  },
+  NSIDetails: {
+    pattern: 'nsis/:NSIId',
+    paramsToProps: (state, { NSIId }) => ({
+      nsi: `${nsiPrefix}${NSIId}`
+    }),
+    uriToLink: uri => {
+      const NSIId = uri.match(regedPrefix(NSIPrefix))[1]
+      return `/nsis/${NSIId}`
     }
   }
 }
