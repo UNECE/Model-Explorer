@@ -10,19 +10,20 @@ export default function NSIList({ nsis }) {
     )
 
   return(
-    <table className="table">
-    <thead>
-      <tr>
-        <th>Coutry</th>
-        <th>Institute</th>
-      </tr>
-    </thead>
-    <tbody>
-      { nsis.map(({ nsi, label }) =>
+    <table className="table table-hover">
+      <thead>
         <tr>
-          <td>{nsi.slice(-2)}</td><td>{ label }</td>
-        </tr>)
-       }
+          <th>Coutry</th>
+          <th>Institute</th>
+        </tr>
+      </thead>
+      <tbody>
+        { nsis.map(({ nsi, label }) =>
+          <tr>
+            <td><a href={'http://dbpedia.org/resource/ISO_3166-2:' + nsi.slice(-2)}>{nsi.slice(-2)}</a></td>
+            <td>{ label }</td>
+          </tr>)
+        }
       </tbody>
     </table>
   )
