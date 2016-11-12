@@ -10,13 +10,21 @@ export default function NSIList({ nsis }) {
     )
 
   return(
-    <ul className="list-group">
+    <table className="table">
+    <thead>
+      <tr>
+        <th>Coutry</th>
+        <th>Institute</th>
+      </tr>
+    </thead>
+    <tbody>
       { nsis.map(({ nsi, label }) =>
-          <li className="list-group-item">
-            {nsi.slice(-2)}-{ label }
-          </li>)
+        <tr>
+          <td>{nsi.slice(-2)}</td><td>{ label }</td>
+        </tr>)
        }
-    </ul>
+      </tbody>
+    </table>
   )
 }
 
