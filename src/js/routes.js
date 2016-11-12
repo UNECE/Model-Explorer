@@ -79,9 +79,9 @@ const routes = {
     }
   },
   NSIDetails: {
-    pattern: 'nsis/:NSIId',
+    pattern: ':NSIId',
     paramsToProps: (state, { NSIId }) => ({
-      nsi: `${nsiPrefix}${NSIId}`
+      nsi: `${NSIPrefix}${NSIId}`
     }),
     uriToLink: uri => {
       const NSIId = uri.match(regedPrefix(NSIPrefix))[1]

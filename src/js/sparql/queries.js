@@ -22,7 +22,7 @@ const NSIList = () => `
  /**
   * Builds the query that retrieves the details on a given NSI.
   */
- const NSIDetails = () => `
+ const NSIDetails = (nsi) => `
    PREFIX org: <${ORGPrefix}>
    PREFIX skos: <${SKOSPrefix}>
    PREFIX vcard: <${VCARDPrefix}>
