@@ -8,6 +8,7 @@ function NSIDetails({ nsi, loaded, name, shortName, address, geo }) {
   return (
     <div>
       <h1>{name}</h1>
+      <span className="flag-icon flag-icon-fr large-flag"></span>
     </div>
   )
 }

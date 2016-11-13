@@ -25,7 +25,8 @@ module.exports = {
           'presets': ['react', 'es2015'],
           'plugins': ['transform-object-rest-spread', 'import-asserts']
         }
-      }
+      },
+      { test: /\.svg$/, loader: 'file?name=/[name].[ext]' }
     ]
   },
   postcss: function () {
