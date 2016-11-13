@@ -201,3 +201,7 @@ dd {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.flag-icon.large-flag {
+  font-size: 4em;
+}
