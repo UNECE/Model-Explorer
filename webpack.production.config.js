@@ -20,19 +20,24 @@ module.exports = {
           ]
         }
       },
-      { test: /\.svg$/, loader: 'file?name=/[name].[ext]' }
+      { test: /\.svg$/, loader: 'file?name=/flags/[name].[ext]' }
     ]
   },
   postcss: function () {
     return [precss, autoprefixer({ browsers: ['> 5%'] })]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
   resolve: {
     extensions: ['', '.js']
   },
   output: {
     path: __dirname + '/dist',
-    publicPath: 'js', // it depends on what we set as content-base option with
-                      // the CLI
     filename: './js/model-explorer.js'
   }
 }
