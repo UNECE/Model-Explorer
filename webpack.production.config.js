@@ -19,7 +19,8 @@ module.exports = {
             'transform-object-rest-spread'
           ]
         }
-      }
+      },
+      { test: /\.svg$/, loader: 'file?name=/[name].[ext]' }
     ]
   },
   postcss: function () {
