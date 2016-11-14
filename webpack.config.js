@@ -26,7 +26,7 @@ module.exports = {
           'plugins': ['transform-object-rest-spread', 'import-asserts']
         }
       },
-      { test: /\.svg$/, loader: 'file?name=/[name].[ext]' }
+      { test: /\.svg$/, loader: 'file?name=/flags/[name].[ext]' }
     ]
   },
   postcss: function () {
