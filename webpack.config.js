@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -31,7 +33,12 @@ module.exports = {
   },
   postcss: function () {
     return [precss, autoprefixer({ browsers: ['> 5%'] })]
-  },  
+  },
+  plugins: [
+    new TransferWebpackPlugin([
+        { from: 'img', to: 'img' }
+    ], path.join(__dirname, 'src'))
+  ],  
   resolve: {
     extensions: ['', '.js']
   },
