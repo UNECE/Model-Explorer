@@ -25,8 +25,16 @@ const queries_ = {
     params: [],
     results: {
       nsi: 'Statistical institute (uri)',
-      label: 'label of the NSI'
-    },
+      label: 'label of the NSI',
+	  role: 'Role of the NSI in the description Level',
+	  roleLabel: 'Role label',
+	  descriptionLevel: 'DescriptionLevel in which the NSI has a role',
+	  descriptionLevelLabel: 'Label of the description level',
+	  descriptionLevelName: 'Name of the description level (implementation, definition...)',
+	  serviceLabel: 'Label of the CSPA service',
+	  service: 'URI of the CSPA service',
+	  property: 'property linking CSPA Pservice and description level',
+	 },
     queryBuilder: NSIList
   },
   GSBPMDescription: {

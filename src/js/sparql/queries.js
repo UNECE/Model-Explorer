@@ -9,15 +9,28 @@ import {
  * Builds the query that retrieves the list of NSIs.
  */
 const NSIList = () => `
-  PREFIX org: <${ORGPrefix}>
-  PREFIX skos: <${SKOSPrefix}>
+PREFIX skos:  <${SKOSPrefix}>
+PREFIX cspa: <${CSPAPrefix}>
+PREFIX rdfs:  <${RDFSPrefix}>
+PREFIX org:  <${ORGPrefix}>
 
-  SELECT ?nsi ?label
+SELECT ?nsi ?label ?role ?roleLabel ?descriptionLevel ?descriptionLevelLabel ?serviceLabel ?descriptionLevelName ?service ?property
 
   WHERE {
-    ?nsi a org:Organization ; skos:prefLabel ?label .
+    ?nsi a org:Organization ;
+	skos:prefLabel ?label.
+	OPTIONAL{?descriptionLevel cspa:comesFrom [a cspa:Provenance; ?role [ cspa:organization ?nsi ] ].
+    ?service ?property ?descriptionLevel.
+    
+    OPTIONAL { ?descriptionLevel cspa:label ?descriptionLevelLabel.}
+    OPTIONAL { ?service cspa:label ?serviceLabel.}
+	?role rdfs:subPropertyOf cspa:genericOrganization;
+	rdfs:label ?roleLabel.
+    ?descriptionLevel a [rdfs:subClassOf cspa:DescriptionLevel; rdfs:label ?descriptionLevelName].
+    }
+	
   }
-  ORDER BY ?nsi
+  ORDER BY ?nsi ?role ?service ?descriptionLevel
  `
 
 /**
@@ -26,6 +39,7 @@ const NSIList = () => `
 const GSBPMDescription = () => `
   PREFIX gsbpm: <${GSBPMPrefix}>
   PREFIX skos:  <${SKOSPrefix}>
+  PREFIX cspa:  <${CSPAPrefix}>
   SELECT ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode
          ?subprocessCode ?subprocessDefinition
   WHERE {
