@@ -219,6 +219,7 @@ const GSIMClasses = group => `
                gsim:classDefinition ?definition ;
                rdfs:label ?label
   }
+  ORDER BY ?label
 `
 
 /**

@@ -71,6 +71,16 @@ html, body {
 .grow {
   flex-grow: 1;
 }
+
+.gsim-select-group {
+  text-align: center;
+}
+
+.gsim-select-group > a {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
 .gsim-select-group-small {
   width: 225px;
   text-align: center;
@@ -100,6 +110,7 @@ html, body {
   flex-wrap: wrap;
   margin: auto;
 }
+
 
 
 .gsim-select-group-full > div {
