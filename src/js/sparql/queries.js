@@ -384,6 +384,22 @@ const organizations = () => `
          skos:prefLabel ?label
   }
 `
+/**
+ * Builds the query that retrives all the subprocesses for a GSBPM phase
+ */
+//TODO we retrieve twice the same information, see GSBPM description query.
+//There might be a better option, but for now it's easier to use a global query
+//to show the GSBPM explorer, and some dedicated queries to show all the
+//subprocesses in a given GSBPM phase.
+const SubsByGSBPMPhase = GSBPMPhase => `
+PREFIX skos:  <${SKOSPrefix}>
+
+SELECT ?subprocess ?label 
+WHERE {
+ <${GSBPMPhase}> skos:narrower ?subprocess .
+ ?subprocess skos:prefLabel ?label
+}
+`
 export default {
   NSIList,
   NSIDetails,
@@ -405,5 +421,6 @@ export default {
   GSIMClassDetails,
   GSBPMSubProcessDetails,
   GSBPMPhaseDetails,
-  organizations
+  organizations,
+  SubsByGSBPMPhase
 }

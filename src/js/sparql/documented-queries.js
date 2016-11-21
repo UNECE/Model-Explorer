@@ -22,7 +22,8 @@ const {
   GSIMClassDetails,
   GSBPMSubProcessDetails,
   GSBPMPhaseDetails,
-  organizations
+  organizations,
+  SubsByGSBPMPhase
 } = queries
 
 const queries_ = {
@@ -306,6 +307,18 @@ const queries_ = {
     },
     whatWeGet: 'organizations',
     queryBuilder: organizations
+  },
+  SubsByGSBPMPhase: {
+    descr: 'Retrieve all the subprocesses for a given phase',
+    params: [{
+      name: 'GSBPMPhase'
+    }],
+    results: {
+      subprocess: 'subprocess (uri)',
+      label: 'subprocess label'
+    },
+    whatWeGet: 'subprocesses',
+    queryBuilder: SubsByGSBPMPhase    
   }
 }
 
