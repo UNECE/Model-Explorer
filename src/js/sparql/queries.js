@@ -321,8 +321,9 @@ const servicesByNSI = nsi => `
   SELECT ?service ?serviceLabel ?roleLabel
   WHERE {
     ?service a cspa:package ;
-             cspa:label ?serviceLabel .
-    ?descriptionLevel cspa:comesFrom [?role [ cspa:organization <${nsi}> ]] .
+             cspa:label ?serviceLabel ;
+    cspa:hasPackageImplementation [
+    cspa:comesFrom [?role [ cspa:organization <${nsi}> ]]] .
     ?role rdfs:label ?roleLabel
   }
 `
