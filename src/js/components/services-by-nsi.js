@@ -4,9 +4,10 @@ import { LOADED } from 'sparql-connect'
 
 function ServicesByNSI({ loaded, services }) {
     if (loaded !== LOADED) return <span>services are loading...</span>
+    if (services.length === 0) { return <span>This NSI has no role for any service</span> }
     return (
       <div>
-        
+
         <table className="table">
           <thead>
             <tr>
@@ -29,7 +30,7 @@ function ServicesByNSI({ loaded, services }) {
         </table>
       </div>
     )
-  
+
 }
 
 export default sparqlConnect.servicesByNSI(ServicesByNSI)
