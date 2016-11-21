@@ -311,6 +311,22 @@ const servicesByGSBPMPhase = (GSBPMPhase) => `
 `
 
 /**
+ * Builds the query that retrives the list of all the services in which a NSI
+ * is involved
+ */
+const servicesByNSI = nsi => `
+  PREFIX cspa: <${CSPAPrefix}>
+  PREFIX rdfs:  <${RDFSPrefix}>
+  
+  SELECT ?service ?serviceLabel ?roleLabel
+  WHERE {
+    ?service a cspa:package ;
+             cspa:label ?serviceLabel .
+    ?descriptionLevel cspa:comesFrom [?role [ cspa:organization <${nsi}> ]] .
+    ?role rdfs:label ?roleLabel
+  }
+`
+/**
  * Builds the query that retrieves the details for a GSIM class
  */
 const GSIMClassDetails = GSIMClass => `
@@ -378,6 +394,7 @@ export default {
   serviceOutputs,
   servicesByGSIMInput,
   servicesByGSIMOutput,
+  servicesByNSI,
   subprocesses,
   GSIMClasses,
   GSIMAllClasses,
