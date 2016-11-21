@@ -71,12 +71,13 @@ function GSIMSelectGroup_({ loaded, selectedGroup, groups, select, unselect }) {
   const baseGroup = groupsByLabel[baseGroupLabel]
   const otherGroups = otherGroupLabels.map(label => groupsByLabel[label])
   
+  const cnBase = `base-group-link ${selectedGroup && 'base-group-link-small'}`
   const cn = selectedGroup ? 'gsim-select-group-small' : 'gsim-select-group-full'
   return (
     <div className="gsim-select-group">
-      <Link
+      <Link className={cnBase}
         onClick={e => { e.preventDefault(); select(baseGroup.group)}}>
-        base group
+        Base group
       </Link>
       <div className={cn}>
         { otherGroups.map(({ group, label }) => {
