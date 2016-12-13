@@ -44,8 +44,7 @@ class GSIMExplorer extends Component {
   }
 }
 
-function GSIMSelectClass_({ loaded, GSIMClasses, selectClass }){
-  if (loaded !== LOADED) return <span>loading...</span>
+function GSIMSelectClass_({ GSIMClasses, selectClass }){
   return (
     <div className="list-group">
       {
@@ -61,8 +60,7 @@ function GSIMSelectClass_({ loaded, GSIMClasses, selectClass }){
 
 const GSIMSelectClass = sparqlConnect.GSIMClasses(GSIMSelectClass_)
 
-function GSIMSelectGroup_({ loaded, selectedGroup, groups, select, unselect }) {
-  if (loaded !== LOADED) return <span>loading...</span>
+function GSIMSelectGroup_({ selectedGroup, groups, select, unselect }) {
   const groupsByLabel = groups.reduce((_, group) => {
     _[group.label] = group
     return _

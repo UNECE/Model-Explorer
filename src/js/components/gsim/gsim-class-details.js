@@ -5,11 +5,12 @@ import { LOADED } from 'sparql-connect'
 
 import ServiceList from '../shared/service-list'
 
-function ServicesByGSIMInputOrOutput({ loaded, services, msg }){
+function ServicesByGSIMInputOrOutput({ services, msg }){
+  //TODO remove `loaded` prop from `ServiceList`
   return <ServiceList
     services={services}
     msg={msg}
-    loaded={loaded === LOADED} />
+    loaded={true} />
 }
 
 const ServicesByGSIMInput = 
@@ -20,7 +21,6 @@ const ServicesByGSIMOutput =
   
   
 function GSIMClassDetails({ GSIMClass, loaded, label, definition, explanatoryText }) {
-  if(loaded !== LOADED) return <span>loading......</span>
   return (
     <div>
       <dl className="dl-horizontal">

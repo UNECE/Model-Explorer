@@ -8,10 +8,11 @@ import ServiceList from '../shared/service-list'
 function Services({ loaded, services }) {
   const handleClick = () =>
     browserHistory.push(uriToLink.create())
-  
+
+  //TODO remove `loaded` prop from `ServiceList`
   return (
     <div>
-      <ServiceList services={services} loaded={loaded === LOADED}/>
+      <ServiceList services={services} loaded={true}/>
       <button 
         className="btn btn-primary"
         onClick={handleClick}>Create a new service</button>

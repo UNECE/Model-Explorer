@@ -2,8 +2,7 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
-function SelectSubprocess({ value, handleChange, loaded, subs }) {
-  if (loaded !== LOADED) return <span>loading gsbpm subprocesses</span>
+function SelectSubprocess({ value, handleChange, subs }) {
   return (
     <select className="form-control" value={value} 
             onChange={e => handleChange(e.target.value)}>
@@ -13,4 +12,6 @@ function SelectSubprocess({ value, handleChange, loaded, subs }) {
   )
 }
 
-export default sparqlConnect.subprocesses(SelectSubprocess)
+export default sparqlConnect.subprocesses(SelectSubprocess, {
+  loading: () => <span>loading gsbpm subprocesses</span>
+})

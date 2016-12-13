@@ -7,7 +7,7 @@ import ServicesByGSBPMSubProcess from './services-by-gsbpm-subprocess'
 // GSBPMSub comes from `connectFromRoute` (it's then passed to the sparql
 // connected component, which keeps it in its own props)
 function GSBPMSubProcessDetails({
-    GSBPMSub, loaded, label, code, definition }) {
+    GSBPMSub, label, code, definition }) {
   return (
       <div>
         <dl className="dl-horizontal">

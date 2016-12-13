@@ -7,12 +7,12 @@ import ServiceList from '../shared/service-list'
 //(if(loaded !== LOADED) return <span>loading......</span>)
 //automatically, so we can write:
 //const ServicesByGSBPMSubProcess = sparqlConnect.serviceSubprocess(ServiceList)
-function ServicesByGSBPMSubProcess({ loaded, services }) {
-  if(loaded !== LOADED) return <span>loading......</span>
+function ServicesByGSBPMSubProcess({ services }) {
+  //TODO remove `loaded` prop from `ServiceList`
   return <ServiceList
     services={services}
     msg="No service implements this GSBPM subprocess"
-    loaded={loaded === LOADED} />
+    loaded={true} />
 }
 
 export default 

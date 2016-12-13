@@ -4,10 +4,8 @@ import { uriToLink } from '../../routes'
 import { sparqlConnect} from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
-function GSBPMSubprocesses({ loaded, subprocesses }) {
+function GSBPMSubprocesses({ subprocesses }) {
   
-  if (loaded !== LOADED) return <span>loading subprocesses</span>
-    
   return(
     <div className="list-group">
       { subprocesses.map(({ subprocess, label }) =>
@@ -20,4 +18,6 @@ function GSBPMSubprocesses({ loaded, subprocesses }) {
   )
 }
 
-export default sparqlConnect.SubsByGSBPMPhase(GSBPMSubprocesses)
+export default sparqlConnect.SubsByGSBPMPhase(GSBPMSubprocesses, {
+  loading: () => <span>loading subprocesses</span>
+})  

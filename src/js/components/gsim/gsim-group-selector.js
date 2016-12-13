@@ -3,10 +3,8 @@ import { browserHistory, Link } from 'react-router'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
-function GSIMGroupSelector({ location, children, loaded, groups }) {
-  if (loaded !== LOADED) {
-    return(<div>LOADING...</div>)
-  }
+function GSIMGroupSelector({ location, children, groups }) {
+
   console.log(groups)
   return(
     <div>

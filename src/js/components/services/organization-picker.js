@@ -2,8 +2,7 @@ import React, { Component , PropTypes} from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
-function OrganizationPicker({ disabled, value, loaded, organizations, onChange }) {
-  if (loaded !== LOADED) return <span>loading</span>
+function OrganizationPicker({ disabled, value, organizations, onChange }) {
   return (
     <select
       value={value}
