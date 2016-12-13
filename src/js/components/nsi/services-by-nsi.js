@@ -1,7 +1,7 @@
 import React from 'react'
-import { sparqlConnect } from '../sparql/configure-sparql'
+import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
-import { uriToLink } from '../routes'
+import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
 
 function ServicesByNSI({ loaded, services }) {

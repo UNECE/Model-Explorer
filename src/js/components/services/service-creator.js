@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { uriToLink } from '../routes'
-import { createService } from '../sparql/updates'
+import { uriToLink } from '../../routes'
+import { createService } from '../../sparql/updates'
 import ServiceEditorDetails from './service-editor-details'
-import { removeInArrByKey, addInArr } from '../utils/arrays'
-import { CSPANamed, servicePrefix } from '../sparql/prefixes'
-import { flush } from '../sparql/configure-sparql'
+import { removeInArrByKey, addInArr } from '../../utils/arrays'
+import { CSPANamed, servicePrefix } from '../../sparql/prefixes'
+import { flush } from '../../sparql/configure-sparql'
 
 class ServiceCreator extends Component {
   constructor() {

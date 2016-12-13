@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import { sparqlConnect } from '../sparql/configure-sparql'
-import { connectFromRoute } from '../routes'
+import { sparqlConnect } from '../../sparql/configure-sparql'
+import { connectFromRoute } from '../../routes'
 import ServicesByNSI from './services-by-nsi'
 import { LOADED } from 'sparql-connect'
 

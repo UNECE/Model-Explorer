@@ -1,7 +1,7 @@
 import React from 'react'
-import { sparqlConnect } from '../sparql/configure-sparql'
+import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
-import ServiceList from './service-list'
+import ServiceList from '../shared/service-list'
 
 //TODO add an option to `sparql-connect` to generate the pending message 
 //(if(loaded !== LOADED) return <span>loading......</span>)

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import GSIMGroupSelector from './gsim-group-selector'
 import { LOADED } from 'sparql-connect' 
-import { sparqlConnect } from '../sparql/configure-sparql'
+import { sparqlConnect } from '../../sparql/configure-sparql'
 import { browserHistory, Link } from 'react-router'
-import { uriToLink } from '../routes'
+import { uriToLink } from '../../routes'
 import classnames from 'classnames'
 
 const ALL = 'ALL'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { uriToLink } from '../routes'
+import { uriToLink } from '../../routes'
 
 export default function NSIList({ nsis }) {
 

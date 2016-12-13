@@ -1,9 +1,9 @@
 import React from 'react'
-import { sparqlConnect } from '../sparql/configure-sparql'
-import { uriToLink } from '../routes'
+import { sparqlConnect } from '../../sparql/configure-sparql'
+import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
 import { LOADING, LOADED, FAILED } from 'sparql-connect'
-import { groupByWithOrder } from '../utils/group-by'
+import { groupByWithOrder } from '../../utils/group-by'
 import GSBPMSubprocess from './gsbpm-subprocess'
 
 /**

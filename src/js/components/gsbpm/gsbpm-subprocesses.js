@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { uriToLink } from '../routes'
-import { sparqlConnect} from '../sparql/configure-sparql'
+import { uriToLink } from '../../routes'
+import { sparqlConnect} from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 
 function GSBPMSubprocesses({ loaded, subprocesses }) {
