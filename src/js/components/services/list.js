@@ -4,6 +4,7 @@ import { uriToLink } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import ServiceList from '../shared/service-list'
 
+
 function Services({ services }) {
   const handleClick = () =>
     browserHistory.push(uriToLink.create())

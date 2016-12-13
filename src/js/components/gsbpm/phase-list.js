@@ -1,39 +1,9 @@
 import React from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
 import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
+import { sparqlConnect } from '../../sparql/configure-sparql'
+import GSBPMSubprocess from './sub'
 import { groupByWithOrder } from '../../utils/group-by'
-import GSBPMSubprocess from './gsbpm-subprocess'
-
-/**
-* Returns the HTML code for the overall GSBPM layout.
-*/
-function GSBPMExplorer({ phases }) {
-  const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
-  return(
-    <div className="gsbpm">
-      <div className="title cell">
-        Quality management / Metadata management
-      </div>
-      <GSBPMPhasesList refinedPhases={refinedPhases}/>
-    </div>
-  );
-}
-
-/**
-* Returns the HTML code for the GSBPM phases.
-*/
-function GSBPMPhasesList({refinedPhases}) {
-  return(
-    <div className="phases">
-      {refinedPhases.map(
-        ({ id, props, entries }) => <GSBPMPhase
-          key={id} id={id}  phaseLabel={props.phaseLabel}  entries={entries}/>
-        )
-      }
-    </div>
-  );
-}
 
 /**
 * Returns the HTML code for a GSBPM phase and its subprocesses.
@@ -55,6 +25,7 @@ function GSBPMPhase({id, phaseLabel, entries}) {
 * Returns the HTML code for the GSBPM subprocesses of a given phase.
 */
 function GSBPMSubprocessList({entries}) {
+  //TODO make a utility function for sorting by key
   return(
     <div className="subprocesses">
       <ul>
@@ -78,7 +49,25 @@ function GSBPMSubprocessList({entries}) {
   );
 }
 
-export default sparqlConnect.GSBPMDescription(GSBPMExplorer, {
+/**
+* Returns the HTML code for the GSBPM phases.
+*/
+function GSBPMPhasesList({ phases }) {
+  const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
+  return(
+    <div className="phases">
+      {refinedPhases.map(
+        ({ id, props, entries }) => <GSBPMPhase
+          key={id} id={id}  phaseLabel={props.phaseLabel}  entries={entries}/>
+        )
+      }
+    </div>
+  );
+}
+
+export default sparqlConnect.GSBPMDescription(GSBPMPhasesList, {
   loading: () => 
     <span>Loading GSBPM data...</span>
 });
+
+

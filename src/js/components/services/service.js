@@ -4,7 +4,7 @@ import { sparqlConnect } from '../../sparql/configure-sparql'
 import { browserHistory } from 'react-router'
 import { updateService } from '../../sparql/updates'
 import { removeService } from '../../sparql/updates'
-import ServiceEditorDetails from './service-editor-details'
+import ServiceEditorDetails from './details'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
 
 

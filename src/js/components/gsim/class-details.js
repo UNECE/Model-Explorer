@@ -1,21 +1,8 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { connectFromRoute } from '../../routes'
-
-import ServiceList from '../shared/service-list'
-
-function ServicesByGSIMInputOrOutput({ services, msg }){
-  return <ServiceList
-    services={services}
-    msg={msg} />
-}
-
-const ServicesByGSIMInput = 
-  sparqlConnect.servicesByGSIMInput(ServicesByGSIMInputOrOutput)
-
-const ServicesByGSIMOutput =
-  sparqlConnect.servicesByGSIMOutput(ServicesByGSIMInputOrOutput)
-  
+import ServicesByGSIMInput from './services-by-input'
+import ServicesByGSIMOutput from './services-by-output'
   
 function GSIMClassDetails({ GSIMClass, label, definition, explanatoryText }) {
   return (
