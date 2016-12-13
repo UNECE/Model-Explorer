@@ -25,5 +25,5 @@ export default function ServiceList({
 
 ServiceList.propTypes = {
   msg: PropTypes.string,
-  services: React.PropTypes.array
+  services: React.PropTypes.array.isRequired
 }

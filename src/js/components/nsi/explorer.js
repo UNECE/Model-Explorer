@@ -1,6 +1,6 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import NSIList from './nsi-list'
+import NSIList from './list'
 
 function NSIExplorer({ nsis }) {
   return(

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connectFromRoute } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import ServicesByGSBPMPhase from './services-by-gsbpm-phase'
-import GSBPMSubprocesses from './gsbpm-subprocesses.js'
+import ServicesByGSBPMPhase from './services-by-phase'
+import GSBPMSubprocesses from './subs-list'
 
 function GSBPMPhaseDetails({
     GSBPMPhase, label, code, definition }) {

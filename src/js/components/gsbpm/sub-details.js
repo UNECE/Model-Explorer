@@ -1,7 +1,7 @@
 import React from 'react'
 import { connectFromRoute } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import ServicesByGSBPMSubProcess from './services-by-gsbpm-subprocess'
+import ServicesByGSBPMSubProcess from './services-by-sub'
 
 // GSBPMSub comes from `connectFromRoute` (it's then passed to the sparql
 // connected component, which keeps it in its own props)
