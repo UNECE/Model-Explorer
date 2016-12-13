@@ -1,5 +1,5 @@
 import React from 'react'
-import { uriToLink } from '../routes'
+import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
 
 export default function GSBPMSubprocess({ subprocess, code, label, definition, active }) {

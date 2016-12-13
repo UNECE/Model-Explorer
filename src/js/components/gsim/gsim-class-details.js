@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
-import { sparqlConnect } from '../sparql/configure-sparql'
-import { connectFromRoute } from '../routes'
+import { sparqlConnect } from '../../sparql/configure-sparql'
+import { connectFromRoute } from '../../routes'
 import { LOADED } from 'sparql-connect'
 
-import ServiceList from './service-list.js'
+import ServiceList from '../shared/service-list'
 
 function ServicesByGSIMInputOrOutput({ loaded, services, msg }){
   return <ServiceList

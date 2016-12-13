@@ -1,6 +1,6 @@
 import React, { Component , PropTypes} from 'react'
-import ServiceSubEntities from './service-sub-entities'
-import { uriToLink } from '../routes'
+import ServiceSubEntities from '../shared/service-sub-entities'
+import { uriToLink } from '../../routes'
 import { AddGSIM, AddGSBPM } from './add-gsim-gsbpm.js'
 import OrganizationPicker from './organization-picker'
 

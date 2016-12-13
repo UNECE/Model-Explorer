@@ -7,7 +7,7 @@ export default mainReducer
 //If there is more in the state, we should use `enhanceReducer`
 
 /*
-import { enhanceReducer } from '../sparql/configure-sparql'
+import { enhanceReducer } from '../../sparql/configure-sparql'
 
 const initialReducer = (state={}, action) => ...
 

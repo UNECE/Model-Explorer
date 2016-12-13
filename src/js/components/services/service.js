@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { connectFromRoute } from '../routes'
-import { sparqlConnect } from '../sparql/configure-sparql'
+import { connectFromRoute } from '../../routes'
+import { sparqlConnect } from '../../sparql/configure-sparql'
 import { LOADED } from 'sparql-connect'
 import { browserHistory } from 'react-router'
-import { uriToLink } from '../routes'
-import { updateService } from '../sparql/updates'
-import { removeService } from '../sparql/updates'
+import { uriToLink } from '../../routes'
+import { updateService } from '../../sparql/updates'
+import { removeService } from '../../sparql/updates'
 import ServiceEditorDetails from './service-editor-details'
-import { removeInArrByKey, addInArr } from '../utils/arrays'
+import { removeInArrByKey, addInArr } from '../../utils/arrays'
 
 
 function descrFromProps(props) {
