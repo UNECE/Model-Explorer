@@ -1,4 +1,4 @@
-import React, { Component , PropTypes} from 'react'
+import React, { PropTypes} from 'react'
 import ServiceSubEntities from '../shared/service-sub-entities'
 import { uriToLink } from '../../routes'
 import { AddGSIM, AddGSBPM } from './add-gsim-gsbpm.js'
@@ -6,8 +6,7 @@ import OrganizationPicker from './organization-picker'
 
 export default function ServiceEditorDetails({ descr, editing, editUtils }) {
   const  {
-    name, graphName,
-    label, description, outcomes, restrictions, builderOrgLabel, builderOrg,
+    label, description, outcomes, restrictions, builderOrg,
     inputs, outputs, subs
   } = descr
   

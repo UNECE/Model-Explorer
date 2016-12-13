@@ -2,21 +2,20 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
-import { LOADING, LOADED, FAILED } from 'sparql-connect'
 import { groupByWithOrder } from '../../utils/group-by'
 import GSBPMSubprocess from './gsbpm-subprocess'
 
 /**
 * Returns the HTML code for the overall GSBPM layout.
 */
-function GSBPMExplorer({ phases, activeSubs}) {
+function GSBPMExplorer({ phases }) {
   const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return(
     <div className="gsbpm">
       <div className="title cell">
         Quality management / Metadata management
       </div>
-	    <GSBPMPhasesList refinedPhases={refinedPhases}/>
+      <GSBPMPhasesList refinedPhases={refinedPhases}/>
     </div>
   );
 }
@@ -27,11 +26,11 @@ function GSBPMExplorer({ phases, activeSubs}) {
 function GSBPMPhasesList({refinedPhases}) {
   return(
     <div className="phases">
-		  {refinedPhases.map(
+      {refinedPhases.map(
         ({ id, props, entries }) => <GSBPMPhase
-          key={id} id={id}	phaseLabel={props.phaseLabel}	entries={entries}/>
-		    )
-		  }
+          key={id} id={id}  phaseLabel={props.phaseLabel}  entries={entries}/>
+        )
+      }
     </div>
   );
 }
@@ -56,7 +55,7 @@ function GSBPMPhase({id, phaseLabel, entries}) {
 * Returns the HTML code for the GSBPM subprocesses of a given phase.
 */
 function GSBPMSubprocessList({entries}) {
-	return(
+  return(
     <div className="subprocesses">
       <ul>
         {
@@ -82,4 +81,4 @@ function GSBPMSubprocessList({entries}) {
 export default sparqlConnect.GSBPMDescription(GSBPMExplorer, {
   loading: () => 
     <span>Loading GSBPM data...</span>
-  });
+});

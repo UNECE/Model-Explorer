@@ -8,8 +8,8 @@ export default function ServiceSubEntities(
   return (
     <ul className="list-group" style={{ marginBottom: '5px' }}>
       { entities.map(entity => {
-          const uri = entity[uriName]
-          return (
+        const uri = entity[uriName]
+        return (
             <li className="list-group-item" key={uri}>
               <Link to={makeLink(uri)}>
                 {entity.label}
@@ -22,7 +22,7 @@ export default function ServiceSubEntities(
               }
             </li>
           )
-        })
+      })
       }
     </ul>
   )

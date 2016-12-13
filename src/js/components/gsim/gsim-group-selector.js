@@ -1,7 +1,6 @@
 import React from 'react'
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 
 function GSIMGroupSelector({ location, children, groups }) {
 

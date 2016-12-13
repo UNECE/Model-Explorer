@@ -1,12 +1,11 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
 
 function ServicesByNSI({ services }) {
-    if (services.length === 0) { return <span>This NSI has no role for any service</span> }
-    return (
+  if (services.length === 0) { return <span>This NSI has no role for any service</span> }
+  return (
       <div>
         <table className="table">
           <thead>

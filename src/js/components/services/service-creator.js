@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { uriToLink } from '../../routes'
@@ -74,11 +74,6 @@ class ServiceCreator extends Component {
           browserHistory.push(uriToLink.serviceDetails(uri))
         })
     }
-    
-    const cancel = () => browserHistory.push('')
-    const commit = descr => this.setState({
-      descr
-    })
     
   }
   

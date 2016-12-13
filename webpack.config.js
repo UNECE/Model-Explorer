@@ -12,7 +12,7 @@ module.exports = {
     './src/js/main.js'
   ],
   devServer: { 
-    historyApiFallback: true,
+    historyApiFallback: true
   }, 
   module: {
     loaders: [
@@ -25,7 +25,7 @@ module.exports = {
         loader: ['babel'],
         query: {
           'presets': ['react', 'es2015'],
-          'plugins': ['transform-object-rest-spread', 'import-asserts']
+          'plugins': ['transform-object-rest-spread'] //, 'import-asserts']
         }
       },
       { test: /\.svg$/, loader: 'file?name=/flags/[name].[ext]' }
@@ -41,6 +41,9 @@ module.exports = {
   ],  
   resolve: {
     extensions: ['', '.js']
+    // alias: {
+    //   'sparql-connect': '/Users/jb/Documents/noknot/modernstats/sparql-connect/'
+    // }
   },
   output: {
     path: __dirname + '/dist',

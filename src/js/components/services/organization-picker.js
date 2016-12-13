@@ -1,6 +1,5 @@
-import React, { Component , PropTypes} from 'react'
+import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 
 function OrganizationPicker({ disabled, value, organizations, onChange }) {
   return (

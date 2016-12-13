@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import GSIMGroupSelector from './gsim-group-selector'
-import { LOADED } from 'sparql-connect' 
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 import { uriToLink } from '../../routes'
 import classnames from 'classnames'
 
-const ALL = 'ALL'
 //TODO use group uri instead of label
 //It allows to improve aesthetics for expected groups (and ensure order) to make
 //the GSIM explorer looks like the image with the four colored squares.
@@ -44,7 +41,7 @@ class GSIMExplorer extends Component {
   }
 }
 
-function GSIMSelectClass_({ GSIMClasses, selectClass }){
+function GSIMSelectClass_({ GSIMClasses }){
   return (
     <div className="list-group">
       {
@@ -60,7 +57,7 @@ function GSIMSelectClass_({ GSIMClasses, selectClass }){
 
 const GSIMSelectClass = sparqlConnect.GSIMClasses(GSIMSelectClass_)
 
-function GSIMSelectGroup_({ selectedGroup, groups, select, unselect }) {
+function GSIMSelectGroup_({ selectedGroup, groups, select }) {
   const groupsByLabel = groups.reduce((_, group) => {
     _[group.label] = group
     return _
@@ -79,17 +76,17 @@ function GSIMSelectGroup_({ selectedGroup, groups, select, unselect }) {
       </Link>
       <div className={cn}>
         { otherGroups.map(({ group, label }) => {
-            const cn = classnames(
+          const cn = classnames(
               `gsim-group-${label.toLowerCase()}`,
               group === selectedGroup && 'active')
-            return (
+          return (
               <div key={group}
                      className={cn}
                      onClick={() => select(group)}>
                   {label}
                 </div> 
             )
-          })
+        })
         }
         {
           selectedGroup && 

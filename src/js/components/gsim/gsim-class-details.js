@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { connectFromRoute } from '../../routes'
-import { LOADED } from 'sparql-connect'
 
 import ServiceList from '../shared/service-list'
 

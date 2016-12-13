@@ -1,11 +1,10 @@
 import React from 'react'
-import { LOADED } from 'sparql-connect'
-import { Link, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import { uriToLink } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import ServiceList from '../shared/service-list'
 
-function Services({ loaded, services }) {
+function Services({ services }) {
   const handleClick = () =>
     browserHistory.push(uriToLink.create())
 
