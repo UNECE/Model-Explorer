@@ -4,7 +4,6 @@ const {
   NSIList,
   NSIDetails,
   GSBPMDescription,
-  subprocessServices,
   services,
   serviceDetails,
   serviceSubprocesses,
@@ -62,7 +61,7 @@ const queries_ = {
       subprocess: 'subprocess (uri)',
       subprocessLabel: 'subprocess label',
       subprocessCode: 'subprocess code',
-	    subprocessDefinition: 'subprocess definition'
+      subprocessDefinition: 'subprocess definition'
     },
     params: [],
     queryBuilder: GSBPMDescription
@@ -83,7 +82,7 @@ const queries_ = {
     results: {
       service: 'service (uri)',
       label: 'label of the service',
-	    description: 'description of the service'
+      description: 'description of the service'
     },
     queryBuilder: services
   },

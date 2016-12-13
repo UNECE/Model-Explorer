@@ -18,6 +18,8 @@ export default (queryURL, authorization) => query =>
     body: bodyFromSparql(query)
   })
   .then(res => res.json())
+  // .then(json => new Promise((resolve, reject) => 
+  //   setTimeout(() => resolve(json), 1000)))
 
 // We can also use a 'GET' verb if the query is not too long
 /* GET example 

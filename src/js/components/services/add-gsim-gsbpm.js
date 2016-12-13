@@ -1,6 +1,5 @@
 import React, { Component , PropTypes} from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 
 function AddButton({ disabled, hndlClick, label }) {
   return (

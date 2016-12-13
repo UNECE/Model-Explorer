@@ -1,5 +1,4 @@
 import React from 'react'
-import { LOADED } from 'sparql-connect'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import NSIList from './nsi-list'
 

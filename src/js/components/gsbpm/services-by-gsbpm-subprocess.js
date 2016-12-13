@@ -1,6 +1,5 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 import ServiceList from '../shared/service-list'
 
 function ServicesByGSBPMSubProcess({ services }) {

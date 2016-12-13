@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connectFromRoute } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { LOADED } from 'sparql-connect'
 import { browserHistory } from 'react-router'
-import { uriToLink } from '../../routes'
 import { updateService } from '../../sparql/updates'
 import { removeService } from '../../sparql/updates'
 import ServiceEditorDetails from './service-editor-details'
@@ -95,7 +93,8 @@ export class Service extends Component {
         descr: {
           ...this.state.descr,
           ...obj
-      }})
+        }
+      })
     
     this.save = () => {
       const  {
@@ -109,6 +108,7 @@ export class Service extends Component {
         subs: subs.map(({ sub }) => sub)
       }
       return updateService(descr)
+      //TODO value `uri`
         .then(uri => {
           this.props.flush()
           this.setState({ editing: false })

@@ -1,6 +1,5 @@
 import {
-  SKOSPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix, servicePrefix,
-  CSPANamed, NSIPrefix
+  GSBPMPrefix, GSIMPrefix, CSPAPrefix, servicePrefix, NSIPrefix
 } from './prefixes'
 
 
@@ -87,14 +86,14 @@ INSERT DATA {
       ] ;
       cspa:hasPackageImplementation [
         a cspa:ServiceImplementationDescription;
-  			cspa:comesFrom [
+        cspa:comesFrom [
           a cspa:Provenance; 
-  				cspa:builderOrganization [
+          cspa:builderOrganization [
             a cspa:Organization;
-  					cspa:organization <${builderOrg}>
-  				]
-  			]
-  		]
+            cspa:organization <${builderOrg}>
+          ]
+        ]
+      ]
     }
 }`
   return {

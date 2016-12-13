@@ -12,5 +12,5 @@ import '../css/flag-icon-css/flag-icon.min.css'
 import 'file?name=[name].[ext]!../index.html'
 
 ReactDOM.render(
-	<Root/>,
-	document.getElementById('base'));
+  <Root/>,
+  document.getElementById('base'));

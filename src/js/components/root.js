@@ -11,8 +11,6 @@ import mainReducer from '../reducers/index'
 //It will embed all the other components, thanks to `react-router` mechanism.
 import App from './app'
 import Login from './login'
-import GSIMGroupSelector from './gsim/gsim-group-selector'
-import GSIMClassSelector from './gsim/gsim-class-selector'
 import GSBPMExplorer from './gsbpm/gsbpm-explorer'
 import GSIMExplorer from './gsim/gsim-explorer'
 import NSIExplorer from './nsi/nsi-explorer'
@@ -24,7 +22,6 @@ import GSBPMPhaseDetails from './gsbpm/gsbpm-phase-details'
 import GSIMClassDetails from './gsim/gsim-class-details'
 import NSIDetails from './nsi/nsi-details'
 import { requireAuth } from '../utils/authentication'
-
 //We need to create a store. `configureStore` add a little extra config to
 //allow to work with asyncrhonous actions and to use the redux dev tools.
 const store = configureStore(mainReducer)

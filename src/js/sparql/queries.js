@@ -22,7 +22,7 @@ const NSIList = () => `
  /**
   * Builds the query that retrieves the details on a given NSI.
   */
- const NSIDetails = (nsi) => `
+const NSIDetails = (nsi) => `
    PREFIX org: <${ORGPrefix}>
    PREFIX skos: <${SKOSPrefix}>
    PREFIX vcard: <${VCARDPrefix}>
@@ -56,7 +56,7 @@ const GSBPMDescription = () => `
    }
    OPTIONAL {
      ?subprocess skos:prefLabel ?subprocessLabel
-	 }
+   }
    OPTIONAL {
      ?subprocess skos:definition ?subprocessDefinition
    }
@@ -81,8 +81,8 @@ const services = () => `
   WHERE {
     ?service a cspa:package .
     OPTIONAL {?service cspa:label ?label}
-	  OPTIONAL {?service cspa:hasPackageDefinition [
-    	   a cspa:ServiceDefinition; cspa:aimsAt [cspa:description ?description]]}
+    OPTIONAL {?service cspa:hasPackageDefinition [
+         a cspa:ServiceDefinition; cspa:aimsAt [cspa:description ?description]]}
   }
   ORDER BY ?label
 `
@@ -101,17 +101,17 @@ const serviceDetails = service => `
     GRAPH ?graphName {
       <${service}>
         cspa:hasPackageDefinition [
-    	     a cspa:ServiceDefinition; cspa:aimsAt [
+           a cspa:ServiceDefinition; cspa:aimsAt [
              cspa:description ?description ;
-    	        cspa:outcomes ?outcomes ;
-    	        cspa:restrictions ?restrictions ]] ;
+              cspa:outcomes ?outcomes ;
+              cspa:restrictions ?restrictions ]] ;
         cspa:hasPackageImplementation [
-         	a cspa:ServiceImplementationDescription ;
+           a cspa:ServiceImplementationDescription ;
             cspa:comesFrom [
               a cspa:Provenance ;
               cspa:builderOrganization [
-              	cspa:organization ?builderOrg ]]] ;
-    	  cspa:label ?label ;
+                cspa:organization ?builderOrg ]]] ;
+        cspa:label ?label ;
     }
   }
 `
@@ -202,7 +202,7 @@ const GSIMGroups = () => `
   PREFIX rdfs: <${RDFSPrefix}>
 
   SELECT ?group ?label WHERE {
-  	?group rdfs:subClassOf gsim:GSIMObject .
+    ?group rdfs:subClassOf gsim:GSIMObject .
     ?group rdfs:label ?label
   }
 `
