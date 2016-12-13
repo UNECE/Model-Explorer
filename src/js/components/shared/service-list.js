@@ -3,13 +3,8 @@ import { Link } from 'react-router'
 import { uriToLink } from '../../routes'
 
 export default function ServiceList({
-  loaded,
   services,
   msg = 'Sorry, there is no service for this search criteria.' }) {
-  
-  if (!loaded) return ( 
-    <span>loading services</span>
-  )
   
   if (services.length === 0) 
     return (
@@ -29,7 +24,6 @@ export default function ServiceList({
 }
 
 ServiceList.propTypes = {
-  loaded: PropTypes.bool.isRequired,
   msg: PropTypes.string,
   services: React.PropTypes.array // not required since the component can be
                                   // call before restults are loaded
