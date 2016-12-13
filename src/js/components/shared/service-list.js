@@ -25,6 +25,5 @@ export default function ServiceList({
 
 ServiceList.propTypes = {
   msg: PropTypes.string,
-  services: React.PropTypes.array // not required since the component can be
-                                  // call before restults are loaded
+  services: React.PropTypes.array
 }
