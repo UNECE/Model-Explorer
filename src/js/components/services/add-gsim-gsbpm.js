@@ -62,9 +62,8 @@ class AddGSIM_ extends Component {
     }
   }
   render() {
-    const { disabled, loaded, GSIMClasses, label } = this.props
+    const { disabled, GSIMClasses, label } = this.props
     const { selected, editing } = this.state
-    if (loaded !== LOADED) return <span>loading...</span>
     if (!editing) return <AddButton
       disabled={disabled} hndlClick={this.edit} label={label} />
     return (
@@ -141,9 +140,8 @@ class AddGSBPM_ extends Component {
     }
   }
   render() {
-    const { disabled, loaded, subs, label } = this.props
+    const { disabled, subs, label } = this.props
     const { selected, editing } = this.state
-    if (loaded !== LOADED) return <span>loading...</span>
     if (!editing) return <AddButton
       disabled={disabled} hndlClick={this.edit} label={label} />
     return (

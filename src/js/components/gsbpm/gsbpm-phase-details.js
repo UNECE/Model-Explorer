@@ -6,7 +6,7 @@ import ServicesByGSBPMPhase from './services-by-gsbpm-phase'
 import GSBPMSubprocesses from './gsbpm-subprocesses.js'
 
 function GSBPMPhaseDetails({
-    GSBPMPhase, loaded, label, code, definition }) {
+    GSBPMPhase, label, code, definition }) {
   
   return (
       <div>

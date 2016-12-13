@@ -3,8 +3,7 @@ import { LOADED } from 'sparql-connect'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import NSIList from './nsi-list'
 
-function NSIExplorer({ loaded, nsis }) {
-  if (loaded !== LOADED) return <span>Loading NSI list...</span>
+function NSIExplorer({ nsis }) {
   return(
     <div>
       <NSIList nsis={nsis}/>
@@ -12,4 +11,6 @@ function NSIExplorer({ loaded, nsis }) {
   )
 }
 
-export default sparqlConnect.NSIList(NSIExplorer);
+export default sparqlConnect.NSIList(NSIExplorer, {
+  loading: () => <span>Loading NSI list...</span>
+});

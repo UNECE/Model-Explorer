@@ -4,8 +4,7 @@ import { LOADED } from 'sparql-connect'
 import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
 
-function ServicesByNSI({ loaded, services }) {
-    if (loaded !== LOADED) return <span>services are loading...</span>
+function ServicesByNSI({ services }) {
     if (services.length === 0) { return <span>This NSI has no role for any service</span> }
     return (
       <div>
@@ -34,4 +33,6 @@ function ServicesByNSI({ loaded, services }) {
 
 }
 
-export default sparqlConnect.servicesByNSI(ServicesByNSI)
+export default sparqlConnect.servicesByNSI(ServicesByNSI, {
+  loading: () => <span>services are loading...</span>
+})

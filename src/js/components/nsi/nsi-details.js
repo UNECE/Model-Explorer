@@ -4,8 +4,7 @@ import { connectFromRoute } from '../../routes'
 import ServicesByNSI from './services-by-nsi'
 import { LOADED } from 'sparql-connect'
 
-function NSIDetails({ nsi, loaded, name, shortName, address, geo }) {
-  if (loaded !== LOADED) return <span>Loading...</span>
+function NSIDetails({ nsi, name, shortName, address, geo }) {
   var countryCode = nsi.slice(-2);
   var flagClassName = "flag-icon flag-icon-" + countryCode.toLowerCase() + " large-flag";
   // Computes the OpenStreetMap URL corresponding to the coordinates (NB: 18 is the zoom level)

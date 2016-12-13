@@ -129,7 +129,6 @@ export class Service extends Component {
   }
   
   render() {
-    if (this.props.loaded !== LOADED) return <span>loading...</span>
     const { editing, descr } = this.state
     return (
       <form className="form-horizontal">

@@ -9,8 +9,7 @@ import GSBPMSubprocess from './gsbpm-subprocess'
 /**
 * Returns the HTML code for the overall GSBPM layout.
 */
-function GSBPMExplorer({loaded, phases, activeSubs}) {
-  if (loaded !== LOADED) return <span>Loading GSBPM data...</span>
+function GSBPMExplorer({ phases, activeSubs}) {
   const refinedPhases = groupByWithOrder(phases, 'phase', ['phaseCode'], 'phaseLabel', 'phaseCode')
   return(
     <div className="gsbpm">
@@ -80,4 +79,7 @@ function GSBPMSubprocessList({entries}) {
   );
 }
 
-export default sparqlConnect.GSBPMDescription(GSBPMExplorer);
+export default sparqlConnect.GSBPMDescription(GSBPMExplorer, {
+  loading: () => 
+    <span>Loading GSBPM data...</span>
+  });
