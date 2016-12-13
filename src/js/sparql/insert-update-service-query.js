@@ -1,6 +1,4 @@
-import {
-  GSBPMPrefix, GSIMPrefix, CSPAPrefix, servicePrefix, NSIPrefix
-} from './prefixes'
+import P from './prefixes'
 
 
 function escapeWhitespaces(str) {
@@ -59,11 +57,11 @@ cspa:definitionHasOutput [
         ).join(' ;')
   
   const query = `
-PREFIX cspa:    <${CSPAPrefix}>
-PREFIX gsbpm:   <${GSBPMPrefix}>
-PREFIX gsim:    <${GSIMPrefix}>
-PREFIX service: <${servicePrefix}>
-PREFIX nsi:     <${NSIPrefix}>
+PREFIX cspa:    <${P.CSPA}>
+PREFIX gsbpm:   <${P.GSBPM}>
+PREFIX gsim:    <${P.GSIM}>
+PREFIX service: <${P.service}>
+PREFIX nsi:     <${P.NSI}>
 
 ${clearGraphIfNeeded}
 

@@ -5,7 +5,7 @@ import { uriToLink } from '../../routes'
 import { createService } from '../../sparql/updates'
 import ServiceEditorDetails from './details'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
-import { CSPANamed, servicePrefix } from '../../sparql/prefixes'
+import P from '../../sparql/prefixes'
 import { flush } from '../../sparql/configure-sparql'
 
 class ServiceCreator extends Component {
@@ -58,8 +58,8 @@ class ServiceCreator extends Component {
       //TODO add upper case at the beginning of each word
       //TODO replace special characters
       const name = label ? label.replace(/\s*/g, '') : 'EMPTYLABEL'
-      const service = `${servicePrefix}${name}`
-      const graphName = `${CSPANamed}${name}`
+      const service = `${P.SERVICE}${name}`
+      const graphName = `${P.CSPANamed}${name}`
       
       const descr = {
         service, graphName,
