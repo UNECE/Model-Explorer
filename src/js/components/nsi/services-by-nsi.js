@@ -2,9 +2,33 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
+import P from '../../sparql/prefixes'
 
-function ServicesByNSI({ services }) {
-  if (services.length === 0) { return <span>This NSI has no role for any service</span> }
+/**
+ * Builds the query that retrives the list of all the services in which a NSI
+ * is involved
+ */
+const queryBuilder = nsi => `
+  PREFIX cspa: <${P.CSPA}>
+  PREFIX rdfs:  <${P.RDFS}>
+  
+  SELECT ?service ?serviceLabel ?roleLabel
+  WHERE {
+    ?service a cspa:package ;
+             cspa:label ?serviceLabel ;
+    cspa:hasPackageImplementation [
+    cspa:comesFrom [?role [ cspa:organization <${nsi}> ]]] .
+    ?role rdfs:label ?roleLabel
+  }
+`
+const connector = sparqlConnect(queryBuilder, {
+  queryName: 'servicesByNSI'
+})
+
+function ServicesByNSI({ servicesByNSI }) {
+  if (servicesByNSI.length === 0) {
+    return <span>This NSI has no role for any service</span>
+  }
   return (
       <div>
         <table className="table">
@@ -15,10 +39,12 @@ function ServicesByNSI({ services }) {
             </tr>
           </thead>
           <tbody>
-            { services.map(({ service, serviceLabel, roleLabel }) =>
+            { servicesByNSI.map(({ service, serviceLabel, roleLabel }) =>
               <tr key={service}>
               <td>
-                <Link to={uriToLink.serviceDetails(service)}>{ serviceLabel }</Link>
+                <Link to={uriToLink.serviceDetails(service)}>
+                  { serviceLabel }
+                </Link>
               </td>
               <td>
                 { roleLabel }
@@ -32,6 +58,6 @@ function ServicesByNSI({ services }) {
 
 }
 
-export default sparqlConnect.servicesByNSI(ServicesByNSI, {
+export default connector(ServicesByNSI, {
   loading: () => <span>services are loading...</span>
 })

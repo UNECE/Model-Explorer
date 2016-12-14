@@ -1,7 +1,8 @@
 import React, { PropTypes} from 'react'
 import ServiceSubEntities from '../shared/service-sub-entities'
 import { uriToLink } from '../../routes'
-import { AddGSIM, AddGSBPM } from './add-gsim-gsbpm.js'
+import AddGSIM from './add-gsim'
+import AddGSBPM from './add-gsbpm'
 import OrganizationPicker from './organization-picker'
 
 export default function ServiceEditorDetails({ descr, editing, editUtils }) {

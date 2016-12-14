@@ -1,9 +1,31 @@
 import React from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
 import { connectFromRoute } from '../../routes'
 import ServicesByGSIMInput from './services-by-input'
 import ServicesByGSIMOutput from './services-by-output'
+import { sparqlConnect} from '../../sparql/configure-sparql'
+import P from '../../sparql/prefixes'
   
+/**
+ * Builds the query that retrieves the details for a GSIM class
+ */
+const queryBuilder = GSIMClass => `
+  PREFIX gsim: <${P.GSIM}>
+  PREFIX rdfs:  <${P.RDFS}>
+
+  SELECT ?label ?definition ?explanatoryText
+  WHERE {
+    <${GSIMClass}> rdfs:label ?label ;
+                   gsim:classDefinition ?definition ;
+    OPTIONAL { <${GSIMClass}>  gsim:classExplanatoryText ?explanatoryText }
+  }
+`
+
+const connector = sparqlConnect(queryBuilder, {
+  queryName: 'GSIMClassDetails',
+  params: ['GSIMClass'],
+  singleResult: true
+})
+
 function GSIMClassDetails({ GSIMClass, label, definition, explanatoryText }) {
   return (
     <div>
@@ -34,4 +56,4 @@ function GSIMClassDetails({ GSIMClass, label, definition, explanatoryText }) {
   )
 }
 
-export default connectFromRoute(sparqlConnect.GSIMClassDetails(GSIMClassDetails))
+export default connectFromRoute(connector(GSIMClassDetails))
