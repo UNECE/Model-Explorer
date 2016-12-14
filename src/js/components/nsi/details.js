@@ -2,6 +2,33 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { connectFromRoute } from '../../routes'
 import ServicesByNSI from './services-by-nsi'
+import P from '../../sparql/prefixes'
+
+ /**
+  * Builds the query that retrieves the details on a given NSI.
+  */
+const queryBuilder = nsi => `
+   PREFIX org: <${P.ORG}>
+   PREFIX skos: <${P.SKOS}>
+   PREFIX vcard: <${P.VCARD}>
+
+   SELECT ?name ?shortName ?address ?geo
+   WHERE {
+     <${nsi}> skos:prefLabel ?name .
+     OPTIONAL {
+       <${nsi}> skos:altLabel ?shortName .
+     }
+     OPTIONAL {
+       <${nsi}> org:hasSite/org:siteAddress ?card .
+       ?card vcard:street-address ?address ; vcard:hasGeo ?geo .
+     }
+   }
+  `
+
+const connector = sparqlConnect(queryBuilder, {
+  queryName: 'NSIDetails'
+})
+
 
 function NSIDetails({ nsi, shortName, address, geo }) {
   var countryCode = nsi.slice(-2).toLowerCase()
@@ -29,4 +56,4 @@ function NSIDetails({ nsi, shortName, address, geo }) {
   )
 }
 
-export default connectFromRoute(sparqlConnect.NSIDetails(NSIDetails))
+export default connectFromRoute(connector(NSIDetails))

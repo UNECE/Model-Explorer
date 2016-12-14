@@ -1,5 +1,24 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
+import P from '../../sparql/prefixes'
+
+/**
+ * Builds the query that retrives all the organizations
+ */
+const queryBuilder = () => `
+  PREFIX org: <${P.ORG}>
+  PREFIX skos:  <${P.SKOS}>
+
+  SELECT ?org ?label
+  WHERE {
+    ?org a org:Organization ;
+         skos:prefLabel ?label
+  }
+`
+
+const connector = sparqlConnect(queryBuilder, {
+  queryName: 'organizations'
+})
 
 function OrganizationPicker({ disabled, value, organizations, onChange }) {
   return (
@@ -14,4 +33,4 @@ function OrganizationPicker({ disabled, value, organizations, onChange }) {
     </select>
   )
 }
-export default sparqlConnect.organizations(OrganizationPicker)
+export default connector(OrganizationPicker)

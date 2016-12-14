@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { Link } from 'react-router'
-import { uriToLink } from '../../routes'
 import classnames from 'classnames'
+import P from '../../sparql/prefixes'
 
 //TODO use group uri instead of label
 //It allows to improve aesthetics for expected groups (and ensure order) to make
@@ -12,53 +12,25 @@ const otherGroupLabels = [
   'Business', 'Exchange', 'Structures', 'Concepts'
 ]
 
-class GSIMExplorer extends Component {
-  constructor() {
-    super()
-    this.state = {
-      selectedGroup: null
-    }
-    this.selectGroup = group => this.setState({
-      selectedGroup: group
-    })
+/**
+ * Builds the query that retrieves the list of all GSIM groups.
+ */
+const queryBuilder = () => `
+  PREFIX gsim: <${P.GSIM}>
+  PREFIX rdfs: <${P.RDFS}>
+
+  SELECT ?group ?label WHERE {
+    ?group rdfs:subClassOf gsim:GSIMObject .
+    ?group rdfs:label ?label
   }
-  render() {
-    const { selectedGroup } = this.state
-    return(
-      <div className="gsim-explorer">
-        <div>
-          <GSIMSelectGroup 
-            select={this.selectGroup}
-            selectedGroup={selectedGroup}/>
-        </div>
-         { selectedGroup &&
-           <div className="grow">
-             <GSIMSelectClass group={selectedGroup} />
-           </div>
-         }
-      </div>
-    )
-  }
-}
+`
 
-function GSIMSelectClass_({ GSIMClasses }){
-  return (
-    <div className="list-group">
-      {
-        GSIMClasses.map(({ GSIMClass, label }) =>
-          <Link
-            key={GSIMClass}
-            className="list-group-item"
-            to={uriToLink.GSIMClassDetails(GSIMClass)}>{label}</Link>)
-    }
-    </div>
-  )
-}
+const connector = sparqlConnect(queryBuilder, {
+  queryName: 'GSIMGroups'
+})
 
-const GSIMSelectClass = sparqlConnect.GSIMClasses(GSIMSelectClass_)
-
-function GSIMSelectGroup_({ selectedGroup, groups, select }) {
-  const groupsByLabel = groups.reduce((_, group) => {
+function GSIMSelectGroup({ selectedGroup, GSIMGroups, select }) {
+  const groupsByLabel = GSIMGroups.reduce((_, group) => {
     _[group.label] = group
     return _
   }, {})
@@ -99,6 +71,4 @@ function GSIMSelectGroup_({ selectedGroup, groups, select }) {
   )
 }
 
-const GSIMSelectGroup = sparqlConnect.GSIMGroups(GSIMSelectGroup_)
-
-export default GSIMExplorer
+export default connector(GSIMSelectGroup)

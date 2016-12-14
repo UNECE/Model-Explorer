@@ -1,24 +1,136 @@
 import React, { Component } from 'react'
 import { connectFromRoute } from '../../routes'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect, sparqlCombine } from '../../sparql/configure-sparql'
 import { browserHistory } from 'react-router'
 import { updateService } from '../../sparql/updates'
 import { removeService } from '../../sparql/updates'
-import ServiceEditorDetails from './details'
+import ServiceEditorDetails from './details-pres'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
+import P from '../../sparql/prefixes'
 
+/**
+ * Builds the query that retrieves the details of a given CSPA service.
+ */
+const serviceDetails = service => `
+  PREFIX cspa: <${P.CSPA}>
+  PREFIX skos: <${P.SKOS}>
+
+  SELECT
+    ?label ?description ?outcomes ?subprocess ?restrictions ?graphName
+    ?builderOrg
+  WHERE {
+    GRAPH ?graphName {
+      <${service}>
+        cspa:hasPackageDefinition [
+           a cspa:ServiceDefinition; cspa:aimsAt [
+             cspa:description ?description ;
+              cspa:outcomes ?outcomes ;
+              cspa:restrictions ?restrictions ]] ;
+        cspa:hasPackageImplementation [
+           a cspa:ServiceImplementationDescription ;
+            cspa:comesFrom [
+              a cspa:Provenance ;
+              cspa:builderOrganization [
+                cspa:organization ?builderOrg ]]] ;
+        cspa:label ?label ;
+    }
+  }
+`
+
+/**
+ * Builds the query that retrieves the GSBPM subprocess for a given service.
+ */
+//TODO investigate, we shouldn't need DISTINCT, should we ?
+const serviceSubs = service => `
+  PREFIX cspa: <${P.CSPA}>
+  PREFIX skos: <${P.SKOS}>
+
+  SELECT DISTINCT ?sub ?label
+  WHERE {
+      <${service}>  cspa:hasPackageDefinition ?definition .
+      ?definition cspa:aimsAt ?function .
+      ?function  cspa:gsbpmSubProcess ?sub .
+      ?sub       skos:prefLabel ?label
+  }
+`
+
+
+/**
+ * Builds the query that retrieves the list of GSIM inputs of a given CSPA service.
+ */
+const serviceInputs = service => `
+  PREFIX cspa:  <${P.CSPA}>
+  PREFIX gsbpm: <${P.GSBPM}>
+  PREFIX gsim:  <${P.GSIM}>
+  PREFIX rdfs:  <${P.RDFS}>
+
+  SELECT DISTINCT ?gsimClass ?label ?definition
+  WHERE {
+      <${service}> a cspa:package ;
+          cspa:label ?servicelabel ;
+          cspa:hasPackageDefinition ?pckgDefinition .
+
+      ?pckgDefinition
+          cspa:definitionHasInput ?input .
+      ?input cspa:gsimInput ?gsimClass .
+      ?gsimClass rdfs:label ?label .
+      ?gsimClass gsim:classDefinition ?definition
+  }
+`
+/**
+ * Builds the query that retrieves the list of GSIM outputs of a given CSPA service.
+ */
+const serviceOutputs = service => `
+  PREFIX cspa:  <${P.CSPA}>
+  PREFIX gsbpm: <${P.GSBPM}>
+  PREFIX gsim:  <${P.GSIM}>
+  PREFIX rdfs:  <${P.RDFS}>
+
+  SELECT DISTINCT ?gsimClass ?label ?definition
+  WHERE {
+      <${service}> a cspa:package ;
+          cspa:label ?servicelabel ;
+          cspa:hasPackageDefinition ?pckgDefinition .
+
+      ?pckgDefinition
+          cspa:definitionHasOutput ?input .
+      ?input cspa:gsimOutput ?gsimClass .
+      ?gsimClass rdfs:label ?label .
+      ?gsimClass gsim:classDefinition ?definition
+  }
+`
+
+
+
+const connector = sparqlCombine(
+  sparqlConnect(serviceDetails, {
+    queryName: 'serviceDetails',
+    params: ['service'],
+    singleResult: true
+  }),
+  sparqlConnect(serviceInputs, {
+    queryName: 'serviceInputs',
+    params: ['service']
+  }),
+  sparqlConnect(serviceOutputs, {
+    queryName: 'serviceOutputs',
+    params: ['service']
+  }),
+  sparqlConnect(serviceSubs, {
+    queryName: 'serviceSubs',
+    params: ['service']
+  })
+)
 
 function descrFromProps(props) {
-  if (!props.serviceInformation) return {}
   const {
-    serviceDetails: {
-      graphName,
-      label, description, outcomes, restrictions, builderOrg,
-    },
+    //`serviceDetails` has `singleResult` set to `true`, so the component
+    //is populated with the query variables 
+    graphName, label, description, outcomes, restrictions, builderOrg,
     serviceInputs: inputs,
     serviceOutputs: outputs,
-    serviceSubprocesses: subs
-  } = props.serviceInformation
+    serviceSubs: subs
+  } = props
   
   const { service } = props //filled in by `connectFromRoute`
   
@@ -169,5 +281,5 @@ export class Service extends Component {
 
 
 export default connectFromRoute(
-  sparqlConnect.serviceEverything(Service)
+  connector(Service)
 )
