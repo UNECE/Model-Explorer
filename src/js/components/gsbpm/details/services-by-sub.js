@@ -21,7 +21,8 @@ const queryBuilder = (GSBPMSub) => `
 `
 
 const connector = sparqlConnect(queryBuilder, {
-  queryName: 'servicesByGSBPMSub'
+  queryName: 'servicesByGSBPMSub',
+  params: ['GSBPMSub']
 })
 
 function ServicesByGSBPM({ servicesByGSBPMSub }) {
