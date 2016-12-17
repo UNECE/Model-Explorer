@@ -2,7 +2,6 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { Link } from 'react-router'
 import classnames from 'classnames'
-import P from '../../sparql/prefixes'
 
 //TODO use group uri instead of label
 //It allows to improve aesthetics for expected groups (and ensure order) to make
@@ -16,9 +15,6 @@ const otherGroupLabels = [
  * Builds the query that retrieves the list of all GSIM groups.
  */
 const queryBuilder = () => `
-  PREFIX gsim: <${P.GSIM}>
-  PREFIX rdfs: <${P.RDFS}>
-
   SELECT ?group ?label WHERE {
     ?group rdfs:subClassOf gsim:GSIMObject .
     ?group rdfs:label ?label

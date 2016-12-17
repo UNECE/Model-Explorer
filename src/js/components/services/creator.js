@@ -58,8 +58,8 @@ class ServiceCreator extends Component {
       //TODO add upper case at the beginning of each word
       //TODO replace special characters
       const name = label ? label.replace(/\s*/g, '') : 'EMPTYLABEL'
-      const service = `${P.SERVICE}${name}`
-      const graphName = `${P.CSPANamed}${name}`
+      const service = `${P.service}${name}`
+      const graphName = `${P.cspanamed}${name}`
       
       const descr = {
         service, graphName,

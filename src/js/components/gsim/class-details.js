@@ -2,15 +2,11 @@ import React from 'react'
 import ServicesByGSIMInput from './services-by-input'
 import ServicesByGSIMOutput from './services-by-output'
 import { sparqlConnect} from '../../sparql/configure-sparql'
-import P from '../../sparql/prefixes'
   
 /**
  * Builds the query that retrieves the details for a GSIM class
  */
 const queryBuilder = GSIMClass => `
-  PREFIX gsim: <${P.GSIM}>
-  PREFIX rdfs:  <${P.RDFS}>
-
   SELECT ?label ?definition ?explanatoryText
   WHERE {
     <${GSIMClass}> rdfs:label ?label ;

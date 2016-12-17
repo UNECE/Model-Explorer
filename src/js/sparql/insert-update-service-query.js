@@ -57,11 +57,11 @@ cspa:definitionHasOutput [
         ).join(' ;')
   
   const query = `
-PREFIX cspa:    <${P.CSPA}>
-PREFIX gsbpm:   <${P.GSBPM}>
-PREFIX gsim:    <${P.GSIM}>
+PREFIX cspa:    <${P.cspa}>
+PREFIX gsbpm:   <${P.gsbpm}>
+PREFIX gsim:    <${P.gsim}>
 PREFIX service: <${P.service}>
-PREFIX nsi:     <${P.NSI}>
+PREFIX nsi:     <${P.nsi}>
 
 ${clearGraphIfNeeded}
 

@@ -2,15 +2,11 @@ import React from 'react'
 import { linkGSIMClass } from './routes'
 import { Link } from 'react-router'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import P from '../../sparql/prefixes'
 
 /**
  * Builds the query that retrieves the list of all GSIM objects of a given group.
  */
 const queryBuilder = group => `
-  PREFIX gsim:  <${P.GSIM}>
-  PREFIX skos:  <${P.SKOS}>
-
   SELECT ?GSIMClass ?label ?definition WHERE {
     ?GSIMClass rdfs:subClassOf <${group}> ;
                gsim:classDefinition ?definition ;

@@ -1,6 +1,5 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import P from '../../sparql/prefixes'
 
 //TODO looks like the query for the NSI explore. It might be a good idea to use
 //the same query to avoid fetching twice similar information, but if the context
@@ -11,9 +10,6 @@ import P from '../../sparql/prefixes'
  * Builds the query that retrives all the organizations
  */
 const queryBuilder = () => `
-  PREFIX org: <${P.ORG}>
-  PREFIX skos:  <${P.SKOS}>
-
   SELECT ?org ?label
   WHERE {
     ?org a org:Organization ;

@@ -1,15 +1,11 @@
 import React, { Component , PropTypes} from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import AddButton from './add-gsim-gsbpm-button-pres'
-import P from '../../sparql/prefixes'
 
 /**
  * Builds the query that retrieves the list of all GSBPM subprocesses.
  */
 const queryBuilder = () => `
-PREFIX gsbpm: <${P.GSBPM}>
-PREFIX skos:  <${P.SKOS}>
-
 SELECT ?sub ?label ?code
 WHERE {
   ?sub a gsbpm:SubProcess ;

@@ -1,6 +1,5 @@
 import React from 'react'
 import { sparqlConnect } from '../../../sparql/configure-sparql'
-import P from '../../../sparql/prefixes'
 import { groupByWithOrder } from '../../../utils/group-by'
 import GSBPMPhase from './phase-pres'
 
@@ -8,8 +7,6 @@ import GSBPMPhase from './phase-pres'
  * Builds the query that retrieves the GSBPM overview.
  */
 const queryBuilder = () => `
-  PREFIX gsbpm: <${P.GSBPM}>
-  PREFIX skos:  <${P.SKOS}>
   SELECT ?phase ?phaseLabel ?subprocess ?subprocessLabel ?phaseCode
          ?subprocessCode ?subprocessDefinition
   WHERE {
