@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
@@ -10,6 +9,24 @@
     "eol-last": [0],
     "no-mixed-requires": [0],
     "no-underscore-dangle": [0],
-    "no-undef": 1
+    "no-undef": 1,
+    "no-unused-vars": "error",
+    "indent": ["error", 2],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-no-undef": "error",
+    "react/react-in-jsx-scope": "error"
+  },
+  "plugins": [
+    "react"
+  ],
+  # "extends": ["eslint:recommended", "plugin:react/recommended"],
+  # "extends": ["plugin:react/recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
   }
-}
+}        
