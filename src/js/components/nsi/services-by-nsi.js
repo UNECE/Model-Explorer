@@ -1,7 +1,7 @@
 import React from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
-import { uriToLink } from '../../routes'
 import { Link } from 'react-router'
+import { sparqlConnect } from '../../sparql/configure-sparql'
+import { linkService } from '../services/routes'
 import P from '../../sparql/prefixes'
 
 /**
@@ -43,7 +43,7 @@ function ServicesByNSI({ servicesByNSI }) {
             { servicesByNSI.map(({ service, serviceLabel, roleLabel }) =>
               <tr key={service}>
               <td>
-                <Link to={uriToLink.serviceDetails(service)}>
+                <Link to={linkService(service)}>
                   { serviceLabel }
                 </Link>
               </td>

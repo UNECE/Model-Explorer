@@ -2,6 +2,11 @@ import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import P from '../../sparql/prefixes'
 
+//TODO looks like the query for the NSI explore. It might be a good idea to use
+//the same query to avoid fetching twice similar information, but if the context
+//(props passed by the parent component or results passed to this component)
+//is not the (ie. `params` and `whatWeGet` in the `connector`), `sparql-connect`
+//doest not allow it for now
 /**
  * Builds the query that retrives all the organizations
  */

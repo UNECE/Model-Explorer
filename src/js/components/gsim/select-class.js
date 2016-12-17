@@ -1,5 +1,5 @@
 import React from 'react'
-import { uriToLink } from '../../routes'
+import { linkGSIMClass } from './routes'
 import { Link } from 'react-router'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import P from '../../sparql/prefixes'
@@ -31,7 +31,7 @@ function GSIMSelectClass({ GSIMClasses }){
           <Link
             key={GSIMClass}
             className="list-group-item"
-            to={uriToLink.GSIMClassDetails(GSIMClass)}>{label}</Link>)
+            to={linkGSIMClass(GSIMClass)}>{label}</Link>)
     }
     </div>
   )

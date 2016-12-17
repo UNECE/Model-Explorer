@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { uriToLink } from '../../routes'
+import { linkNSI } from './routes'
 
 export default function NSIList({ nsis }) {
 
@@ -24,7 +24,7 @@ export default function NSIList({ nsis }) {
           <tr key={nsi}>
             <td><a href={'http://dbpedia.org/resource/ISO_3166-2:' + nsi.slice(-2)}>{nsi.slice(-2)}</a></td>
             <td>
-              <Link to={uriToLink.NSIDetails(nsi)}>
+              <Link to={linkNSI(nsi)}>
                 { label }
               </Link>
             </td>

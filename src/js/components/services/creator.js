@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { uriToLink } from '../../routes'
+import { linkService } from './routes'
 import { createService } from '../../sparql/updates'
 import ServiceEditorDetails from './details-pres'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
@@ -71,7 +71,7 @@ class ServiceCreator extends Component {
       return createService(descr)
         .then(uri => {
           this.props.flush()
-          browserHistory.push(uriToLink.serviceDetails(uri))
+          browserHistory.push(linkService(uri))
         })
     }
     

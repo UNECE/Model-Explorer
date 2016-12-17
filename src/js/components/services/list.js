@@ -1,6 +1,5 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
-import { uriToLink } from '../../routes'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import ServiceList from '../shared/service-list'
 import P from '../../sparql/prefixes'
@@ -33,7 +32,7 @@ const connector = sparqlConnect(queryBuilder, {
 //query to stay close to the component that processes the results
 function Services({ services }) {
   const handleClick = () =>
-    browserHistory.push(uriToLink.create())
+    browserHistory.push('/create')
 
   return (
     <div>

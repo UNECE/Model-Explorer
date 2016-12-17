@@ -1,6 +1,7 @@
 import React, { PropTypes} from 'react'
 import ServiceSubEntities from '../shared/service-sub-entities'
-import { uriToLink } from '../../routes'
+import { linkGSIMClass } from '../gsim/routes'
+import { linkGSBPMSub } from '../gsbpm/routes'
 import AddGSIM from './add-gsim'
 import AddGSBPM from './add-gsbpm'
 import OrganizationPicker from './organization-picker'
@@ -18,6 +19,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
     removeInput, removeOutput, removeSubprocess
   } = editUtils
   
+  //TODO investigate `makeLink` usage
   return (
     <div>
       <div className="form-group">
@@ -70,7 +72,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={subs}
             uriName="sub"
-            makeLink={uriToLink.GSBPMSubProcessDetails}
+            makeLink={linkGSBPMSub}
             noMsg="No GSBPM subprocess"
             add={addSubprocess}
             remove={removeSubprocess} />
@@ -86,7 +88,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={inputs}
             uriName="gsimClass"
-            makeLink={uriToLink.GSIMClassDetails}
+            makeLink={linkGSIMClass}
             noMsg="No GSIM input"
             add={addInput}
             remove={removeInput} />
@@ -102,7 +104,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
             disabled={!editing}
             entities={outputs}
             uriName="gsimClass"
-            makeLink={uriToLink.GSIMClassDetails}
+            makeLink={linkGSIMClass}
             noMsg="No GSIM ouput"
             add={addOutput}
             remove={removeOutput} />

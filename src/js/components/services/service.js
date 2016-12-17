@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connectFromRoute } from '../../routes'
 import { sparqlConnect, sparqlCombine } from '../../sparql/configure-sparql'
 import { browserHistory } from 'react-router'
 import { updateService } from '../../sparql/updates'
@@ -279,7 +278,4 @@ export class Service extends Component {
   }
 }
 
-
-export default connectFromRoute(
-  connector(Service)
-)
+export default connector(Service)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { uriToLink } from '../../../routes'
+import { linkGSBPMPhase } from '../routes'
 import { Link } from 'react-router'
 import GSBPMSubprocessList from './subs-list-pres'
 
@@ -11,7 +11,7 @@ export default function GSBPMPhase({ id, phaseLabel, entries }) {
   return(
     <div className="phase">
       <div className="cell title">
-        <Link to={uriToLink.GSBPMPhaseDetails(id)} >
+        <Link to={linkGSBPMPhase(id)} >
           <div>{phaseLabel}</div>
         </Link>
       </div>
