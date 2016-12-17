@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from '../utils/configure-store'
+import { wrapRoute } from '../utils/router-mapping'
 //We work with `redux`, so our app will need a reducer
 import mainReducer from '../reducers/index'
 import routes from './routes'
@@ -16,7 +17,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          { routes }
+          { wrapRoute(routes) }
         </Router>
       </Provider>
     )

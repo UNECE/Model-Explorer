@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
-import { wrapRoute, transform } from '../../utils/router-mapping'
+import { transform } from '../../utils/router-mapping'
 import Service from './service'
 import Services from './list'
 import ServiceCreator from './creator'
@@ -10,7 +10,7 @@ export const linkService = transform(
   '/service/:service'
 )
 
-export default wrapRoute(
+export default (
   <Route>
     {/* default component if the route does not match any over route */}
     <IndexRoute component={Services} />
