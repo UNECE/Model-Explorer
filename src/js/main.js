@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-//`Root` mainly defines what the routes are
+//`Root` set up our application with `react-redux` and `react-router`
 import Root from './components/root'
 //We can import css from javascript with webpack `style-loader`
 import '../css/style.css'
