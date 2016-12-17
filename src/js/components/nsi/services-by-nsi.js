@@ -22,7 +22,8 @@ const queryBuilder = nsi => `
   }
 `
 const connector = sparqlConnect(queryBuilder, {
-  queryName: 'servicesByNSI'
+  queryName: 'servicesByNSI',
+  params: ['nsi']
 })
 
 function ServicesByNSI({ servicesByNSI }) {

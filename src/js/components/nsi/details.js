@@ -26,7 +26,8 @@ const queryBuilder = nsi => `
   `
 
 const connector = sparqlConnect(queryBuilder, {
-  queryName: 'NSIDetails'
+  queryName: 'NSIDetails',
+  params: ['nsi']
 })
 
 
