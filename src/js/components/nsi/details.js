@@ -1,6 +1,5 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
-import { connectFromRoute } from '../../routes'
 import ServicesByNSI from './services-by-nsi'
 import P from '../../sparql/prefixes'
 
@@ -57,4 +56,4 @@ function NSIDetails({ nsi, shortName, address, geo }) {
   )
 }
 
-export default connectFromRoute(connector(NSIDetails))
+export default connector(NSIDetails)

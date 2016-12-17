@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { uriToLink } from '../../../routes'
 import { sparqlConnect} from '../../../sparql/configure-sparql'
+import { linkGSBPMSub } from '../routes'
 import P from '../../../sparql/prefixes'
 
 /**
@@ -30,7 +30,7 @@ function SubsByGSBPMPhase({ subsByGSBPMPhase }) {
   return(
     <div className="list-group">
       { subsByGSBPMPhase.map(({ subprocess, label }) =>
-        <Link key={subprocess} to={uriToLink.GSBPMSubProcessDetails(subprocess)}
+        <Link key={subprocess} to={linkGSBPMSub(subprocess)}
           className="list-group-item" title={label}>
           { label }
         </Link>)

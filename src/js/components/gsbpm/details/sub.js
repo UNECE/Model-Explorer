@@ -1,5 +1,4 @@
 import React from 'react'
-import { connectFromRoute } from '../../../routes'
 import { sparqlConnect } from '../../../sparql/configure-sparql'
 import ServicesByGSBPMSubProcess from './services-by-sub'
 import P from '../../../sparql/prefixes'
@@ -46,4 +45,4 @@ function GSBPMSubDetails({ GSBPMSub, label, code, definition }) {
   )
 }
 
-export default connectFromRoute(connector(GSBPMSubDetails))
+export default connector(GSBPMSubDetails)

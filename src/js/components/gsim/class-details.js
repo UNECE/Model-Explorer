@@ -1,5 +1,4 @@
 import React from 'react'
-import { connectFromRoute } from '../../routes'
 import ServicesByGSIMInput from './services-by-input'
 import ServicesByGSIMOutput from './services-by-output'
 import { sparqlConnect} from '../../sparql/configure-sparql'
@@ -56,4 +55,4 @@ function GSIMClassDetails({ GSIMClass, label, definition, explanatoryText }) {
   )
 }
 
-export default connectFromRoute(connector(GSIMClassDetails))
+export default connector(GSIMClassDetails)

@@ -1,5 +1,4 @@
 import React from 'react'
-import { connectFromRoute } from '../../../routes'
 import { sparqlConnect } from '../../../sparql/configure-sparql'
 import ServicesByGSBPMPhase from './services-by-phase'
 import GSBPMSubprocesses from './subs-by-phase'
@@ -50,4 +49,4 @@ function GSBPMPhaseDetails({ GSBPMPhase, label, code, definition }) {
   )
 }
 
-export default connectFromRoute(connector(GSBPMPhaseDetails))
+export default connector(GSBPMPhaseDetails)
