@@ -38,7 +38,11 @@ module.exports = {
     new TransferWebpackPlugin([
         { from: 'img', to: 'img' }
     ], path.join(__dirname, 'src'))
-  ],  
+  ],
+  //`jison` module pattern adds `require('fs')`, which throws an error
+  node: {
+    fs: 'empty'
+  }, 
   resolve: {
     extensions: ['', '.js']
     // alias: {

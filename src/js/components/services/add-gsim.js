@@ -1,15 +1,11 @@
 import React, { Component , PropTypes} from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import AddButton from './add-gsim-gsbpm-button-pres'
-import P from '../../sparql/prefixes'
 
 /**
 * Builds the query that retrieves the list of all GSIM objects.
 */
 const queryBuilder = () => `
-  PREFIX gsim:  <${P.GSIM}>
-  PREFIX skos:  <${P.SKOS}>
-
   SELECT ?GSIMClass ?label ?definition WHERE {
     ?GSIMClass rdfs:subClassOf ?group ;
                gsim:classDefinition ?definition ;

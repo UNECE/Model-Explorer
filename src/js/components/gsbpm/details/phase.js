@@ -2,15 +2,11 @@ import React from 'react'
 import { sparqlConnect } from '../../../sparql/configure-sparql'
 import ServicesByGSBPMPhase from './services-by-phase'
 import GSBPMSubprocesses from './subs-by-phase'
-import P from '../../../sparql/prefixes'
 
 /**
  * Builds the query that retrieves the details for a GSBPM sub process
  */
 const queryBuilder = GSBPMPhase => `
-  PREFIX gsbpm: <${P.GSBPM}>
-  PREFIX skos:  <${P.SKOS}>
-
   SELECT ?label ?code ?definition
   WHERE {
     <${GSBPMPhase}> skos:prefLabel ?label ;

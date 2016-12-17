@@ -5,15 +5,11 @@ import { updateService } from '../../sparql/updates'
 import { removeService } from '../../sparql/updates'
 import ServiceEditorDetails from './details-pres'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
-import P from '../../sparql/prefixes'
 
 /**
  * Builds the query that retrieves the details of a given CSPA service.
  */
 const serviceDetails = service => `
-  PREFIX cspa: <${P.CSPA}>
-  PREFIX skos: <${P.SKOS}>
-
   SELECT
     ?label ?description ?outcomes ?subprocess ?restrictions ?graphName
     ?builderOrg
@@ -41,9 +37,6 @@ const serviceDetails = service => `
  */
 //TODO investigate, we shouldn't need DISTINCT, should we ?
 const serviceSubs = service => `
-  PREFIX cspa: <${P.CSPA}>
-  PREFIX skos: <${P.SKOS}>
-
   SELECT DISTINCT ?sub ?label
   WHERE {
       <${service}>  cspa:hasPackageDefinition ?definition .
@@ -58,11 +51,6 @@ const serviceSubs = service => `
  * Builds the query that retrieves the list of GSIM inputs of a given CSPA service.
  */
 const serviceInputs = service => `
-  PREFIX cspa:  <${P.CSPA}>
-  PREFIX gsbpm: <${P.GSBPM}>
-  PREFIX gsim:  <${P.GSIM}>
-  PREFIX rdfs:  <${P.RDFS}>
-
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
       <${service}> a cspa:package ;
@@ -80,11 +68,6 @@ const serviceInputs = service => `
  * Builds the query that retrieves the list of GSIM outputs of a given CSPA service.
  */
 const serviceOutputs = service => `
-  PREFIX cspa:  <${P.CSPA}>
-  PREFIX gsbpm: <${P.GSBPM}>
-  PREFIX gsim:  <${P.GSIM}>
-  PREFIX rdfs:  <${P.RDFS}>
-
   SELECT DISTINCT ?gsimClass ?label ?definition
   WHERE {
       <${service}> a cspa:package ;

@@ -2,16 +2,12 @@ import React from 'react'
 import { Link } from 'react-router'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import { linkService } from '../services/routes'
-import P from '../../sparql/prefixes'
 
 /**
  * Builds the query that retrives the list of all the services in which a NSI
  * is involved
  */
 const queryBuilder = nsi => `
-  PREFIX cspa: <${P.CSPA}>
-  PREFIX rdfs:  <${P.RDFS}>
-  
   SELECT ?service ?serviceLabel ?roleLabel
   WHERE {
     ?service a cspa:package ;

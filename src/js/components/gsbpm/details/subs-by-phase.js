@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import { sparqlConnect} from '../../../sparql/configure-sparql'
 import { linkGSBPMSub } from '../routes'
-import P from '../../../sparql/prefixes'
 
 /**
  * Builds the query that retrives all the subprocesses for a GSBPM phase
@@ -12,13 +11,11 @@ import P from '../../../sparql/prefixes'
 //to show the GSBPM explorer, and some dedicated queries to show all the
 //subprocesses in a given GSBPM phase.
 const queryBuilder = GSBPMPhase => `
-PREFIX skos:  <${P.SKOS}>
-
-SELECT ?subprocess ?label 
-WHERE {
- <${GSBPMPhase}> skos:narrower ?subprocess .
- ?subprocess skos:prefLabel ?label
-}
+  SELECT ?subprocess ?label 
+  WHERE {
+   <${GSBPMPhase}> skos:narrower ?subprocess .
+   ?subprocess skos:prefLabel ?label
+  }
 `
 
 const connector = sparqlConnect(queryBuilder, {

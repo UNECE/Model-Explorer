@@ -1,28 +1,23 @@
 import React from 'react'
 import { sparqlConnect } from '../../sparql/configure-sparql'
 import ServicesByNSI from './services-by-nsi'
-import P from '../../sparql/prefixes'
 
  /**
   * Builds the query that retrieves the details on a given NSI.
   */
 const queryBuilder = nsi => `
-   PREFIX org: <${P.ORG}>
-   PREFIX skos: <${P.SKOS}>
-   PREFIX vcard: <${P.VCARD}>
-
-   SELECT ?name ?shortName ?address ?geo
-   WHERE {
-     <${nsi}> skos:prefLabel ?name .
-     OPTIONAL {
-       <${nsi}> skos:altLabel ?shortName .
-     }
-     OPTIONAL {
-       <${nsi}> org:hasSite/org:siteAddress ?card .
-       ?card vcard:street-address ?address ; vcard:hasGeo ?geo .
-     }
+ SELECT ?name ?shortName ?address ?geo
+ WHERE {
+   <${nsi}> skos:prefLabel ?name .
+   OPTIONAL {
+     <${nsi}> skos:altLabel ?shortName .
    }
-  `
+   OPTIONAL {
+     <${nsi}> org:hasSite/org:siteAddress ?card .
+     ?card vcard:street-address ?address ; vcard:hasGeo ?geo .
+   }
+ }
+`
 
 const connector = sparqlConnect(queryBuilder, {
   queryName: 'NSIDetails',
