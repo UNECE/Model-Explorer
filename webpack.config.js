@@ -28,8 +28,8 @@ module.exports = {
         loader: ['babel'],
         query: {
           'presets': ['react', 'es2015'],
-          'plugins': ['transform-object-rest-spread'] //, 'import-asserts']
-        }
+          'plugins': ['transform-object-rest-spread', 'import-asserts']
+        },
       },
       { test: /\.svg$/, loader: 'file?name=/flags/[name].[ext]' }
     ]
@@ -47,10 +47,11 @@ module.exports = {
     fs: 'empty'
   }, 
   resolve: {
-    extensions: ['', '.js']
-    // alias: {
-    //   'sparql-connect': '/Users/jb/Documents/noknot/modernstats/sparql-connect/'
-    // }
+    extensions: ['', '.js'],
+    alias: {
+      'sparql-connect': '/Users/jb/Documents/noknot/modernstats/sparql-connect/',
+      'sparqljs': '/Users/jb/Documents/noknot/modernstats/SPARQL.js/'
+    }
   },
   output: {
     path: __dirname + '/dist',
