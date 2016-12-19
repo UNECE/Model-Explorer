@@ -1,4 +1,4 @@
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import ServicesByGSIM from './services-by-in-out-pres'
 
 /**

@@ -1,5 +1,5 @@
 import React from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 
 //TODO looks like the query for the NSI explore. It might be a good idea to use
 //the same query to avoid fetching twice similar information, but if the context

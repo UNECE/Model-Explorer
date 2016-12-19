@@ -1,6 +1,6 @@
 import config from '../config' 
 import buildFetch from '../sparql/stardog-remote-call' 
-import { setFetchQuery } from '../sparql/configure-sparql' 
+import { setFetchQuery } from 'sparql-connect' 
 import { setFetchQueryUpdate } from '../sparql/updates'
  
 const queryURL = config.queryURL 

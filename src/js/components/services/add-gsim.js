@@ -1,5 +1,5 @@
 import React, { Component , PropTypes} from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import AddButton from './add-gsim-gsbpm-button-pres'
 
 /**

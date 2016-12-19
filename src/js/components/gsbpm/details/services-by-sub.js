@@ -1,6 +1,6 @@
 import React from 'react'
 import ServiceList from '../../shared/service-list'
-import { sparqlConnect } from '../../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 
 
 /**

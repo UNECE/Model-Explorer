@@ -1,5 +1,5 @@
 import React from 'react'
-import { sparqlConnect } from '../../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import { groupByWithOrder } from '../../../utils/group-by'
 import GSBPMPhase from './phase-pres'
 

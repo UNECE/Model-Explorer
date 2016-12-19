@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import { linkService } from '../services/routes'
 
 /**

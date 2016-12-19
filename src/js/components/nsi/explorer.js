@@ -1,5 +1,5 @@
 import React from 'react'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import NSIList from './list-pres'
 
 /**
