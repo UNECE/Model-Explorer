@@ -6,7 +6,7 @@ import AddGSIM from './add-gsim'
 import AddGSBPM from './add-gsbpm'
 import OrganizationPicker from './organization-picker'
 
-export default function ServiceEditorDetails({ descr, editing, editUtils }) {
+export default function ServiceDetails({ descr, editing, editUtils }) {
   const  {
     label, description, outcomes, restrictions, builderOrg,
     inputs, outputs, subs
@@ -117,7 +117,7 @@ export default function ServiceEditorDetails({ descr, editing, editUtils }) {
   )
 }
 
-ServiceEditorDetails.propTypes = {
+ServiceDetails.propTypes = {
   descr: PropTypes.object.isRequired,
   editing: PropTypes.bool.isRequired,
   editUtils: PropTypes.object.isRequired

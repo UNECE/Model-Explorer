@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { linkService } from './routes'
 import { createService } from '../../sparql/updates'
-import ServiceEditorDetails from './details-pres'
+import ServiceDetails from './details-pres'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
 import P from '../../sparql/prefixes'
 import { flush } from 'sparql-connect'
@@ -81,7 +81,7 @@ class ServiceCreator extends Component {
     const descr = this.state
     return (
       <form className="form-horizontal">
-        <ServiceEditorDetails 
+        <ServiceDetails 
           descr={descr} editing={true} editUtils={this.editUtils} />
         <div className="btn-toolbar pull-right">
           <button className="btn btn-primary"
