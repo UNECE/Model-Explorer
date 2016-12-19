@@ -1,6 +1,6 @@
 # Model-Explorer
 
-A web client for navigating UNECE models, developed for the [Implementing ModernStats Standards] project(http://www1.unece.org/stat/platform/display/hlgbas/Implementing+Modernstats+Standards).
+A web client for navigating UNECE models, developed for the [Implementing ModernStats Standards project] (http://www1.unece.org/stat/platform/display/hlgbas/Implementing+Modernstats+Standards).
 
 This is a non exhaustive list of models :
  * GSBPM
