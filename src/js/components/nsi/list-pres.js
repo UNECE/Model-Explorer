@@ -22,7 +22,8 @@ export default function NSIList({ nsis }) {
       <tbody>
         { nsis.map(({ nsi, label }) =>
           <tr key={nsi}>
-            <td><a href={'http://dbpedia.org/resource/ISO_3166-2:' + nsi.slice(-2)}>{nsi.slice(-2)}</a></td>
+            <td>
+              <a href={'http://dbpedia.org/resource/ISO_3166-2:' + nsi.slice(-2)}>{nsi.slice(-2)}</a></td>
             <td>
               <Link to={linkNSI(nsi)}>
                 { label }

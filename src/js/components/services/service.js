@@ -82,8 +82,6 @@ const serviceOutputs = service => `
   }
 `
 
-
-
 const connector = sparqlCombine(
   sparqlConnect(serviceDetails, {
     queryName: 'serviceDetails',
@@ -106,6 +104,7 @@ const connector = sparqlCombine(
 
 function descrFromProps(props) {
   const {
+    service,
     //`serviceDetails` has `singleResult` set to `true`, so the component
     //is populated with the query variables 
     graphName, label, description, outcomes, restrictions, builderOrg,
@@ -113,8 +112,6 @@ function descrFromProps(props) {
     serviceOutputs: outputs,
     serviceSubs: subs
   } = props
-  
-  const { service } = props //filled in by `connectFromRoute`
   
   return {
     service,
