@@ -1,11 +1,13 @@
-export const servicePrefix = 'http://unece.org/services#'
-export const CSPAPrefix = 'http://rdf.unece.org/models/cspa#'
-export const RDFPrefix = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
-export const GSBPMPrefix = 'http://rdf.unece.org/models/gsbpm#'
-export const GSIMPrefix = 'http://rdf.unece.org/models/gsim#'
-export const RDFSPrefix = 'http://www.w3.org/2000/01/rdf-schema#'
-export const SKOSPrefix = 'http://www.w3.org/2004/02/skos/core#'
-export const ORGPrefix = 'http://www.w3.org/ns/org#'
-export const VCARDPrefix = 'http://www.w3.org/2006/vcard/ns#'
-export const CSPANamed  =  'http://stamina-project.org/graphs/cspa-service/'
-export const NSIPrefix = 'http://id.unece.org/nsi/'
+export default {
+  service: 'http://unece.org/services#',
+  cspa: 'http://rdf.unece.org/models/cspa#',
+  rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+  gsbpm: 'http://rdf.unece.org/models/gsbpm#',
+  gsim: 'http://rdf.unece.org/models/gsim#',
+  rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
+  skos: 'http://www.w3.org/2004/02/skos/core#',
+  org: 'http://www.w3.org/ns/org#',
+  vcard: 'http://www.w3.org/2006/vcard/ns#',
+  cspanamed:   'http://stamina-project.org/graphs/cspa-service/',
+  nsi: 'http://id.unece.org/nsi/'
+}

@@ -1,28 +1,27 @@
-import {
-  SKOSPrefix, GSBPMPrefix, GSIMPrefix, RDFSPrefix, CSPAPrefix, servicePrefix,
-  CSPANamed, NSIPrefix
-} from './prefixes'
+import P from './prefixes'
 
-
-function escapeWhitespaces(str) {
-  return str.replace(/\n/g, '\\n')
-}
 //IMPORTANT: when we update a service, we first clear the graph, that means that
 //afterwards, the graph will consist only of the data handled by the ui. This is
 //OK for now because we expose all the data constituent of a graph in the UI,
-//but it will no be satisfactory if manually add some data.
+//but it will no be satisfactory if we manually add some data.
+
+/**
+ * Escape line breaks to embed a string in a sparql query
+ */
+function escapeLinebreaks(str) {
+  return str.replace(/\n/g, '\\n')
+}
 
 /* Create a new service. This query is not intended to be used with 
    sparqlConnect.
 */
-
 export const insertUpdateService = ({ 
     graphName, service, label, subs, inputs, outputs, builderOrg,
     description, restrictions, outcomes }, update = false ) => {
   
-  const _description = escapeWhitespaces(description)
-  const _restrictions = escapeWhitespaces(restrictions)
-  const _outcomes = escapeWhitespaces(outcomes)
+  const _description = escapeLinebreaks(description)
+  const _restrictions = escapeLinebreaks(restrictions)
+  const _outcomes = escapeLinebreaks(outcomes)
   
   const clearGraphIfNeeded = update ? `CLEAR GRAPH <${graphName}>;` : ''
   const GSIMInTriples = 
@@ -60,11 +59,11 @@ cspa:definitionHasOutput [
         ).join(' ;')
   
   const query = `
-PREFIX cspa:    <${CSPAPrefix}>
-PREFIX gsbpm:   <${GSBPMPrefix}>
-PREFIX gsim:    <${GSIMPrefix}>
-PREFIX service: <${servicePrefix}>
-PREFIX nsi:     <${NSIPrefix}>
+PREFIX cspa:    <${P.cspa}>
+PREFIX gsbpm:   <${P.gsbpm}>
+PREFIX gsim:    <${P.gsim}>
+PREFIX service: <${P.service}>
+PREFIX nsi:     <${P.nsi}>
 
 ${clearGraphIfNeeded}
 
@@ -87,14 +86,14 @@ INSERT DATA {
       ] ;
       cspa:hasPackageImplementation [
         a cspa:ServiceImplementationDescription;
-  			cspa:comesFrom [
+        cspa:comesFrom [
           a cspa:Provenance; 
-  				cspa:builderOrganization [
+          cspa:builderOrganization [
             a cspa:Organization;
-  					cspa:organization <${builderOrg}>
-  				]
-  			]
-  		]
+            cspa:organization <${builderOrg}>
+          ]
+        ]
+      ]
     }
 }`
   return {

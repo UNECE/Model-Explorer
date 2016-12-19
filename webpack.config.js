@@ -12,7 +12,7 @@ module.exports = {
     './src/js/main.js'
   ],
   devServer: { 
-    historyApiFallback: true,
+    historyApiFallback: true
   }, 
   module: {
     loaders: [
@@ -20,13 +20,16 @@ module.exports = {
       { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader?sourceMap' },
       {
         test: /\.js$/,
+        include: [
+          path.resolve(__dirname, 'src')
+        ],
         exclude: /node_modules/,
         //loaders: ['react-hot', 'babel']
         loader: ['babel'],
         query: {
           'presets': ['react', 'es2015'],
           'plugins': ['transform-object-rest-spread', 'import-asserts']
-        }
+        },
       },
       { test: /\.svg$/, loader: 'file?name=/flags/[name].[ext]' }
     ]
@@ -38,9 +41,17 @@ module.exports = {
     new TransferWebpackPlugin([
         { from: 'img', to: 'img' }
     ], path.join(__dirname, 'src'))
-  ],  
+  ],
+  //`jison` module pattern adds `require('fs')`, which throws an error
+  node: {
+    fs: 'empty'
+  }, 
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    alias: {
+      'sparql-connect': '/Users/jb/Documents/noknot/modernstats/sparql-connect/',
+      'sparqljs': '/Users/jb/Documents/noknot/modernstats/SPARQL.js/'
+    }
   },
   output: {
     path: __dirname + '/dist',

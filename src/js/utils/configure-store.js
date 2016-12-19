@@ -9,10 +9,10 @@ export default function configureStore(mainReducer) {
     mainReducer,
     undefined,
     compose(
-	    applyMiddleware(
-	      thunkMiddleware,
-	      loggerMiddleware
-	     ),
-	    window.devToolsExtension ? window.devToolsExtension() : f => f)
+      applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+       ),
+      window.devToolsExtension ? window.devToolsExtension() : f => f)
     )
 }
