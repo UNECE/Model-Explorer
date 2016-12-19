@@ -98,7 +98,7 @@ export function transform(patternFrom, patternTo) {
       return str
     })
   
-  return from => {
+  return function transformString(from) {
     // we extract parameters values in `from` string
     // ['john', 'doe']
     let params = fromRegexp.exec(from)
