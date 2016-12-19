@@ -47,11 +47,7 @@ module.exports = {
     fs: 'empty'
   }, 
   resolve: {
-    extensions: ['', '.js'],
-    alias: {
-      'sparql-connect': '/Users/jb/Documents/noknot/modernstats/sparql-connect/',
-      'sparqljs': '/Users/jb/Documents/noknot/modernstats/SPARQL.js/'
-    }
+    extensions: ['', '.js']
   },
   output: {
     path: __dirname + '/dist',
