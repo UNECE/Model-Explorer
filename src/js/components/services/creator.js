@@ -6,7 +6,7 @@ import { createService } from '../../sparql/updates'
 import ServiceEditorDetails from './details-pres'
 import { removeInArrByKey, addInArr } from '../../utils/arrays'
 import P from '../../sparql/prefixes'
-import { flush } from '../../sparql/configure-sparql'
+import { flush } from 'sparql-connect'
 
 class ServiceCreator extends Component {
   constructor() {

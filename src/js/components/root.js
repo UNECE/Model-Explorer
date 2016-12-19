@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import configureStore from '../utils/configure-store'
 import { wrapRoute } from '../utils/router-mapping'
 //We work with `redux`, so our app will need a reducer
-import mainReducer from '../reducers/index'
+import { mainReducer } from 'sparql-connect'
 import routes from './routes'
 
 //We need to create a store. `configureStore` add a little extra config to

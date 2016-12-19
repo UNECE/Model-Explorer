@@ -1,7 +1,7 @@
 import React from 'react'
 import { linkGSIMClass } from './routes'
 import { Link } from 'react-router'
-import { sparqlConnect } from '../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 
 /**
  * Builds the query that retrieves the list of all GSIM objects of a given group.

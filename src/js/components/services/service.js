@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { sparqlConnect, sparqlCombine } from '../../sparql/configure-sparql'
+import { sparqlConnect, sparqlCombine } from 'sparql-connect'
 import { browserHistory } from 'react-router'
 import { updateService } from '../../sparql/updates'
 import { removeService } from '../../sparql/updates'

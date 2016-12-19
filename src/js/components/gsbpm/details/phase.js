@@ -1,5 +1,5 @@
 import React from 'react'
-import { sparqlConnect } from '../../../sparql/configure-sparql'
+import { sparqlConnect } from 'sparql-connect'
 import ServicesByGSBPMPhase from './services-by-phase'
 import GSBPMSubprocesses from './subs-by-phase'
 

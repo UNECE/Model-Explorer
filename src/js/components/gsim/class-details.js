@@ -1,7 +1,7 @@
 import React from 'react'
 import ServicesByGSIMInput from './services-by-input'
 import ServicesByGSIMOutput from './services-by-output'
-import { sparqlConnect} from '../../sparql/configure-sparql'
+import { sparqlConnect} from 'sparql-connect'
   
 /**
  * Builds the query that retrieves the details for a GSIM class
