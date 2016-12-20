@@ -1,7 +1,7 @@
 import config from '../config' 
 import buildFetch from '../sparql/stardog-remote-call' 
-import { setFetchQuery } from 'sparql-connect' 
-import { setFetchQueryUpdate } from '../sparql/updates'
+import { setFetchQuery as setFetchQuerySparqlConnect } from 'sparql-connect' 
+import { setFetchQuery as setFetchQueryUpdate } from '../sparql/updates'
  
 const queryURL = config.queryURL 
 const testQuery = 'SELECT ?s { ?s ?p ?o} LIMIT 1' 
@@ -32,7 +32,7 @@ export function check(authorization) {
     .then(() => { 
       auth.login = true 
       window.localStorage.token = authorization 
-      setFetchQuery(fetchQuery) 
+      setFetchQuerySparqlConnect(fetchQuery) 
       setFetchQueryUpdate(fetchQuery) 
     }) 
     .catch(() => auth.login = false) 
