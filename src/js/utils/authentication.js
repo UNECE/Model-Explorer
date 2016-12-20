@@ -16,6 +16,7 @@ const fetchQuerySetters = []
  * @param  {function} setter callback
  */
 export const registerSetFetchQuery = setter => fetchQuerySetters.push(setter)
+
 const { queryURL } = config
 
 //This query is used to check if the server returns an authentication error

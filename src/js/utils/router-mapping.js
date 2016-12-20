@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 /*
 React router doesn't support dot (.) in the URL (it won't load the page if we
 access it directly). We translate dots to underscores.

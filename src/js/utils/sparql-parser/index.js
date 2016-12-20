@@ -9,6 +9,7 @@ const parser = new Parser()
  * representing the query if the syntax is ok.
  *
  * Possible missing prefixes will be listed in `missingPrefixes` array
+ *
  * @param  {string} query sparql query
  * @return {object}       javascript representation of the query
  */
