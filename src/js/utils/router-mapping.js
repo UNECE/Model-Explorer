@@ -131,7 +131,9 @@ export function wrapRoute(element) {
     const wrappedComponent = uriTransformer(transform, component)
     otherProps.component = wrappedComponent
   }
-  if (children) otherProps.children = children.map(wrapRoute)
+  if (children)
+    otherProps.children = Array.isArray(children) ?
+      children.map(wrapRoute) : wrapRoute(children)
   return React.createElement(element.type, otherProps)
 }
 
