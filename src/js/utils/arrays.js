@@ -1,7 +1,28 @@
+/**
+ * Remove all items in an array where a given property matches a given value
+ *
+ * It takes an array of objects.
+ * It returns an array where matching objects have been removed.
+ * It does not mutate the initial array.
+ * 
+ * @param  {array} arr  an array of objects
+ * @param  {*}     val  the value to match
+ * @param  {string} key the key to check
+ * @return {array}      an array with the objects not matching the criteria
+ */
 export function removeInArrByKey(arr, val, key) {
   return arr.filter(o => o[key] !== val)
 }
 
+/**
+ * Add an object at the end of an array if it is not present
+ *
+ * It does not mutate the intial array.
+ * 
+ * @param  {array} arr  an array of objects
+ * @param  {*}     o    object to be added
+ * @return {array}      an array with the new object added
+ */
 export function addInArr(arr, o) {
   const index = arr.indexOf(o)
   if (index > -1) return arr
