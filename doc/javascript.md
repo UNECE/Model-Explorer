@@ -13,7 +13,7 @@ console.log(firstname) // 'john'
 console.log(lastname) // 'doe'
 ```
 
-We use them a lot when defining `React` components:
+This approach can be used for destructuring function arguements. We use them a lot when defining `React` components:
 
 ```javascript
 function ServicesList({ results }) {
@@ -121,11 +121,11 @@ function NSIDetails({ nsi, shortName, address, geo }) {
 export default connector(NSIDetails)
 ```
 
-If a presentational component is intended to be connected to multiple queries (see [src/js/components/shared/services-list.js](../src/js/components/shared/services-list.js)), a good pratice is to let it stay in its own file, and then create one file for each connected component.
+If a presentational component is intended to be connected to multiple queries (see [src/js/components/shared/services-list.js](../src/js/components/shared/services-list.js)), a good practice is to let it stay in its own file, and then create one file for each connected component.
 
 ### Routes
 
-The two kinds of exports can coexist in a same file. This approach is used for routes definitions. The routes are exported as default,  because that's really what the file is about, but we also export utility functions related to these routes with named exports.
+The two kinds of exports can coexist in a same file. This approach is used for route definitions. The routes are exported as default,  because that's really what the file is about, but we also export utility functions related to these routes with named exports.
 
 For instance, in [src/js/components/servies/routes.js](../src/js/components/servies/routes.js'):
 

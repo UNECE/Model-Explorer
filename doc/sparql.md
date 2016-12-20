@@ -30,10 +30,10 @@ function ResourcesList({ results }) {
   )
 }
 
-export default connector(ServicesList)
+export default connector(ResourcesList)
 ```
 
-First we import the `sparqlConnect` function to connect the component to the query. Then we define a `sparql` query as a single string, and we build a `connector` based on this query, that will be used to bind our component to the query. This connector enables us to write a component, assuming everything went well with the query, the network and the server, and that the results are available as a prop named `results`. This prop is an array of objects, each item represents a line in the result set and, as so, is made of as many properties as fields in the query. In our example each item has two properties: `resource` and `label`.
+First we import the `sparqlConnect` function to connect the component to the query. Then we define a `sparql` query as a single string, and we build a `connector` based on this query. This connector will be used to bind the component to the query. It enables us to write a component, assuming everything went well with the query, the network and the server, and that the results are available as a prop named `results`. This prop is an array of objects, with each item representing a line in the result set and, as so, made of as many properties as fields in the query. In this example each item has two properties: `resource` and `label`.
 
 The `connector` returned by `sparqlConnect(query)` is a function which takes a component as its first argument (the component we want to connect to the query), and some options as a second argument (see [errors](#waiting-for-the-results-and-handling-errors))
 
@@ -78,7 +78,7 @@ function DetailsComponent(...) { ... }
 export default connector(DetailsComponent)
 ```
 
-In this example we used an `arrow` function and a `template string` to describe the query builder (more information about this in [javascript information](./javascript.md).
+In this example we used an `arrow` function and a `template string` to describe the query builder (more information about this in [javascript information](./javascript.md)).
 
 Since we use a query builder function and not a string to represent the query, we need to give some extra information to `sparqlConnect`. The second argument of `sparqlConnect` is a configuration object which holds this extra information. Before seeing what the `params` option means, let's see how we will call our component.
 
@@ -220,15 +220,43 @@ export default connector(ResourcesList, {
 
 These components will receive the props passed by the parent of the connected component: this allows further customization. The `error` component will also receive a prop named `error` with some information about what occurred.
 
+### Use mutlitple queries in a component
+
+In order to value the results of multiple queries in the same component, we can use the `sparqlCombine` function (see [service.js](../src/js/components/services/service.js)):
+
+```javascript
+const connector = sparqlCombine(
+  sparqlConnect(serviceDetails, {
+    queryName: 'serviceDetails',
+    params: ['service'],
+    singleResult: true
+  }),
+  sparqlConnect(serviceInputs, {
+    queryName: 'serviceInputs',
+    params: ['service']
+  }),
+  sparqlConnect(serviceOutputs, {
+    queryName: 'serviceOutputs',
+    params: ['service']
+  }),
+  sparqlConnect(serviceSubs, {
+    queryName: 'serviceSubs',
+    params: ['service']
+  })
+)
+```
+
+In most cases, we should favor connecting one component to one query, but sometimes it's not possible. Here, it's because we use the same component, made of multiple smaller components, to visualize a service and to create it: in this situation, it was easier to use non connected children components (because when creating a service, there is nothing to connect thes to) and provide all the data at the `Service` component level.
+
 ## Query utilities
 
-`sparqlConnect` provides the mechanism to feed a component with the results of a request, but it does not know by itself how the requests should be sent to the server and how the results should be processed. These operations are provided by the `fetchQuery` function, (defined in '/src/js/sparql/stardog-remote-call.js') and which is passed to `sparqlConnect`.
+`sparqlConnect` provides the mechanism to feed a component with the results of a request, but it does not know by itself how the requests should be sent to the server and how the results should be processed. These operations are provided by the `fetchQuery` function ([stardog-remote-call.js](../src/js/sparql/stardog-remote-call.js)) which is passed to `sparqlConnect` (see [authentication.js](../src/js/utils/authentication.js), where we import `setFetchQuery` from `saprql-connect` to let `sparqrl-connect` know which function to use). 
 
 ### Checking query syntax
 
-We add some extra logic to `fetchQuery` to check the syntax of the query. If it's not correct, an error will be thrown, visible in the console.
+We added some extra logic to `fetchQuery` to check the syntax of the query. If it's not correct, an error will be thrown, visible in the console.
 
-.![error in query](./img/query-error.png)
+![error in query](./img/query-error.png)
 
 ### Missing prefixes
 
