@@ -1,3 +1,5 @@
+import { sortByKeys } from './arrays'
+
 const takeProps = (entry, props) =>
   props.reduce((filteredEntry, prop) => {
     filteredEntry[prop] = entry[prop]
@@ -46,13 +48,5 @@ export function groupByWithOrder(results, key, sortingKey, ...props) {
     arr.push(refinedResult)
     return arr
   }, [])
-  return gByRsltsArr.sort((a, b) => {
-    const left = a.props[sortingKey]
-    const right = b.props[sortingKey]
-    return right < left ? 1 :
-           right === left ? 0 :
-           -1
-        
-  })
-  
+  return sortByKeys(gByRsltsArr, 'props', sortingKey)
 }
