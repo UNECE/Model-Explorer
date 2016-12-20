@@ -3,9 +3,7 @@ import fetch from 'isomorphic-fetch'
 import P from '../sparql/prefixes'
 import { parse } from '../utils/sparql-parser/index'
 
-const bodyFromSparql = query =>
-  encodeURIComponent('query') + '=' +
-  encodeURIComponent(query)
+const bodyFromSparql = query => `query=${encodeURIComponent(query)}`
 
 const buildPrefix = (name, uri) => `PREFIX ${name}: <${uri}>`
 
