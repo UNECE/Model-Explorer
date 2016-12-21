@@ -8,7 +8,7 @@ import App from './app'
 import Login from './login'
 import GSBPMRoute from './gsbpm/routes'
 import GSIMRoute from './gsim/routes'
-import NSIRoute from './nsi/routes'
+import NSIRoute from './nsis/routes'
 import ServicesRoute from './services/routes'
 
 import { requireAuth } from '../utils/authentication'
