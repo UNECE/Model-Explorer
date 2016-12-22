@@ -11,7 +11,7 @@ This project is a single page application. It uses:
 
 For those who would be confused by some libraries or some coding practices used in this application, relevant information might be found in these documents:
 
-- [How to add a functionality]('./add-functionality.md');
+- [How to add a functionality](./add-functionality.md);
 - [Routing mechanism](./routes.md) (what appears in the navigation bar);
 - [How to populate `React` components with `sparql` query results](./sparql.md);
 - [Something about javascript bothers you when reading the code](./javascript.md);
