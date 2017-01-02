@@ -1,4 +1,3 @@
-var webpack = require('webpack');
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
@@ -47,7 +46,10 @@ module.exports = {
     fs: 'empty'
   }, 
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    root: [
+      path.resolve('./src/js')
+    ]
   },
   output: {
     path: __dirname + '/dist',

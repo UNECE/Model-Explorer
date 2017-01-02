@@ -4,25 +4,16 @@
  * set a `fetchQuery`function in the modules which need to execute queries.
  */
 
-import config from '../config' 
-import buildFetch from '../sparql/stardog-remote-call' 
-
+import { checkAuthentication } from 'sparql-connect' 
 
 //Track all the callback functions to call when the authentication succeeds
-const fetchQuerySetters = []
+const authCallbacks = []
 
 /**
  * Registers actions to perform when the authentication succeeds
- * @param  {function} setter callback
+ * @param  {function} cb callback
  */
-export const registerSetFetchQuery = setter => fetchQuerySetters.push(setter)
-
-const { queryURL } = config
-
-//This query is used to check if the server returns an authentication error
-//(more precisely, it checks if there is no error, all errors are hence
-//taken as authentication errors).
-const testQuery = 'SELECT ?s { ?s ?p ?o} LIMIT 1' 
+export const setCallback = cb => authCallbacks.push(cb)
 
 //Holds information about authentication status
 const auth = { login: false, pending: false } 
@@ -78,13 +69,18 @@ export function checkFromStorage() {
  * @param  {promise}
  */
 export function check(authorization) { 
-  const fetchQuery = buildFetch(queryURL, authorization) 
-  return fetchQuery(testQuery) 
-    .then(() => { 
-      auth.login = true 
-      window.localStorage.token = authorization
-      //set the fetch function anywhere it's needed
-      fetchQuerySetters.map(setter => setter(fetchQuery))
-    }) 
-    .catch(() => auth.login = false) 
+  function success(isAuthenticated) { 
+    //TODO handle wrong credentials
+    if (!isAuthenticated) return
+    auth.login = true 
+    window.localStorage.token = authorization
+    //pass the token where needed
+    authCallbacks.map(cb => cb(authorization))
+  }
+  //TODO handle error during authentication
+  const failure = error => {
+    throw new Error(`Problem during authentication: \`${error}\``)
+  }
+  return checkAuthentication(authorization) 
+    .then(success, failure) 
 } 

@@ -3,13 +3,16 @@ import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from '../utils/configure-store'
 import { wrapRoute } from '../utils/router-mapping'
-//We work with `redux`, so our app will need a reducer
-import { mainReducer } from 'sparql-connect'
 import routes from './routes'
+//We work with `redux`, so our app will need a reducer
+import { getReducer, setQueryURL, setPrefixes } from 'sparql-connect'
+import P from '../sparql/prefixes'
+import config from '../config'
 
-//We need to create a store. `configureStore` add a little extra config to
-//allow to work with asyncrhonous actions and to use the redux dev tools.
-const store = configureStore(mainReducer)
+setQueryURL(config.queryURL)
+setPrefixes(P)
+
+const store = configureStore(getReducer())
   
 export default class Root extends Component {
   render() {
