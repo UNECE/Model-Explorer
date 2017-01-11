@@ -21,11 +21,12 @@ const queryBuilder = nsi => `
 
 const connector = sparqlConnect(queryBuilder, {
   queryName: 'NSIDetails',
-  params: ['nsi']
+  params: ['nsi'],
+  singleResult: true
 })
 
 
-function NSIDetails({ nsi, shortName, address, geo }) {
+function NSIDetails({ nsi, name, shortName, address, geo }) {
   var countryCode = nsi.slice(-2).toLowerCase()
   var flagClassName = `flag-icon flag-icon-${countryCode} large-flag`
   // Computes the OpenStreetMap URL corresponding to the coordinates (NB: 18 is
@@ -39,7 +40,7 @@ function NSIDetails({ nsi, shortName, address, geo }) {
   return (
     <div>
       <span className={flagClassName}></span>
-      <h1>name { shortName && ` ( ${shortName} )`}</h1>
+      <h1>{ name }{ shortName && ` ( ${shortName} )`}</h1>
       {address &&
         <div>
         {geo && (<a href={osmURL}><img src="/img/osm.png"/></a>)}
