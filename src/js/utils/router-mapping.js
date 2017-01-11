@@ -73,7 +73,7 @@ export function transform(patternFrom, patternTo) {
   //string (if we don't, there might be an error with the pattern)
   const fromRegexp = new RegExp(
     patternFrom.replace(/:[a-zA-Z_$][a-zA-Z0-9_$]*/g,
-    '([.\\-a-zA-Z_$0-9]+)') + '$'
+    '([\-\.a-zA-Z_$0-9]+)') + '$'
   )
   
   //regular expression to check if a string looks like a parameter description
