@@ -34,7 +34,7 @@ module.exports = {
     ]
   },
   postcss: function () {
-    return [precss, autoprefixer({ browsers: ['> 5%'] })]
+    return [precss, autoprefixer({ browsers: ['> 0%', 'IE 9'] })]
   },
   plugins: [
     new TransferWebpackPlugin([
