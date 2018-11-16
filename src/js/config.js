@@ -1,5 +1,5 @@
 // Parameters for the application
 
 export default {
-  queryURL: 'https://unece-stardog.ichec.ie/annex/ModelExplorerTest2/sparql/query'
+  queryURL: 'http://graphdb.linked-open-statistics.org/repositories/models'
 }
